@@ -1,0 +1,123 @@
+import { getLanguageFile } from 'src/common/globals/languages/lang';
+
+export const cc: any = {
+    themes: {
+        blue: {
+            colors: {
+                background: 'white',
+                border: '#144ca8',
+                divider: '#121212',
+                primary: '#2196f3',
+                secondary: '#1976d2',
+                secondaryText: 'black',
+                text: 'white',
+            },
+            name: getLanguageFile().myaccount.themes.blue,
+            value: 'blue',
+        },
+        dark: {
+            colors: {
+                background: 'black',
+                border: '#4d4d4d',
+                divider: '#f5f5f5',
+                primary: '#292929',
+                secondary: '#121212',
+                secondaryText: 'white',
+                text: 'white',
+            },
+            name: getLanguageFile().myaccount.themes.dark,
+            value: 'dark',
+        },
+        gray: {
+            colors: {
+                background: 'white',
+                border: '#262626',
+                divider: '#121212',
+                primary: '#8c8c8c',
+                secondary: '#696969',
+                secondaryText: 'black',
+                text: 'white',
+            },
+            name: getLanguageFile().myaccount.themes.gray,
+            value: 'gray',
+        },
+        green: {
+            colors: {
+                background: 'white',
+                border: '#1b5e20',
+                divider: '#121212',
+                primary: '#00c853',
+                secondary: '#43a047',
+                secondaryText: 'black',
+                text: 'white',
+            },
+            name: getLanguageFile().myaccount.themes.green,
+            value: 'green',
+        },
+        light: {
+            colors: {
+                background: 'white',
+                border: '#b0b0b0',
+                divider: '#121212',
+                primary: '#f5f5f5',
+                secondary: '#ffffff',
+                secondaryText: 'black',
+                text: 'black',
+            },
+            name: getLanguageFile().myaccount.themes.light,
+            value: 'light',
+        },
+        orange: {
+            colors: {
+                background: 'white',
+                border: '#ff5e00',
+                divider: '#121212',
+                primary: '#ff9d00',
+                secondary: '#ff7b00',
+                secondaryText: 'black',
+                text: 'white',
+            },
+            name: getLanguageFile().myaccount.themes.orange,
+            value: 'orange',
+        },
+        pink: {
+            colors: {
+                background: 'white',
+                border: '#c70a76',
+                divider: '#121212',
+                primary: '#ff4db2',
+                secondary: '#ed0e8d',
+                secondaryText: 'black',
+                text: 'white',
+            },
+            name: getLanguageFile().myaccount.themes.pink,
+            value: 'pink',
+        },
+        red: {
+            colors: {
+                background: 'white',
+                border: '#b00012',
+                divider: '#121212',
+                primary: '#f44336',
+                secondary: '#d32f2f',
+                secondaryText: 'black',
+                text: 'white',
+            },
+            name: getLanguageFile().myaccount.themes.red,
+            value: 'red',
+        },
+        yellow: {
+            colors: {
+                background: 'white',
+                border: '#ffd000',
+                divider: '#121212',
+                primary: '#ffe100',
+                secondary: '#e6cf09',
+                secondaryText: 'black',
+                text: 'black',
+            },
+            name: getLanguageFile().myaccount.themes.yellow,
+            value: 'yellow',
+        },
+    },
+};
