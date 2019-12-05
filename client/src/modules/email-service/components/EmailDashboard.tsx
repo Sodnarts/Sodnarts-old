@@ -1,10 +1,10 @@
+import { Fab } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { routes } from 'src/common/globals/routes/routes';
 import { color } from 'src/common/utils/getColor';
 import { SurveyList } from 'src/modules/email-service/components/surveys/SurveyList';
-import { Fab } from '@material-ui/core';
 
 const EmailDashboard = () => {
     return (
