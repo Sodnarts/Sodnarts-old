@@ -19,7 +19,6 @@ const EmailRouterBase = () => (
             <Switch>
                 <Route exact={true} path={routes.emailService.home} component={Email} />
                 <Route exact={true} path={routes.emailService.emailDashboard} component={EmailDashboard} />
-                <Route exact={true} path={routes.emailService.surveys.new} component={SurveyNew} />
                 <Route component={PageNotFound} />
             </Switch>
         </div>

@@ -11,5 +11,5 @@ export const validateEmails = (emails: string) => {
     if (invalidEmails.length) {
         return getLanguageFile().surveys.invalidEmails + invalidEmails;
     }
-    return;
+    return '';
 };

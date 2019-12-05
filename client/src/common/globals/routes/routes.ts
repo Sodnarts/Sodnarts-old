@@ -21,9 +21,6 @@ export const routes = {
         },
         emailDashboard: '/email-service/surveys/',
         home: '/email-service',
-        surveys: {
-            new: '/email-service/surveys/new/',
-        },
     },
     home: {
         home: '/',

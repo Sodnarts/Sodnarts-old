@@ -6,4 +6,9 @@ export interface IButtonProps {
     backgroundColorPrimary?: string;
     backgroundColorSecondary?: string;
     textColor?: string;
+    isRound?: boolean;
+    size?: 'small' | 'medium' | 'large';
+    leftIcon?: any;
+    rightIcon?: any;
+    submit?: boolean;
 }

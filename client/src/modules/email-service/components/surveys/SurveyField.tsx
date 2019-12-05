@@ -1,22 +1,14 @@
 import React from 'react';
+import { TextField } from 'src/common/components/text-field/TextField';
 
 interface IProps {
-    input: string;
     label: string;
-    meta: {
-        error: string;
-        touched: boolean;
-    };
 }
 
-export const SurveyField = ({ input, label, meta: { error, touched } }: IProps) => {
+export const SurveyField = ({ label }: IProps) => {
     return (
         <div>
-            <label>{label}</label>
-            <input {...input} style={{ marginBottom: '5px' }} />
-            <div className="red-text" style={{ marginBottom: '20px' }}>
-                {touched && error}
-            </div>
+            <TextField label={label} />
         </div>
     );
 };

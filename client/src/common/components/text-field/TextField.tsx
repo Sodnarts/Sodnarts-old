@@ -8,11 +8,15 @@ import { color } from 'src/common/utils/getColor';
 interface IProps extends InputProps {
     textColor?: string;
     disableInput?: boolean;
-    disableUnderline: boolean;
+    disableUnderline?: boolean;
     label: string;
     textIndentation?: string;
     validate?: boolean;
-    value: string;
+    value?: string;
+    multiLine?: boolean;
+    required?: boolean;
+    error?: boolean;
+    helperText?: string;
     onInputBlur?(value: string | number, label: string): void;
 }
 
@@ -44,7 +48,19 @@ class TextFieldBase extends React.PureComponent<ITextField, IState> {
     };
 
     public render() {
-        const { label, disableUnderline, style, value, disableInput, textIndentation, textColor } = this.props;
+        const {
+            label,
+            disableUnderline,
+            style,
+            value,
+            disableInput,
+            textIndentation,
+            textColor,
+            multiLine,
+            required,
+            error,
+            helperText,
+        } = this.props;
 
         return (
             <MUITextField
@@ -54,6 +70,10 @@ class TextFieldBase extends React.PureComponent<ITextField, IState> {
                 style={style}
                 defaultValue={value}
                 label={label}
+                multiline={multiLine}
+                required={required}
+                error={error}
+                helperText={helperText}
                 // tslint:disable-next-line: max-line-length
                 InputProps={{
                     disableUnderline,

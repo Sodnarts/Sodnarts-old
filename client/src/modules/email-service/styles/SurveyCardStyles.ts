@@ -6,6 +6,8 @@ export const styles = (theme: Theme): StyleRules =>
         card: {
             minWidth: '275px',
             position: 'relative',
+            display: 'flex',
+            flexDirection: 'column',
             [theme.breakpoints.down('md')]: {
                 width: '100%',
             },
@@ -13,18 +15,19 @@ export const styles = (theme: Theme): StyleRules =>
                 width: '40',
             },
         },
-        cardAction: {
-            color: '#ffab40',
-            margin: 0,
-            marginLeft: '16px',
+        cardActions: {
+            backgroundColor: '#607d8b',
+            height: '35px',
+            position: 'relative',
         },
-        cardContainer: {},
         cardContent: {
+            flexGrow: 1,
             paddingTop: '25px',
         },
         cardResponse: {
-            backgroundColor: '#607d8b',
-            height: '35px',
+            color: '#ffab40',
+            margin: 0,
+            marginLeft: '16px',
         },
         cardTitle: {
             fontSize: 18,

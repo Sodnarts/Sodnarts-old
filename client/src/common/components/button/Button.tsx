@@ -34,6 +34,11 @@ class ButtonBase extends React.PureComponent<IButton, IState> {
             hoverable,
             onClick,
             textColor,
+            isRound,
+            size,
+            leftIcon,
+            rightIcon,
+            submit,
         } = this.props;
 
         return (
@@ -42,22 +47,26 @@ class ButtonBase extends React.PureComponent<IButton, IState> {
                 disabled={!!disabled ? disabled : false}
                 onMouseEnter={this.toggleHover}
                 onMouseLeave={this.toggleHover}
+                size={!!size ? size : 'medium'}
+                type={!!submit ? 'submit' : 'button'}
                 style={
                     !!hoverable && !!this.state.hovered
                         ? {
                               backgroundColor: !!backgroundColorSecondary
                                   ? backgroundColorSecondary
                                   : color().secondary,
+                              borderRadius: !!isRound ? '50px' : '0px',
                               color: !!textColor ? textColor : color().text,
                           }
                         : {
                               backgroundColor: !!backgroundColorPrimary ? backgroundColorPrimary : color().primary,
+                              borderRadius: !!isRound ? '20px' : '0px',
                               color: !!textColor ? textColor : color().text,
                           }
                 }
                 className={classes.button}
             >
-                {buttonText}
+                {leftIcon} {buttonText} {rightIcon}
             </MUIButton>
         );
     }

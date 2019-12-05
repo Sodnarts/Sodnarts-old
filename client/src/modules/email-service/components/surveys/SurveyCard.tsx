@@ -33,16 +33,18 @@ class SurveyCardBase extends React.Component<ISurveyCard> {
                     <Typography style={{ color: color().secondaryText }} gutterBottom={true}>
                         {body} <br /> {!!subject ? subject : ''}
                     </Typography>
+                </CardContent>
+                <CardContent style={{ backgroundColor: color().primary }}>
                     <Typography style={{ color: color().secondaryText }} gutterBottom={true}>
                         <br />
                         {this.lang.surveys.card.sent} {sentDate}
                     </Typography>
                 </CardContent>
-                <CardActions className={classes.cardResponse}>
-                    <p className={classes.cardAction}>
+                <CardActions className={classes.cardActions}>
+                    <p className={classes.cardResponse}>
                         {this.lang.surveys.card.yes} {yes}
                     </p>
-                    <p className={classes.cardAction}>
+                    <p className={classes.cardResponse}>
                         {this.lang.surveys.card.no} {no}
                     </p>
                 </CardActions>

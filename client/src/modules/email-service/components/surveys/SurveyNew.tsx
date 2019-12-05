@@ -1,11 +1,20 @@
 import { Typography } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import React from 'react';
-import { InjectedFormProps, reduxForm } from 'redux-form';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
+import * as actions from 'src/common/state/actions';
 import { SurveyForm } from 'src/modules/email-service/components/surveys/SurveyForm';
-import { SurveyFormReview } from 'src/modules/email-service/components/surveys/SurveyFormReview';
+
+interface IProps {
+    handleOpen: () => void;
+}
+
+/**
+ *
+ * @param param0 DELETE ME NOW --- Useless component only renders another one, which could be render directly!
+ */
 
 /**
  * Creates a new survey, using SurveyForm and SurveyFormReview
@@ -13,49 +22,31 @@ import { SurveyFormReview } from 'src/modules/email-service/components/surveys/S
  * @class SurveyNew
  * @extends {React.Component}
  */
-class SurveyNewBase extends React.Component<InjectedFormProps> {
-    public lang = getLanguageFile();
+const SurveyNewBase = ({ handleOpen }: IProps) => {
+    const lang = getLanguageFile();
 
-    public state = {
-        titleText: this.lang.surveys.formTitle.createSurvey,
-        toggleFormReview: false,
+    const handleSubmit = () => {};
+
+    const handleCancelForm = () => {
+        handleOpen();
     };
 
-    public handleCancel = () => {
-        this.setState({ toggleFormReview: false, titleText: this.lang.surveys.formTitle.createSurvey });
-    };
+    return (
+        <div style={{ position: 'relative' }}>
+            <Dialog open={true} aria-labelledby="form-dialog-title">
+                <Typography variant="subtitle1" style={{ padding: '10px', textAlign: 'center' }} id="form-dialog-title">
+                    {lang.surveys.formTitle.createSurvey}
+                </Typography>
+                <DialogContent>
+                    <SurveyForm onSurveySubmit={handleSubmit} handleCancel={handleCancelForm} />
+                </DialogContent>
+            </Dialog>
+        </div>
+    );
+};
 
-    public handleSubmit = () => {
-        this.setState({ toggleFormReview: true, titleText: this.lang.surveys.formTitle.reviewSurvey });
-    };
-
-    public renderContent() {
-        if (this.state.toggleFormReview) {
-            return <SurveyFormReview onCancel={this.handleCancel} />;
-        }
-        return <SurveyForm onSurveySubmit={this.handleSubmit} />;
-    }
-
-    public render() {
-        return (
-            <div style={{ position: 'relative' }}>
-                <Dialog open={true} aria-labelledby="form-dialog-title">
-                    <Typography
-                        variant="subtitle1"
-                        style={{ padding: '10px', textAlign: 'center' }}
-                        id="form-dialog-title"
-                    >
-                        {this.state.titleText}
-                    </Typography>
-                    <DialogContent>{this.renderContent()}</DialogContent>
-                </Dialog>
-            </div>
-        );
-    }
-}
-
-const SurveyNew = reduxForm({
-    form: 'surveyForm',
-})(SurveyNewBase);
-
+// const SurveyNew = reduxForm({
+//     form: 'surveyForm',
+// })(SurveyNewBase);
+const SurveyNew = connect(null, actions)(SurveyNewBase);
 export { SurveyNew };

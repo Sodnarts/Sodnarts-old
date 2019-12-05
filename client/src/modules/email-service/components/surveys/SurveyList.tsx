@@ -45,7 +45,7 @@ class SurveyListBase extends React.Component<ISurveyList> {
                 {this.props.surveys.reverse().map((survey: any) => {
                     return (
                         <SurveyCard
-                            key={survey.sentDate}
+                            key={survey._id}
                             title={survey.title}
                             body={survey.body}
                             sentDate={new Date(survey.dateSent).toLocaleDateString()}
