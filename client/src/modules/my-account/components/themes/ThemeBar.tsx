@@ -50,32 +50,24 @@ class ThemeBarBase extends React.Component<IThemeBar, IState> {
             : lang.myaccount.themes.themebar.selectButton;
 
         return (
-            <div>
-                <Paper style={{ backgroundColor: primary }} className={classes.paper}>
-                    <div className="nav-wrapper">
-                        <div style={{ color: 'white', padding: '0px' }} className="left brand-logo">
-                            <h5 style={{ color: text, padding: '10px' }}>
-                                {name} {lang.myaccount.themes.theme}
-                            </h5>
-                        </div>
-                        <div style={{ position: 'relative' }}>
-                            <ul>
-                                <li>
-                                    <Button
-                                        onClick={this.handleClick}
-                                        disabled={disable}
-                                        buttonText={buttonText}
-                                        backgroundColorPrimary={primary}
-                                        backgroundColorSecondary={secondary}
-                                        textColor={text}
-                                        hoverable={true}
-                                    />
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </Paper>
-            </div>
+            <Paper style={{ backgroundColor: primary }} className={classes.paper}>
+                <div style={{ color: 'white' }}>
+                    <h3 style={{ color: text, padding: '10px' }}>
+                        {name} {lang.myaccount.themes.theme}
+                    </h3>
+                </div>
+                <div className={classes.button}>
+                    <Button
+                        onClick={this.handleClick}
+                        disabled={disable}
+                        buttonText={buttonText}
+                        backgroundColorPrimary={primary}
+                        backgroundColorSecondary={secondary}
+                        textColor={text}
+                        hoverable={true}
+                    />
+                </div>
+            </Paper>
         );
     }
 }

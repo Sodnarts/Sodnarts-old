@@ -38,6 +38,8 @@ export const changeLanguage = (language: any) => async (dispatch: any) => {
 };
 
 export const changeAccountSettings = (value: any) => async (dispatch: any) => {
+    console.log(value);
     const response = await axios.post(routes.api.account, value);
+    console.log(response);
     dispatch({ type: FETCH_USER, payload: response.data });
 };

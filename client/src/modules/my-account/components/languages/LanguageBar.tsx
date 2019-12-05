@@ -2,7 +2,6 @@ import { Paper, withStyles, WithStyles } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'src/common/components/button/Button';
-import { getLanguageFile } from 'src/common/globals/languages/lang';
 import * as actions from 'src/common/state/actions/index';
 import { color } from 'src/common/utils/getColor';
 import { styles } from 'src/modules/my-account/components/languages/LanguagesStyles';
@@ -53,27 +52,14 @@ class LanguageBarBase extends React.Component<ILanguageBar, IState> {
             : langFile.myaccount.languages.languageBar.selectButton;
 
         return (
-            <div>
-                <Paper style={{ backgroundColor: color().primary }} className={classes.paper}>
-                    <div className="nav-wrapper">
-                        <div style={{ color: color().text, padding: '0px' }} className="left brand-logo">
-                            <h5 style={{ padding: '10px' }}>{language}</h5>
-                        </div>
-                        <div style={{ position: 'relative' }}>
-                            <ul>
-                                <li>
-                                    <Button
-                                        onClick={this.handleClick}
-                                        disabled={disable}
-                                        buttonText={buttonText}
-                                        hoverable={true}
-                                    />
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </Paper>
-            </div>
+            <Paper style={{ backgroundColor: color().primary }} className={classes.paper}>
+                <div style={{ color: color().text }} className={classes.languageTitle}>
+                    <h3 style={{ padding: '10px' }}>{language}</h3>
+                </div>
+                <div className={classes.button}>
+                    <Button onClick={this.handleClick} disabled={disable} buttonText={buttonText} hoverable={true} />
+                </div>
+            </Paper>
         );
     }
 }

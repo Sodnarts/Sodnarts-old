@@ -4,9 +4,10 @@ import { StyleRules } from '@material-ui/core/styles';
 export const styles = (theme: Theme): StyleRules =>
     createStyles({
         body: {
+            marginBottom: 'auto',
+            marginTop: 'auto',
             paddingLeft: '25px',
             paddingRight: '55px',
-            paddingTop: '55px',
             position: 'relative',
         },
         button: {
@@ -22,15 +23,6 @@ export const styles = (theme: Theme): StyleRules =>
                 paddingRight: '10px',
             },
         },
-        card: {
-            width: '100%',
-            [theme.breakpoints.down('md')]: {
-                width: '100%',
-            },
-            [theme.breakpoints.up('md')]: {
-                width: '40',
-            },
-        },
         container: {
             display: 'flex',
             flexDirection: 'column',
@@ -42,11 +34,13 @@ export const styles = (theme: Theme): StyleRules =>
         paper: {
             height: '100%',
             margin: '0px',
-            minHeight: 'calc(100vh - 65px)',
+            marginLeft: '20%',
+            marginRight: '20%',
+            minHeight: 'calc(100vh - 89px)',
             padding: '25px',
             paddingTop: '0px',
             position: 'relative',
-            width: '100%',
+            width: '60%',
         },
         subject: {
             fontFamily: 'Times',

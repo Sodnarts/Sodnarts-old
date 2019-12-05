@@ -1,6 +1,7 @@
 import { Divider, Menu, MenuItem } from '@material-ui/core';
 import ListItemText from '@material-ui/core/ListItemText';
 import { withStyles } from '@material-ui/core/styles';
+import { AccountCircle } from '@material-ui/icons';
 import { WithStyles } from '@material-ui/styles';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -9,14 +10,11 @@ import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { routes } from 'src/common/globals/routes/routes';
 import { color } from 'src/common/utils/getColor';
 
-interface IProps {
-    displayText: string;
-}
-
 interface IState {
     anchorEl: any;
 }
-type ILogoutMenu = IProps & WithStyles<typeof styles>;
+
+type ILogoutMenu = WithStyles<typeof styles>;
 
 /**
  * The actual component
@@ -120,7 +118,7 @@ class LogoutMenuBase extends React.Component<ILogoutMenu, IState> {
                     aria-haspopup="true"
                     onClick={this.handleClick}
                 >
-                    {this.props.displayText}
+                    <AccountCircle fontSize="large" />
                 </a>
                 <div>
                     <StyledMenu

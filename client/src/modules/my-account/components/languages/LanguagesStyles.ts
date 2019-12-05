@@ -6,16 +6,19 @@ export const styles = (theme: Theme): StyleRules =>
         button: {
             color: 'white',
             fontSize: '20px',
-            right: '0px',
+            height: '100%',
             textTransform: 'none',
             [theme.breakpoints.up(380)]: {
                 paddingLeft: '10px',
                 paddingRight: '10px',
             },
             [theme.breakpoints.up(807)]: {
-                float: 'right',
                 paddingLeft: '15px',
                 paddingRight: '15px',
+                position: 'absolute',
+                right: '0px',
+                top: '50%',
+                transform: 'translateY(-25%)',
             },
         },
         container: {
@@ -30,10 +33,14 @@ export const styles = (theme: Theme): StyleRules =>
                 marginBottom: '16px',
             },
         },
+        languageTitle: {
+            left: '0px',
+            padding: '0px',
+        },
         paper: {
             borderRadius: '15px',
             display: 'flex',
-            flexDirection: 'row',
+            flexDirection: 'column',
             left: '50%',
             marginTop: '25px',
             paddingLeft: '10px',
@@ -41,15 +48,6 @@ export const styles = (theme: Theme): StyleRules =>
             position: 'relative',
             transform: 'translateX(-50%)',
             width: '70%',
-            [theme.breakpoints.down(380)]: {
-                alignItems: 'center',
-                justifyContent: 'center',
-            },
-
-            [theme.breakpoints.up(380)]: {
-                alignItems: 'center',
-                justifyContent: 'center',
-            },
-            [theme.breakpoints.up(807)]: { flexDirection: 'column', alignItems: 'normal', justifyContent: 'normal' },
-        }, // 380 to 757
+            [theme.breakpoints.up(807)]: { flexDirection: 'row' },
+        },
     });

@@ -9,5 +9,9 @@ export interface IAuthenticationProps {
         primary: string;
         secondary: string;
         border: string;
+        background: string;
+        divider: string;
+        secondaryText: string;
+        text: string;
     };
 }

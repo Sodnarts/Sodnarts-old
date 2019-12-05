@@ -1,7 +1,7 @@
 import { cc } from 'src/common/globals/color-codes/cc';
 import { FETCH_THEME } from 'src/common/state/actions/types';
 
-export const themeReducer = (color = cc.themes.blue.colors, action: any) => {
+export const themeReducer = (color = cc.themes.light.colors, action: any) => {
     switch (action.type) {
         case FETCH_THEME:
             switch (action.payload.theme) {
@@ -24,7 +24,7 @@ export const themeReducer = (color = cc.themes.blue.colors, action: any) => {
                 case 'dark':
                     return (color = cc.themes.dark.colors);
                 default:
-                    return (color = cc.themes.blue.colors);
+                    return (color = cc.themes.light.colors);
             }
         default:
             return color;

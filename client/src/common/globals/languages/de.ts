@@ -42,7 +42,7 @@ export const de = {
             list: ['Profil', 'Themen', 'Sprachen', 'Einkäufe', 'Favoritter', 'E-Mail senden', 'Entwürfe'],
         },
         languages: {
-            de: 'Deutsch',
+            de: '(Beta)  -  Deutsch',
             en: 'Englisch',
             languageBar: {
                 activeButton: 'Aktiv',
@@ -53,7 +53,7 @@ export const de = {
         },
         themes: {
             blue: 'Blau',
-            dark: 'Dunkel',
+            dark: '(Beta)  -  Dunkel',
             gray: 'Grau',
             green: 'Grün',
             light: 'Licht',

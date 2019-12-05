@@ -1,5 +1,3 @@
-import { getLanguageFile } from 'src/common/globals/languages/lang';
-
 export const cc: any = {
     themes: {
         blue: {
@@ -12,7 +10,6 @@ export const cc: any = {
                 secondaryText: 'black',
                 text: 'white',
             },
-            name: getLanguageFile().myaccount.themes.blue,
             value: 'blue',
         },
         dark: {
@@ -25,7 +22,6 @@ export const cc: any = {
                 secondaryText: 'white',
                 text: 'white',
             },
-            name: getLanguageFile().myaccount.themes.dark,
             value: 'dark',
         },
         gray: {
@@ -38,7 +34,6 @@ export const cc: any = {
                 secondaryText: 'black',
                 text: 'white',
             },
-            name: getLanguageFile().myaccount.themes.gray,
             value: 'gray',
         },
         green: {
@@ -51,7 +46,6 @@ export const cc: any = {
                 secondaryText: 'black',
                 text: 'white',
             },
-            name: getLanguageFile().myaccount.themes.green,
             value: 'green',
         },
         light: {
@@ -64,7 +58,6 @@ export const cc: any = {
                 secondaryText: 'black',
                 text: 'black',
             },
-            name: getLanguageFile().myaccount.themes.light,
             value: 'light',
         },
         orange: {
@@ -77,7 +70,6 @@ export const cc: any = {
                 secondaryText: 'black',
                 text: 'white',
             },
-            name: getLanguageFile().myaccount.themes.orange,
             value: 'orange',
         },
         pink: {
@@ -90,7 +82,6 @@ export const cc: any = {
                 secondaryText: 'black',
                 text: 'white',
             },
-            name: getLanguageFile().myaccount.themes.pink,
             value: 'pink',
         },
         red: {
@@ -103,7 +94,6 @@ export const cc: any = {
                 secondaryText: 'black',
                 text: 'white',
             },
-            name: getLanguageFile().myaccount.themes.red,
             value: 'red',
         },
         yellow: {
@@ -116,7 +106,6 @@ export const cc: any = {
                 secondaryText: 'black',
                 text: 'black',
             },
-            name: getLanguageFile().myaccount.themes.yellow,
             value: 'yellow',
         },
     },

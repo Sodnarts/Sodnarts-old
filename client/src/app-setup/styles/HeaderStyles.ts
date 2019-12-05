@@ -6,7 +6,8 @@ export const styles = (theme: Theme): StyleRules =>
     createStyles({
         logoutButton: {
             alignSelf: 'right',
-            position: 'absolute',
+            marginLeft: '160px',
+            position: 'relative',
             right: '0px',
         },
         menuButton: {

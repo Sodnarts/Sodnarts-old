@@ -1,4 +1,4 @@
-import { Paper, Switch } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import { withStyles, WithStyles } from '@material-ui/styles';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -74,6 +74,7 @@ class ProfileBase extends React.Component<IProfile, IState> {
                 break;
         }
 
+        console.log(valueToChange);
         if (valueToChange.toString() !== '{}') {
             this.props.changeAccountSettings(valueToChange);
         }
@@ -95,9 +96,9 @@ class ProfileBase extends React.Component<IProfile, IState> {
                     return (
                         <TextField
                             key={label.toString()}
-                            style={{ width: '40%', marginRight: '25px' }}
+                            style={{ width: '40%', marginRight: '25px', marginBottom: '20px' }}
                             onInputBlur={this.onBlur}
-                            disableUnderline={true}
+                            disableUnderline={false}
                             label={label.toString()}
                             value={!!user ? user[type] : ''}
                         />

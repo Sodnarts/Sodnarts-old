@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { TextField } from 'src/common/components/text-field/TextField';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { IAuthenticationProps } from 'src/common/interface/IAuthentication';
 import { color } from 'src/common/utils/getColor';
-import { PaymentDrawer } from 'src/modules/email-service/components/PaymentDrawer';
+import { PaymentDrawer } from 'src/modules/email-service/components/payment-drawer/PaymentDrawer';
 import { Payments } from 'src/modules/email-service/components/Payments';
 
 interface IState {
@@ -53,22 +54,29 @@ class EmailHeaderBase extends React.Component<IAuthenticationProps, IState> {
                 return null;
             default:
                 return (
-                    <ul className="right">
-                        <li className="right" style={{ color: color().text, paddingLeft: '10px', paddingRight: '0px' }}>
-                            {creditsText} {!!(creditsText !== '') ? this.props.auth.credits : null}
-                        </li>
+                    <div style={{ marginRight: '25px', display: 'flex' }}>
+                        <PaymentDrawer />
                         <Payments />
-                    </ul>
+                        <div style={{ marginTop: '6px' }}>
+                            <TextField
+                                label="Credits"
+                                value={this.props.auth.credits}
+                                disableUnderline={true}
+                                disableInput={true}
+                                textIndentation="12px"
+                                textColor={color().text}
+                            >
+                                {creditsText} {!!creditsText ? this.props.auth.credits : null}
+                            </TextField>
+                        </div>
+                    </div>
                 );
         }
     }
     public render() {
         return (
-            <div>
-                <div>
-                    {this.renderContent()}
-                    <PaymentDrawer />
-                </div>
+            <div style={{ display: 'flex', flexDirection: 'row', right: '0px', position: 'absolute' }}>
+                {this.renderContent()}
             </div>
         );
     }

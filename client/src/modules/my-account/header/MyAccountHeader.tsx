@@ -1,6 +1,4 @@
-import React from 'react';
 import { connect } from 'react-redux';
-import { getLanguageFile } from 'src/common/globals/languages/lang';
 
 /**
  *
@@ -9,8 +7,6 @@ import { getLanguageFile } from 'src/common/globals/languages/lang';
  * @extends {React.Component<IAuthenticationProps>}
  */
 const MyAccountHeaderBase = () => {
-    const lang = getLanguageFile();
-
     return null;
 };
 

@@ -6,8 +6,11 @@ import { styles } from 'src/common/components/text-field/TextFieldStyles';
 import { color } from 'src/common/utils/getColor';
 
 interface IProps extends InputProps {
+    textColor?: string;
+    disableInput?: boolean;
     disableUnderline: boolean;
     label: string;
+    textIndentation?: string;
     validate?: boolean;
     value: string;
     onInputBlur?(value: string | number, label: string): void;
@@ -35,11 +38,13 @@ class TextFieldBase extends React.PureComponent<ITextField, IState> {
     public onBlur = () => {
         const { onInputBlur, label } = this.props;
         // tslint:disable-next-line: no-unused-expression
-        !!onInputBlur ? onInputBlur(this.state.value, label) : undefined;
+        if (onInputBlur) {
+            onInputBlur(this.state.value, label);
+        }
     };
 
     public render() {
-        const { label, disableUnderline, style, value, classes } = this.props;
+        const { label, disableUnderline, style, value, disableInput, textIndentation, textColor } = this.props;
 
         return (
             <MUITextField
@@ -49,8 +54,17 @@ class TextFieldBase extends React.PureComponent<ITextField, IState> {
                 style={style}
                 defaultValue={value}
                 label={label}
-                InputProps={{ disableUnderline, style: { color: color().secondaryText } }}
-                InputLabelProps={{ style: { color: color().secondaryText } }}
+                // tslint:disable-next-line: max-line-length
+                InputProps={{
+                    disableUnderline,
+                    disabled: disableInput,
+                    style: {
+                        color: !!textColor ? textColor : color().secondaryText,
+                        marginLeft: !!textIndentation ? textIndentation : '0px',
+                        textAlign: 'center',
+                    },
+                }}
+                InputLabelProps={!!textColor ? { style: { color: textColor } } : {}}
             />
         );
     }

@@ -12,6 +12,7 @@ export const styles = (theme: Theme): StyleRules =>
             },
             'backgroundColor': 'transparent',
             'color': 'white',
+            'marginTop': '8px',
             'padding': '0px',
             'textTransform': 'none',
         },

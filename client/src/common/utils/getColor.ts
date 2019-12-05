@@ -1,4 +1,4 @@
-import { store } from 'src/index';
+import { store } from 'src/common/state/store';
 
 export function color() {
     const state = store.getState();

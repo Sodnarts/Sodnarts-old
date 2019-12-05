@@ -3,7 +3,6 @@ import { createStyles, StyleRules, Theme } from '@material-ui/core/styles';
 export const styles = (theme: Theme): StyleRules =>
     createStyles({
         button: {
-            fontSize: '20px',
             textTransform: 'none',
             [theme.breakpoints.down(446)]: {
                 paddingLeft: '10px',
@@ -20,6 +19,7 @@ export const styles = (theme: Theme): StyleRules =>
         },
         link: {
             height: '100%',
+            textDecoration: 'none',
             width: '100%',
         },
         menuItem: {

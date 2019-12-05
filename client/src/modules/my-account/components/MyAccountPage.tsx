@@ -52,13 +52,14 @@ class MyAccountBase extends React.Component<{}, IState> {
                 style={{
                     display: 'flex',
                     position: 'relative',
-                    width: '100%',
+                    width: '96%',
                 }}
             >
                 <LeftDrawer updateRender={this.updateRender} />
                 <div
                     style={{
                         display: 'block',
+                        marginLeft: '4%',
                         position: 'relative',
                         width: '100%',
                     }}

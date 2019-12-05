@@ -3,21 +3,28 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { fetchSurveys } from 'src/common/state/actions';
-import { color } from 'src/common/utils/getColor';
+import { SurveyCard } from 'src/modules/email-service/components/surveys/SurveyCard';
 
 const styles = (theme: Theme) =>
     createStyles({
         paper: {
+            display: 'grid',
+            gridGap: '25px',
+            gridTemplateColumns: '1fr',
+            margin: '24px auto 24px auto',
             position: 'relative',
-            width: '100%',
-            [theme.breakpoints.down('md')]: {
-                width: '100%',
+            width: '80%',
+            [theme.breakpoints.up(650)]: {
+                gridTemplateColumns: '1fr 1fr',
+                width: '85%',
             },
-            [theme.breakpoints.up('md')]: {
-                width: '40',
+            [theme.breakpoints.up(1180)]: {
+                gridTemplateColumns: '1fr 1fr 1fr',
+                width: '75%',
             },
         },
     });
+
 interface IProps {
     fetchSurveys: () => void;
     surveys: [];
@@ -33,35 +40,22 @@ class SurveyListBase extends React.Component<ISurveyList> {
     }
 
     public renderSurveys = () => {
-        return this.props.surveys.reverse().map((survey: any) => {
-            return (
-                <div className={this.props.classes.paper + ' col m4'} key={survey._id}>
-                    <div style={{ position: 'relative' }} className="card darken-3">
-                        <div
-                            style={{ position: 'relative', backgroundColor: color().primary }}
-                            className="card-content"
-                        >
-                            <span className="card-title" style={{ color: color().secondaryText }}>
-                                {survey.title}
-                            </span>
-                            <p style={{ color: color().secondaryText }}>{survey.body}</p>
-                            <p style={{ color: color().secondaryText }}>
-                                {this.lang.surveys.card.sent} {new Date(survey.dateSent).toLocaleDateString()}
-                            </p>
-                        </div>
-                        <div style={{ position: 'relative' }} className="card-action blue-grey darken-1">
-                            <a>
-                                {this.lang.surveys.card.yes} {survey.yes}
-                            </a>
-                            <a>
-                                {this.lang.surveys.card.no}
-                                {survey.no}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            );
-        });
+        return (
+            <div className={this.props.classes.paper}>
+                {this.props.surveys.reverse().map((survey: any) => {
+                    return (
+                        <SurveyCard
+                            key={survey.sentDate}
+                            title={survey.title}
+                            body={survey.body}
+                            sentDate={new Date(survey.dateSent).toLocaleDateString()}
+                            yes={survey.yes}
+                            no={survey.no}
+                        />
+                    );
+                })}
+            </div>
+        );
     };
 
     public render() {

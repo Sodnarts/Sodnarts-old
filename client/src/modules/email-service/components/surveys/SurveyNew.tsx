@@ -31,7 +31,7 @@ class SurveyNewBase extends React.Component<InjectedFormProps> {
 
     public renderContent() {
         if (this.state.toggleFormReview) {
-            return <SurveyFormReview onCancel={this.handleSubmit} />;
+            return <SurveyFormReview onCancel={this.handleCancel} />;
         }
         return <SurveyForm onSurveySubmit={this.handleSubmit} />;
     }

@@ -53,7 +53,7 @@ export const no = {
         },
         themes: {
             blue: 'Blå',
-            dark: 'Mørk',
+            dark: '(Beta)  -  Mørk',
             gray: 'Grå',
             green: 'Grønn',
             light: 'Lys',

@@ -25,14 +25,14 @@ type IThemes = IProps & WithStyles<typeof styles>;
 class ThemesBase extends React.Component<IThemes, IState> {
     public state = {
         colors: [
-            cc.themes.blue.value,
+            cc.themes.light.value,
             cc.themes.red.value,
             cc.themes.green.value,
             cc.themes.gray.value,
             cc.themes.yellow.value,
             cc.themes.pink.value,
             cc.themes.orange.value,
-            cc.themes.light.value,
+            cc.themes.blue.value,
             cc.themes.dark.value,
         ],
     };

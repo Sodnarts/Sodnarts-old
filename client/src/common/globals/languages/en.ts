@@ -5,10 +5,10 @@ export const en = {
         card: {
             bodySubject: 'Will you be creating your own survey, and sending it out to all your users?',
             bodyTitle: 'Hello! This is your new survey.',
-            no: 'NO: 247',
+            no: '247',
             sentOn: '2019.06.30',
             title: 'Your Survey',
-            yes: 'YES: 8032',
+            yes: '8032',
         },
         create: 'Create new surveys with ease!',
         getStarted: 'Get started',
@@ -33,8 +33,8 @@ export const en = {
         main: 'Sodnarts',
         user: {
             account: 'My Account',
-            login: 'Login with Google',
-            logout: 'Logout',
+            login: 'Sign in',
+            logout: 'Sign out',
         },
     },
     myaccount: {
@@ -53,7 +53,7 @@ export const en = {
         },
         themes: {
             blue: 'Blue',
-            dark: 'Dark',
+            dark: '(Beta)  -  Dark',
             gray: 'Gray',
             green: 'Green',
             light: 'Light',

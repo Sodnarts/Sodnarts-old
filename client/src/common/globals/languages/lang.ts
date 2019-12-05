@@ -1,13 +1,12 @@
-import { store } from '../../../index';
-import { de } from './de';
-import { en } from './en';
-import { no } from './no';
+import { de } from 'src/common/globals/languages/de';
+import { en } from 'src/common/globals/languages/en';
+import { no } from 'src/common/globals/languages/no';
+import { store } from 'src/common/state/store';
 
 export const getLanguageFile: any = () => {
-    let state;
-    let language;
+    let language = '';
     if (!!store) {
-        state = store.getState();
+        const state = store.getState();
         if (!!state.language) {
             language = state.language;
         }

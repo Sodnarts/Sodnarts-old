@@ -33,8 +33,10 @@ class AppBase extends React.Component<IProps> {
         return (
             <div>
                 <BrowserRouter>
-                    <Header />
-                    <RouterComponent />
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <Header />
+                        <RouterComponent />
+                    </div>
                 </BrowserRouter>
             </div>
         );

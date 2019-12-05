@@ -1,5 +1,4 @@
-import { Fab } from '@material-ui/core';
-import Icon from '@material-ui/core/Icon';
+import { Button } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
 import StripeCheckout from 'react-stripe-checkout';
@@ -25,7 +24,7 @@ interface IState {
  * @extends {React.Component<IProps>}
  */
 class PaymentsBase extends React.Component<IProps, IState> {
-    public lang = getLanguageFile();
+    private lang = getLanguageFile();
 
     constructor(props: IProps) {
         super(props);
@@ -52,30 +51,34 @@ class PaymentsBase extends React.Component<IProps, IState> {
 
     public getButton() {
         const { width } = this.state;
-        if (width >= 600) {
+        if (width >= 640) {
             return (
-                <button
-                    className="btn"
+                <Button
                     style={{
                         backgroundColor: color().text,
                         borderRadius: '50px',
-                        color: color().primary,
+                        color: color().secondary,
                         font: 'bold',
                         opacity: 1,
                     }}
                 >
                     {this.lang.payments.addCredits}
-                </button>
+                </Button>
             );
         } else {
             return (
-                <Fab
-                    size="small"
-                    style={{ backgroundColor: color().text, color: color().primary, margin: '0', padding: '0' }}
+                <Button
+                    style={{
+                        backgroundColor: color().text,
+                        borderRadius: '20px',
+                        color: color().secondary,
+                        margin: '0',
+                        padding: '0',
+                    }}
                     aria-label="add"
                 >
-                    <Icon style={{ margin: '0px', padding: '0px' }}>add</Icon>
-                </Fab>
+                    ADD
+                </Button>
             );
         }
     }
@@ -92,15 +95,17 @@ class PaymentsBase extends React.Component<IProps, IState> {
     };
     public render() {
         return (
-            <StripeCheckout
-                name={this.lang.payments.name}
-                description={this.lang.payments.description}
-                amount={500}
-                token={this.handleSubmit}
-                stripeKey={this.retrieveStripeKey()}
-            >
-                {this.getButton()}
-            </StripeCheckout>
+            <div style={{ marginLeft: '16px', marginRight: '24px', marginTop: '8px' }}>
+                <StripeCheckout
+                    name={this.lang.payments.name}
+                    description={this.lang.payments.description}
+                    amount={500}
+                    token={this.handleSubmit}
+                    stripeKey={this.retrieveStripeKey()}
+                >
+                    {this.getButton()}
+                </StripeCheckout>
+            </div>
         );
     }
 }
