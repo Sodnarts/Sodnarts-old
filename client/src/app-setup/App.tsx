@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { Header } from 'src/app-setup/Header';
+import { ModulesMenu } from 'src/app-setup/components/modules-menu/ModulesMenu';
 import { RouterComponent } from 'src/app-setup/Router';
 import { Alert } from 'src/common/components/alert/Alert';
 import * as actions from 'src/common/state/actions/index';
@@ -13,12 +14,15 @@ import * as actions from 'src/common/state/actions/index';
  */
 interface IProps {
     alert?: any;
+    toggleMenu: boolean;
     fetchUser: () => void;
     dismissAlert: () => void;
+    toggleModulesMenu: () => void;
 }
 
 interface IState {
-    isOpen: boolean;
+    alertOpen: boolean;
+    menuOpen: boolean;
     message: string;
 }
 
@@ -37,14 +41,16 @@ class AppBase extends React.Component<IProps, IState> {
         }
 
         this.state = {
-            isOpen: false,
+            alertOpen: false,
+            menuOpen: false,
             message: '',
         };
     }
 
     public componentWillReceiveProps(props: IProps) {
         this.setState({
-            isOpen: props.alert.isOpen,
+            alertOpen: props.alert.isOpen,
+            menuOpen: props.toggleMenu,
             message: props.alert.message,
         });
     }
@@ -54,7 +60,7 @@ class AppBase extends React.Component<IProps, IState> {
     };
 
     public render() {
-        const { isOpen, message } = this.state;
+        const { alertOpen, menuOpen, message } = this.state;
 
         return (
             <div>
@@ -63,15 +69,16 @@ class AppBase extends React.Component<IProps, IState> {
                         <Header />
                         <RouterComponent />
                     </div>
-                    <Alert isOpen={isOpen} message={message} handleOnClose={this.handleClose} />
+                    <Alert isOpen={alertOpen} message={message} handleOnClose={this.handleClose} />
+                    <ModulesMenu isOpen={menuOpen} />
                 </BrowserRouter>
             </div>
         );
     }
 }
 
-function mapStateToProps({ alert }: any) {
-    return { alert };
+function mapStateToProps({ alert, toggleMenu }: any) {
+    return { alert, toggleMenu };
 }
 
 const App = connect(mapStateToProps, actions)(AppBase);

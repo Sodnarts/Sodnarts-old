@@ -1,32 +1,15 @@
 import { TextField as MUITextField } from '@material-ui/core';
-import { InputProps } from '@material-ui/core/Input';
 import { withStyles, WithStyles } from '@material-ui/styles';
 import React from 'react';
+import { ITextFieldProps } from 'src/common/components/text-field/ITextField';
 import { styles } from 'src/common/components/text-field/TextFieldStyles';
 import { color } from 'src/common/utils/getColor';
-
-interface IProps extends InputProps {
-    textColor?: string;
-    disableInput?: boolean;
-    disableUnderline?: boolean;
-    label: string;
-    textIndentation?: string;
-    validate?: boolean;
-    value?: string;
-    multiLine?: boolean;
-    required?: boolean;
-    staticValue?: string; // Only use when field is not an input field
-    error?: boolean;
-    helperText?: string;
-    labelColor?: string;
-    onInputBlur?(value: string | number, label: string): void;
-}
 
 interface IState {
     value: string;
 }
 
-type ITextField = IProps & WithStyles<typeof styles>;
+type ITextField = ITextFieldProps & WithStyles<typeof styles>;
 
 class TextFieldBase extends React.Component<ITextField, IState> {
     constructor(props: ITextField) {

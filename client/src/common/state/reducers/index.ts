@@ -4,6 +4,7 @@ import { authReducer } from 'src/common/state/reducers/authReducer';
 import { languageReducer } from 'src/common/state/reducers/languageReducer';
 import { surveysReducer } from 'src/common/state/reducers/surveysReducer';
 import { themeReducer } from 'src/common/state/reducers/themeReducer';
+import { toggleMenuReducer } from 'src/common/state/reducers/toggleMenuReducer';
 
 export const rootReducer = combineReducers({
     alert: alertReducer,
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
     language: languageReducer,
     surveys: surveysReducer,
     theme: themeReducer,
+    toggleMenu: toggleMenuReducer,
 });

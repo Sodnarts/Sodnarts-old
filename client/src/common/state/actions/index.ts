@@ -7,6 +7,7 @@ import {
     FETCH_THEME,
     FETCH_USER,
     SHOW_ALERT,
+    TOGGLE_MENU,
 } from 'src/common/state/actions/types';
 
 export const fetchUser = () => async (dispatch: any) => {
@@ -59,4 +60,8 @@ export const showAlert = (message: string) => (dispatch: any) => {
 
 export const dismissAlert = () => (dispatch: any) => {
     dispatch({ type: DISMISS_ALERT });
+};
+
+export const toggleModulesMenu = () => (dispatch: any) => {
+    dispatch({ type: TOGGLE_MENU });
 };

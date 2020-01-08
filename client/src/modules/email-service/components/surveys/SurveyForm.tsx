@@ -1,6 +1,6 @@
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import CloseIcon from '@material-ui/icons/Close';
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from 'src/common/components/button/Button';
 import { TextField } from 'src/common/components/text-field/TextField';
 import { getLanguageFile } from 'src/common/globals/languages/lang';

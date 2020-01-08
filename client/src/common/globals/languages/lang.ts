@@ -4,20 +4,16 @@ import { no } from 'src/common/globals/languages/no';
 import { store } from 'src/common/state/store';
 
 export const getLanguageFile: any = () => {
-    let language = '';
-    if (!!store) {
-        const state = store.getState();
-        if (!!state.language) {
-            language = state.language;
+    const state = store.getState();
+    if (!!state.language) {
+        switch (state.language) {
+            case 'en':
+                return en;
+            case 'no':
+                return no;
+            case 'de':
+                return de;
         }
-    }
-    switch (language) {
-        case 'en':
-            return en;
-        case 'no':
-            return no;
-        case 'de':
-            return de;
     }
 
     // If no file was found, return english.

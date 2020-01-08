@@ -19,6 +19,9 @@ export const de = {
     },
     error: {
         codes: {
+            fiveO: {
+                one: '501 - Nicht implementiert',
+            },
             fourO: {
                 four: '404 - Seite nicth gefunden',
                 one: '401 - Unautorisierter Zugriff!',
@@ -37,9 +40,14 @@ export const de = {
             logout: 'Ausloggen',
         },
     },
+    modules: {
+        emailService: 'Email Service',
+        home: 'Home',
+        webShop: 'Web Shop',
+    },
     myaccount: {
         drawer: {
-            list: ['Profil', 'Themen', 'Sprachen', 'Einkäufe', 'Favoritter', 'E-Mail senden', 'Entwürfe'],
+            list: ['Profil', 'Themen', 'Sprachen', 'Einkäufe'],
         },
         languages: {
             de: '(Beta)  -  Deutsch',

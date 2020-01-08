@@ -6,6 +6,7 @@ import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { color } from 'src/common/utils/getColor';
 import { IProps } from 'src/modules/my-account/interface/IMyAccount';
 import { styles } from 'src/modules/my-account/styles/myAccountStyles';
+import { Button } from 'src/common/components/button/Button';
 
 interface IState {
     drawerNumber: number;

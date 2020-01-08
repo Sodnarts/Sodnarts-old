@@ -1,4 +1,4 @@
-import { DISMISS_ALERT, SHOW_ALERT } from '../actions/types';
+import { DISMISS_ALERT, SHOW_ALERT } from 'src/common/state/actions/types';
 
 const INITIAL_STATE = {
     isOpen: false,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageNotFound } from 'src/common/error-pages/PageNotFound';
+import { NotImplemented } from 'src/common/error-pages/NotImplemented';
 import { BillingHistory } from 'src/modules/my-account/components/billing-history/BillingHistory';
 import { LeftDrawer } from 'src/modules/my-account/components/drawer/LeftDrawer';
 import { Languages } from 'src/modules/my-account/components/languages/Languages';
@@ -33,17 +33,11 @@ class MyAccountBase extends React.Component<{}, IState> {
             case 2:
                 return <Languages />;
             case 3:
-                return <BillingHistory />;
+                return <NotImplemented />;
             case 4:
-                return <PageNotFound />;
-            case 5:
-                return <PageNotFound />;
-            case 6:
-                return <PageNotFound />;
-            case 7:
-                return <PageNotFound />;
+                return <NotImplemented />;
             default:
-                return <PageNotFound />;
+                return <NotImplemented />;
         }
     };
     public render() {

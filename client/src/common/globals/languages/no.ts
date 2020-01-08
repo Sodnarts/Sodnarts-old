@@ -19,6 +19,9 @@ export const no = {
     },
     error: {
         codes: {
+            fiveO: {
+                one: '501 - Ikke implementert',
+            },
             fourO: {
                 four: '404 - Siden finnes ikke',
                 one: '401 - Du har ikke tilgang til denne siden',
@@ -37,9 +40,14 @@ export const no = {
             logout: 'Logg ut',
         },
     },
+    modules: {
+        emailService: 'Email Service',
+        home: 'Hjem',
+        webShop: 'Nettbutikk',
+    },
     myaccount: {
         drawer: {
-            list: ['Profil', 'Fargestil', 'Språk', 'Betalinger', 'Favoritter', 'Send epost', 'Kladd'],
+            list: ['Profil', 'Fargestil', 'Språk', 'Betalinger'],
         },
         languages: {
             de: 'Tysk',

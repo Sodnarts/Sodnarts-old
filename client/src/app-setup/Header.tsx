@@ -4,7 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Route, Switch } from 'react-router-dom';
 import { LogoutMenu } from 'src/app-setup/components/LogoutMenu';
-import { MenuButton } from 'src/app-setup/components/MenuButton';
+import { MenuButton } from 'src/app-setup/components/modules-menu/MenuButton';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { routes } from 'src/common/globals/routes/routes';
 import { IAuthenticationProps } from 'src/common/interface/IAuthentication';
@@ -12,6 +12,10 @@ import { color } from 'src/common/utils/getColor';
 import { EmailHeader } from 'src/modules/email-service/header/EmailHeader';
 import { HomeHeader } from 'src/modules/home-page/header/HomeHeader';
 import { MyAccountHeader } from 'src/modules/my-account/header/MyAccountHeader';
+
+interface IProps {
+    toggleMenu: boolean;
+}
 
 interface IState {
     width: number;
@@ -22,7 +26,7 @@ interface IState {
  * @class Header
  * @extends {React.Component<IAuthenticationProps>}
  */
-class HeaderBase extends React.Component<IAuthenticationProps & WithStyles<typeof styles>, IState> {
+class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithStyles<typeof styles>, IState> {
     private lang = getLanguageFile();
 
     public renderContent() {
@@ -50,9 +54,10 @@ class HeaderBase extends React.Component<IAuthenticationProps & WithStyles<typeo
         }
     }
     public render() {
-        const { classes } = this.props;
+        const { classes, toggleMenu } = this.props;
         return (
             <AppBar
+                elevation={!!toggleMenu ? 0 : 4}
                 position="sticky"
                 style={{
                     backgroundColor: !!this.props.theme ? this.props.theme.primary : 'blue',
@@ -82,8 +87,8 @@ class HeaderBase extends React.Component<IAuthenticationProps & WithStyles<typeo
     }
 }
 
-const mapStateToProps = ({ auth, theme }: any) => {
-    return { auth, theme };
+const mapStateToProps = ({ auth, theme, toggleMenu }: any) => {
+    return { auth, theme, toggleMenu };
 };
 
 const styles = (theme: Theme) =>

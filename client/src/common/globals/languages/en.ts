@@ -19,6 +19,9 @@ export const en = {
     },
     error: {
         codes: {
+            fiveO: {
+                one: '501 - Not implemented',
+            },
             fourO: {
                 four: '404 - Page not found',
                 one: '401 - Unauthorized Access!',
@@ -37,9 +40,14 @@ export const en = {
             logout: 'Sign out',
         },
     },
+    modules: {
+        emailService: 'Email Service',
+        home: 'Home',
+        webShop: 'Web Shop',
+    },
     myaccount: {
         drawer: {
-            list: ['Profile', 'Themes', 'Languages', 'Purchases', 'Starred', 'Send email', 'Drafts'],
+            list: ['Profile', 'Themes', 'Languages', 'Purchases'],
         },
         languages: {
             de: 'German',
