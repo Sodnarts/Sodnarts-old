@@ -8,6 +8,7 @@ import { PaymentDrawer } from 'src/modules/email-service/components/payment-draw
 import { Payments } from 'src/modules/email-service/components/Payments';
 
 interface IState {
+    credits: string;
     width: number;
 }
 
@@ -24,11 +25,15 @@ class EmailHeaderBase extends React.Component<IAuthenticationProps, IState> {
         super(props);
 
         this.state = {
+            credits: !!props.auth ? props.auth.credits.toString() : '0',
             width: window.innerWidth,
         };
     }
 
     public componentWillReceiveProps(props: IAuthenticationProps) {
+        this.setState({
+            credits: props.auth.credits.toString(),
+        });
         window.addEventListener('resize', this.handleResize);
     }
 
@@ -42,11 +47,12 @@ class EmailHeaderBase extends React.Component<IAuthenticationProps, IState> {
         });
     };
 
-    public renderContent() {
+    public renderContent(credits: string) {
         let creditsText = this.lang.payments.credits;
         if (window.innerWidth <= 410) {
             creditsText = '';
         }
+
         switch (this.props.auth) {
             case null:
                 return null;
@@ -60,14 +66,12 @@ class EmailHeaderBase extends React.Component<IAuthenticationProps, IState> {
                         <div style={{ marginTop: '6px' }}>
                             <TextField
                                 label="Credits"
-                                value={this.props.auth.credits}
+                                value={credits}
                                 disableUnderline={true}
                                 disableInput={true}
                                 textIndentation="12px"
                                 textColor={color().text}
-                            >
-                                {creditsText} {!!creditsText ? this.props.auth.credits : null}
-                            </TextField>
+                            />
                         </div>
                     </div>
                 );
@@ -76,7 +80,7 @@ class EmailHeaderBase extends React.Component<IAuthenticationProps, IState> {
     public render() {
         return (
             <div style={{ display: 'flex', flexDirection: 'row', right: '0px', position: 'absolute' }}>
-                {this.renderContent()}
+                {this.renderContent(this.state.credits)}
             </div>
         );
     }

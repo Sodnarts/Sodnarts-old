@@ -15,8 +15,10 @@ interface IProps extends InputProps {
     value?: string;
     multiLine?: boolean;
     required?: boolean;
+    staticValue?: string; // Only use when field is not an input field
     error?: boolean;
     helperText?: string;
+    labelColor?: string;
     onInputBlur?(value: string | number, label: string): void;
 }
 
@@ -26,13 +28,21 @@ interface IState {
 
 type ITextField = IProps & WithStyles<typeof styles>;
 
-class TextFieldBase extends React.PureComponent<ITextField, IState> {
+class TextFieldBase extends React.Component<ITextField, IState> {
     constructor(props: ITextField) {
         super(props);
 
         this.state = {
-            value: '',
+            value: !!this.props.value ? this.props.value : '',
         };
+    }
+
+    public componentWillReceiveProps(props: ITextField) {
+        if (props.value) {
+            this.setState({
+                value: props.value.toString(),
+            });
+        }
     }
 
     public onChange = (event: any) => {
@@ -52,14 +62,15 @@ class TextFieldBase extends React.PureComponent<ITextField, IState> {
             label,
             disableUnderline,
             style,
-            value,
             disableInput,
             textIndentation,
             textColor,
             multiLine,
             required,
+            staticValue,
             error,
             helperText,
+            labelColor,
         } = this.props;
 
         return (
@@ -68,7 +79,7 @@ class TextFieldBase extends React.PureComponent<ITextField, IState> {
                 onChange={this.onChange}
                 autoComplete={'wrong field'}
                 style={style}
-                defaultValue={value}
+                value={this.state.value}
                 label={label}
                 multiline={multiLine}
                 required={required}
@@ -84,7 +95,7 @@ class TextFieldBase extends React.PureComponent<ITextField, IState> {
                         textAlign: 'center',
                     },
                 }}
-                InputLabelProps={!!textColor ? { style: { color: textColor } } : {}}
+                InputLabelProps={!!labelColor ? { style: { color: labelColor } } : {}}
             />
         );
     }

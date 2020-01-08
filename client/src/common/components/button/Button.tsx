@@ -60,7 +60,7 @@ class ButtonBase extends React.PureComponent<IButton, IState> {
                           }
                         : {
                               backgroundColor: !!backgroundColorPrimary ? backgroundColorPrimary : color().primary,
-                              borderRadius: !!isRound ? '20px' : '0px',
+                              borderRadius: !!isRound ? '50px' : '0px',
                               color: !!textColor ? textColor : color().text,
                           }
                 }

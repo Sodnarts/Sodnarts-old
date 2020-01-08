@@ -1,6 +1,6 @@
 import { store } from 'src/common/state/store';
 
-export function color() {
+export function color(): IColor {
     const state = store.getState();
 
     return {
@@ -12,4 +12,14 @@ export function color() {
         secondaryText: !!state.theme ? state.theme.secondaryText : 'black',
         text: !!state.theme ? state.theme.text : 'white',
     };
+}
+
+export interface IColor {
+    background: string;
+    border: string;
+    divider: string;
+    primary: string;
+    secondary: string;
+    secondaryText: string;
+    text: string;
 }

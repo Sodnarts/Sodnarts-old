@@ -1,6 +1,13 @@
 import axios from 'axios';
 import { routes } from 'src/common/globals/routes/routes';
-import { FETCH_LANGUAGE, FETCH_SURVEYS, FETCH_THEME, FETCH_USER } from 'src/common/state/actions/types';
+import {
+    DISMISS_ALERT,
+    FETCH_LANGUAGE,
+    FETCH_SURVEYS,
+    FETCH_THEME,
+    FETCH_USER,
+    SHOW_ALERT,
+} from 'src/common/state/actions/types';
 
 export const fetchUser = () => async (dispatch: any) => {
     const response = await axios.get(routes.api.currentUser);
@@ -14,10 +21,14 @@ export const handleToken = (token: any) => async (dispatch: any) => {
     dispatch({ type: FETCH_USER, payload: response.data });
 };
 
-export const submitSurvey = (values: any, history: any) => async (dispatch: any) => {
-    const response = await axios.post(routes.api.surveys, values);
-    history.push(routes.emailService.emailDashboard);
-    dispatch({ type: FETCH_USER, payload: response.data });
+export const submitSurvey = (values: any) => async (dispatch: any) => {
+    try {
+        const response = await axios.post(routes.api.surveys, values);
+        dispatch({ type: FETCH_USER, payload: response.data.user });
+        dispatch({ type: FETCH_SURVEYS, payload: response.data.surveys });
+    } catch (error) {
+        dispatch(showAlert(error.response.data.error));
+    }
 };
 
 export const fetchSurveys = () => async (dispatch: any) => {
@@ -38,8 +49,14 @@ export const changeLanguage = (language: any) => async (dispatch: any) => {
 };
 
 export const changeAccountSettings = (value: any) => async (dispatch: any) => {
-    console.log(value);
     const response = await axios.post(routes.api.account, value);
-    console.log(response);
     dispatch({ type: FETCH_USER, payload: response.data });
+};
+
+export const showAlert = (message: string) => (dispatch: any) => {
+    dispatch({ type: SHOW_ALERT, payload: message });
+};
+
+export const dismissAlert = () => (dispatch: any) => {
+    dispatch({ type: DISMISS_ALERT });
 };

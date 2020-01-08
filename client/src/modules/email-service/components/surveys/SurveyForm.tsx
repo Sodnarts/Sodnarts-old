@@ -8,8 +8,16 @@ import { validateEmails } from 'src/common/utils/validateEmails';
 import { formFields } from 'src/modules/email-service/components/surveys/formFields';
 
 interface IProps {
-    onSurveySubmit: () => void;
+    onSurveySubmit: (survey: any) => void;
     handleCancel: () => void;
+}
+
+interface IState {
+    'Email Body': string;
+    'Recipients List': string;
+    'Subject Line': string;
+    'Survey Title': string;
+    'error': string;
 }
 
 interface IError {
@@ -22,29 +30,45 @@ interface IError {
  * Creates a form that consists of multiple SurveyformFields.
  * Allows user to fill out the form.
  */
-const SurveyForm = ({ onSurveySubmit, handleCancel }: IProps) => {
-    const [state, setState] = useState({
-        'Email Body': '',
-        'Recipients List': '',
-        'Subject Line': '',
-        'Survey Title': '',
-        'error': '',
-    });
+class SurveyForm extends React.Component<IProps, IState> {
+    constructor(props: IProps) {
+        super(props);
 
-    const handleSubmit = (event: any) => {
+        this.state = {
+            'Email Body': '',
+            'Recipients List': '',
+            'Subject Line': '',
+            'Survey Title': '',
+            'error': '',
+        };
+    }
+
+    public handleSubmit = (event: any) => {
         event.preventDefault();
-        setState({ ...state, error: validate(state['Recipients List']) });
+        this.setState(
+            {
+                error: validate(this.state['Recipients List']),
+            },
+            () => {
+                const survey = {
+                    body: this.state['Email Body'],
+                    recipients: this.state['Recipients List'],
+                    subject: this.state['Subject Line'],
+                    title: this.state['Survey Title'],
+                };
 
-        if (!!state.error) {
-            onSurveySubmit();
-        }
+                if (!this.state.error) {
+                    this.props.onSurveySubmit(survey);
+                }
+            },
+        );
     };
 
-    const onInputBlur = (value: string | number, label: string) => {
-        setState({ ...state, [label]: value });
+    public onInputBlur = (value: string | number, label: string) => {
+        this.setState({ ...this.state, [label]: value });
     };
 
-    const renderFormFields = () => {
+    public renderFormFields = () => {
         return (
             <div style={{ display: 'flex', flexDirection: 'column' }}>
                 {formFields(getLanguageFile()).map(({ label, name }) => {
@@ -52,11 +76,11 @@ const SurveyForm = ({ onSurveySubmit, handleCancel }: IProps) => {
                         <TextField
                             key={label}
                             label={label}
-                            onInputBlur={onInputBlur}
+                            onInputBlur={this.onInputBlur}
                             multiLine={true}
                             required={true}
-                            error={!!(state.error && label === 'Recipients List') ? true : false}
-                            helperText={!!(state.error && label === 'Recipients List') ? state.error : ''}
+                            error={!!(this.state.error && label === 'Recipients List') ? true : false}
+                            helperText={!!(this.state.error && label === 'Recipients List') ? this.state.error : ''}
                         />
                     );
                 })}
@@ -64,39 +88,46 @@ const SurveyForm = ({ onSurveySubmit, handleCancel }: IProps) => {
         );
     };
 
-    return (
-        <div style={{ minWidth: '500px' }}>
-            <form onSubmit={handleSubmit}>
-                {renderFormFields()}
-                <div
-                    style={{
-                        display: 'flex',
-                        margin: '20px 15px 10px 15px',
-                    }}
-                >
-                    <Button
-                        buttonText={'Cancel'}
-                        isRound={true}
-                        leftIcon={<CloseIcon style={{ height: '28px', width: '28px', marginRight: '10px' }} />}
-                        size="small"
-                        onClick={handleCancel}
-                        hoverable={true}
-                    />
-                    <div style={{ flexGrow: 1 }}>
+    public render() {
+        const { handleCancel } = this.props;
+
+        return (
+            <div style={{ minWidth: '500px' }}>
+                <form onSubmit={this.handleSubmit}>
+                    {this.renderFormFields()}
+                    <div
+                        style={{
+                            display: 'flex',
+                            margin: '20px 15px 10px 15px',
+                        }}
+                    >
                         <Button
-                            buttonText={'Next'}
+                            buttonText={'Cancel'}
                             isRound={true}
-                            rightIcon={<ChevronRightIcon fontSize="large" style={{ marginLeft: '5px' }} />}
+                            leftIcon={<CloseIcon style={{ height: '28px', width: '28px', marginRight: '10px' }} />}
                             size="small"
+                            onClick={handleCancel}
                             hoverable={true}
-                            submit={true}
                         />
+                        <div style={{ flexGrow: 1 }}>
+                            <Button
+                                buttonText={'Next'}
+                                isRound={true}
+                                rightIcon={<ChevronRightIcon fontSize="large" style={{ marginLeft: '5px' }} />}
+                                size="small"
+                                textColor="white"
+                                backgroundColorPrimary="#388E3C"
+                                backgroundColorSecondary="#327d3a"
+                                hoverable={true}
+                                submit={true}
+                            />
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
-    );
-};
+                </form>
+            </div>
+        );
+    }
+}
 
 function validate(values: any) {
     const errors: IError = {

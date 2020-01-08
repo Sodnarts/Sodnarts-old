@@ -9,7 +9,7 @@ const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 
 const Survey = mongoose.model('surveys');
 
-module.exports = app => {
+module.exports = (app) => {
     app.get('/api/surveys', requireLogin, async (req, res) => {
         const surveys = await Survey.find({ _user: req.user.id }).select({ recipients: false });
         res.send(surveys);
@@ -65,7 +65,7 @@ module.exports = app => {
             title,
             subject,
             body,
-            recipients: recipients.split(',').map(email => ({ email: email.trim() })),
+            recipients: recipients.split(',').map((email) => ({ email: email.trim() })),
             _user: req.user.id,
             dateSent: Date.now(),
         });
@@ -78,7 +78,12 @@ module.exports = app => {
             req.user.credits -= 1;
             const user = await req.user.save();
 
-            res.send(user);
+            const surveys = await Survey.find({ _user: req.user.id }).select({ recipients: false });
+            const response = {
+                user: user,
+                surveys: surveys,
+            };
+            res.send(response);
         } catch (err) {
             res.status(422).send(err);
         }

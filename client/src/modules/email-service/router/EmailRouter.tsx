@@ -5,7 +5,6 @@ import { PageNotFound } from 'src/common/error-pages/PageNotFound';
 import { routes } from 'src/common/globals/routes/routes';
 import { Email } from 'src/modules/email-service/components/Email';
 import { EmailDashboard } from 'src/modules/email-service/components/EmailDashboard';
-import { SurveyNew } from 'src/modules/email-service/components/surveys/SurveyNew';
 
 /**
  *

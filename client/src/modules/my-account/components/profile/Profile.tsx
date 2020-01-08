@@ -4,7 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { TextField } from 'src/common/components/text-field/TextField';
 import * as actions from 'src/common/state/actions/index';
-import { color } from 'src/common/utils/getColor';
+import { color, IColor } from 'src/common/utils/getColor';
 import { styles } from 'src/modules/my-account/components/profile/ProfileStyles';
 
 interface IProps {
@@ -26,6 +26,8 @@ type IProfile = IProps & WithStyles<typeof styles>;
  * @extends {React.Component<IProfile>}
  */
 class ProfileBase extends React.Component<IProfile, IState> {
+    public color: IColor = color();
+
     constructor(props: IProfile) {
         super(props);
 
@@ -74,7 +76,6 @@ class ProfileBase extends React.Component<IProfile, IState> {
                 break;
         }
 
-        console.log(valueToChange);
         if (valueToChange.toString() !== '{}') {
             this.props.changeAccountSettings(valueToChange);
         }
@@ -95,6 +96,7 @@ class ProfileBase extends React.Component<IProfile, IState> {
                 {fields.map(({ label, type }) => {
                     return (
                         <TextField
+                            textColor={this.color.text}
                             key={label.toString()}
                             style={{ width: '40%', marginRight: '25px', marginBottom: '20px' }}
                             onInputBlur={this.onBlur}
@@ -112,7 +114,7 @@ class ProfileBase extends React.Component<IProfile, IState> {
         return (
             <Paper
                 style={{
-                    backgroundColor: color().secondary,
+                    backgroundColor: this.color.secondary,
                 }}
                 className={classes.container}
             >

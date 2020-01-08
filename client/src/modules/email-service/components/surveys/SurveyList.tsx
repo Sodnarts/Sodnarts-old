@@ -1,7 +1,6 @@
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
-import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { fetchSurveys } from 'src/common/state/actions';
 import { SurveyCard } from 'src/modules/email-service/components/surveys/SurveyCard';
 
@@ -33,8 +32,6 @@ interface IProps {
 type ISurveyList = IProps & WithStyles<typeof styles>;
 
 class SurveyListBase extends React.Component<ISurveyList> {
-    private lang = getLanguageFile();
-
     public componentDidMount() {
         this.props.fetchSurveys();
     }
