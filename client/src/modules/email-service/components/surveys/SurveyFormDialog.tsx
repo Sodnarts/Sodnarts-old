@@ -24,7 +24,6 @@ const SurveyFormDialogBase = ({ handleOpen, showAlert, submitSurvey }: IProps) =
 
     const handleSubmit = (survey: any) => {
         submitSurvey(survey);
-
         handleOpen();
     };
 
