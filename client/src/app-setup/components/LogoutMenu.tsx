@@ -118,7 +118,7 @@ class LogoutMenuBase extends React.Component<ILogoutMenu, IState> {
                     aria-haspopup="true"
                     onClick={this.handleClick}
                 >
-                    <AccountCircle fontSize="large" />
+                    <AccountCircle style={{ marginTop: '6px' }} fontSize="large" />
                 </a>
                 <div>
                     <StyledMenu
