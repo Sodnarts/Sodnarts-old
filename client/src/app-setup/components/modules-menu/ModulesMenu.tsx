@@ -55,18 +55,27 @@ class ModulesMenuBase extends React.Component<IProps, IState> {
         if (props.language !== nextProps.language) {
             this.updateLanguage();
         }
+
+        this.matchActiveTabToUrl();
     }
 
     public componentDidMount() {
+        this.matchActiveTabToUrl();
+    }
+
+    public matchActiveTabToUrl = () => {
         switch (this.props.history.location.pathname) {
             case '/':
                 this.setState({ value: 0 });
                 return;
-            case '/email-service':
+            case '/email-service/':
                 this.setState({ value: 1 });
                 return;
+            case '/web-shop/':
+                this.setState({ value: 2 });
+                return;
         }
-    }
+    };
 
     public updateLanguage = () => {
         this.lang = getLanguageFile();
@@ -84,10 +93,10 @@ class ModulesMenuBase extends React.Component<IProps, IState> {
                         this.props.history.push('/');
                         return;
                     case 1:
-                        this.props.history.push('/email-service');
+                        this.props.history.push('/email-service/');
                         return;
                     case 2:
-                        this.props.history.push('/web-shop');
+                        this.props.history.push('/web-shop/');
                         return;
                 }
             },
@@ -106,8 +115,8 @@ class ModulesMenuBase extends React.Component<IProps, IState> {
                         backgroundColor: color().primary,
                         borderRadius: '0px',
                         borderTop: '0px',
-                        position: 'absolute',
-                        top: '65px',
+                        position: 'fixed',
+                        top: '60px',
                         width: '100%',
                         zIndex: 1010,
                     }}

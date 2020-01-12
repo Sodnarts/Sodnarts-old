@@ -7,10 +7,15 @@ export const styles = (theme: Theme): StyleRules =>
             color: '#ffffff',
             height: '20px',
         },
-        margin: {
-            marginTop: '60px',
-        },
         text: {
             color: '#21f516',
+        },
+        info: {
+            backgroundColor: '#ffffff',
+            marginTop: '60px',
+        },
+        error: {
+            backgroundColor: '#000000',
+            marginTop: '60px',
         },
     });

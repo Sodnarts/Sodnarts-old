@@ -39,6 +39,9 @@ export const en = {
             login: 'Sign in',
             logout: 'Sign out',
         },
+        webShop: {
+            shop: 'SHOP',
+        },
     },
     modules: {
         emailService: 'Email Service',
@@ -140,5 +143,29 @@ export const en = {
             reviewSurvey: 'Are you happy with your survey?',
         },
         invalidEmails: 'Following email-addresses are invalid: ',
+    },
+    webShop: {
+        cart: {
+            emptyCart: 'Your cart is empty',
+            goToCheckout: 'GO TO CHECKOUT',
+        },
+        checkout: {
+            description: 'Description',
+            price: 'Price',
+            product: 'Product',
+            quantity: 'Quantity',
+            remove: 'Remove',
+            testCardInfo: '4242 4242 4242 4242 - Exp: Any date in the future - CW: 123',
+            testCardTitle: '*Please use the following test credit card for payments*',
+            total: 'TOTAL: ',
+        },
+        common: {
+            shopNow: 'Shop Now',
+            stripeButtonDesc: 'Your total is $',
+            stripeButtonTitle: 'Pay Now',
+        },
+        shop: {
+            addToCart: 'Add to cart',
+        },
     },
 };

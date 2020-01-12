@@ -9,7 +9,6 @@ import { SurveyForm } from 'src/modules/email-service/components/surveys/SurveyF
 
 interface IProps {
     submitSurvey: (survey: any) => void;
-    showAlert: (message: string) => void;
     handleOpen: () => void;
 }
 
@@ -19,7 +18,7 @@ interface IProps {
  * @class SurveyNew
  * @extends {React.Component}
  */
-const SurveyFormDialogBase = ({ handleOpen, showAlert, submitSurvey }: IProps) => {
+const SurveyFormDialogBase = ({ handleOpen, submitSurvey }: IProps) => {
     const lang = getLanguageFile();
 
     const handleSubmit = (survey: any) => {

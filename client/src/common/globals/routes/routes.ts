@@ -9,6 +9,7 @@ export const routes = {
         stripe: '/api/stripe/',
         surveys: '/api/surveys/',
         theme: '/api/theme/',
+        webShop: '/api/web-shop',
     },
     auth: {
         login: '/auth/google/',
@@ -24,5 +25,10 @@ export const routes = {
     },
     home: {
         home: '/',
+    },
+    webShop: {
+        checkout: '/web-shop/checkout/',
+        home: '/web-shop/',
+        shop: '/web-shop/shop/',
     },
 };

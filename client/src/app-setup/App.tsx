@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { Header } from 'src/app-setup/Header';
 import { ModulesMenu } from 'src/app-setup/components/modules-menu/ModulesMenu';
+import { Header } from 'src/app-setup/Header';
 import { RouterComponent } from 'src/app-setup/Router';
 import { Alert } from 'src/common/components/alert/Alert';
 import * as actions from 'src/common/state/actions/index';
+import { AlertType } from 'src/common/state/actions/types';
 
 /**
  *
@@ -24,6 +25,7 @@ interface IState {
     alertOpen: boolean;
     menuOpen: boolean;
     message: string;
+    alertType: AlertType;
 }
 
 /**
@@ -42,6 +44,7 @@ class AppBase extends React.Component<IProps, IState> {
 
         this.state = {
             alertOpen: false,
+            alertType: AlertType.error,
             menuOpen: false,
             message: '',
         };
@@ -50,6 +53,7 @@ class AppBase extends React.Component<IProps, IState> {
     public componentWillReceiveProps(props: IProps) {
         this.setState({
             alertOpen: props.alert.isOpen,
+            alertType: props.alert.type,
             menuOpen: props.toggleMenu,
             message: props.alert.message,
         });
@@ -60,7 +64,7 @@ class AppBase extends React.Component<IProps, IState> {
     };
 
     public render() {
-        const { alertOpen, menuOpen, message } = this.state;
+        const { alertOpen, menuOpen, message, alertType } = this.state;
 
         return (
             <div>
@@ -69,7 +73,7 @@ class AppBase extends React.Component<IProps, IState> {
                         <Header />
                         <RouterComponent />
                     </div>
-                    <Alert isOpen={alertOpen} message={message} handleOnClose={this.handleClose} />
+                    <Alert isOpen={alertOpen} message={message} handleOnClose={this.handleClose} type={alertType} />
                     <ModulesMenu isOpen={menuOpen} />
                 </BrowserRouter>
             </div>

@@ -39,6 +39,9 @@ export const de = {
             login: 'Mit Google einloggen',
             logout: 'Ausloggen',
         },
+        webShop: {
+            shop: 'GESCHÄFT',
+        },
     },
     modules: {
         emailService: 'Email Service',
@@ -140,5 +143,29 @@ export const de = {
             reviewSurvey: 'Bist du mit deiner Umfrage zufrieden?',
         },
         invalidEmails: 'Folgende E-Mail-Adressen sind ungültig: ',
+    },
+    webShop: {
+        cart: {
+            emptyCart: 'Din handlevogn er tom',
+            goToCheckout: 'GÅ TIL KASSE',
+        },
+        checkout: {
+            description: 'Beskrivelse',
+            price: 'Pris',
+            product: 'Produkt',
+            quantity: 'Antall',
+            remove: 'Fjern',
+            testCardInfo: '4242 4242 4242 4242 - Exp: Vilkårlig dato fremover i tid - CVC: 123',
+            testCardTitle: '*Vennligs bruk følgende test-kort for å handle*',
+            total: 'TOTAL: ',
+        },
+        common: {
+            shopNow: 'Handle nå',
+            stripeButtonDesc: 'Total sum er $',
+            stripeButtonTitle: 'Betal nå',
+        },
+        shop: {
+            addToCart: 'Legg til i handlevogn',
+        },
     },
 };

@@ -12,6 +12,7 @@ import { color } from 'src/common/utils/getColor';
 import { EmailHeader } from 'src/modules/email-service/header/EmailHeader';
 import { HomeHeader } from 'src/modules/home-page/header/HomeHeader';
 import { MyAccountHeader } from 'src/modules/my-account/header/MyAccountHeader';
+import { WebShopHeader } from 'src/modules/web-shop/header/WebShopHeader';
 
 interface IProps {
     toggleMenu: boolean;
@@ -78,6 +79,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
                     <Switch>
                         <Route path={routes.emailService.home} component={EmailHeader} />
                         <Route path={routes.account.home} component={MyAccountHeader} />
+                        <Route path={'/web-shop'} component={WebShopHeader} />
                         <Route path={routes.home.home} component={HomeHeader} />
                     </Switch>
                     <Button color="inherit">{this.renderContent()}</Button>

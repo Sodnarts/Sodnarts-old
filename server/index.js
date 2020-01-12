@@ -9,9 +9,9 @@ require('./models/user');
 require('./models/Survey');
 require('./services/passport');
 const options = {
-    useNewUrlParser: true
+    useNewUrlParser: true,
 };
-mongoose.connect(keys.mongoURI, options, err => {
+mongoose.connect(keys.mongoURI, options, (err) => {
     console.log('error occured', err);
 });
 
@@ -22,8 +22,8 @@ app.use(
     cookieSession({
         //Age: days hours min sec milisec
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        keys: [keys.cookieKey]
-    })
+        keys: [keys.cookieKey],
+    }),
 );
 
 app.use(passport.initialize());
@@ -33,6 +33,7 @@ require('./routes/accountRoutes')(app);
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
 require('./routes/surveyRoutes')(app);
+require('./routes/webShopRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
     // Express will serve up production assets like our main.js file, or main.css file!

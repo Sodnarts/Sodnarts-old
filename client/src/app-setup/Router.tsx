@@ -11,6 +11,7 @@ import { color } from 'src/common/utils/getColor';
 import { EmailRouter } from 'src/modules/email-service/router/EmailRouter';
 import { HomeRouter } from 'src/modules/home-page/router/HomeRouter';
 import { AccountRouter } from 'src/modules/my-account/router/AccountRouter';
+import { WebShopRouter } from 'src/modules/web-shop/router/WebShopRouter';
 
 type IRouter = IProps & IAuthenticationProps;
 
@@ -36,6 +37,7 @@ const RouterComponentBase = (props: IRouter & IState) => {
                     <Switch>
                         <Route path={routes.emailService.home} component={EmailRouter} />
                         <Route path={routes.account.home} component={AccountRouter} />
+                        <Route path={routes.webShop.home} component={WebShopRouter} />
                         <Route path={routes.home.home} component={HomeRouter} />
                         <Route component={PageNotFound} />
                     </Switch>

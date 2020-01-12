@@ -2,10 +2,12 @@ import { Button, Snackbar, WithStyles, withStyles } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import React from 'react';
 import { styles } from 'src/common/components/alert/AlertStyles';
+import { AlertType } from 'src/common/state/actions/types';
 
 interface IProps {
     isOpen: boolean;
     message: string;
+    type: AlertType;
     positionRight?: boolean;
     positionTop?: boolean;
     handleOnClose(): void;
@@ -35,14 +37,18 @@ class AlertBase extends React.Component<IAlert> {
     };
 
     public render() {
-        const { isOpen, classes, message, positionRight, positionTop } = this.props;
+        const { isOpen, classes, message, type } = this.props;
         return (
             <Snackbar
-                anchorOrigin={{
-                    horizontal: !!positionRight ? 'right' : 'left',
-                    vertical: !!positionTop ? 'top' : 'bottom',
+                ContentProps={{
+                    classes: {
+                        root: !!(type === AlertType.info) ? classes.info : classes.error,
+                    },
                 }}
-                className={classes.margin}
+                anchorOrigin={{
+                    horizontal: !!(type === AlertType.info) ? 'right' : 'left',
+                    vertical: !!(type === AlertType.info) ? 'top' : 'bottom',
+                }}
                 open={isOpen}
                 onClose={this.handleClose}
                 message={<span className={classes.text}>{message}</span>}

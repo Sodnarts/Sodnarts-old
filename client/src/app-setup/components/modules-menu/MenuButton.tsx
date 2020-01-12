@@ -2,13 +2,14 @@ import { Button } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from 'src/common/state/actions';
+import { color } from 'src/common/utils/getColor';
 
 interface IProps {
-    toggleModulesMenu: () => void;
+    toggleModulesMenu?: () => void;
 }
 
 class MenuButtonBase extends React.Component<IProps> {
-    constructor(props: any) {
+    constructor(props: IProps) {
         super(props);
 
         this.state = {};
@@ -17,12 +18,17 @@ class MenuButtonBase extends React.Component<IProps> {
     public render() {
         return (
             <div>
-                <Button onClick={this.props.toggleModulesMenu}>{'Modules'}</Button>
+                <Button style={{ color: color().text }} onClick={this.props.toggleModulesMenu}>
+                    {'Modules'}
+                </Button>
             </div>
         );
     }
 }
 
-const MenuButton = connect(null, actions)(MenuButtonBase);
+const mapStateToProps = ({ theme }: any) => {
+    return theme;
+};
+const MenuButton = connect(mapStateToProps, actions)(MenuButtonBase);
 
 export { MenuButton };

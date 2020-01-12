@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { routes } from 'src/common/globals/routes/routes';
 import {
+    AlertType,
     DISMISS_ALERT,
     FETCH_LANGUAGE,
     FETCH_SURVEYS,
@@ -28,7 +29,7 @@ export const submitSurvey = (values: any) => async (dispatch: any) => {
         dispatch({ type: FETCH_USER, payload: response.data.user });
         dispatch({ type: FETCH_SURVEYS, payload: response.data.surveys });
     } catch (error) {
-        dispatch(showAlert(error.response.data.error));
+        dispatch(showAlert(error.response.data.error, AlertType.error));
     }
 };
 
@@ -54,8 +55,10 @@ export const changeAccountSettings = (value: any) => async (dispatch: any) => {
     dispatch({ type: FETCH_USER, payload: response.data });
 };
 
-export const showAlert = (message: string) => (dispatch: any) => {
-    dispatch({ type: SHOW_ALERT, payload: message });
+export const showAlert = (message: string, type: AlertType) => (dispatch: any) => {
+    const params = { message, type };
+    console.log('ShowALert_ ', params);
+    dispatch({ type: SHOW_ALERT, payload: params });
 };
 
 export const dismissAlert = () => (dispatch: any) => {
