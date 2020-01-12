@@ -18,7 +18,7 @@ const MenuItemBase = ({ title, imageUrl, size, history, linkUrl, match }: IProps
         <div style={{ backgroundImage: `url(${imageUrl})` }} className="background-image" />
         <div className="content">
             <h1 className="title">{title.toUpperCase()}</h1>
-            <span className="subtitle">Shop Now</span>
+            <span className="subtitle">{getLanguageFile().webShop.common.shopNow}</span>
         </div>
     </div>
 );
