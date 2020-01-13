@@ -2,7 +2,7 @@
     "name": "sodnarts",
     "version": "1.0.0",
     "description": "",
-    "main": "client/index.tsx",
+    "main": "index.js",
     "scripts": {
         "start": "npm run start --prefix server",
         "dev": "npm run dev --prefix server"
