@@ -57,7 +57,6 @@ export const changeAccountSettings = (value: any) => async (dispatch: any) => {
 
 export const showAlert = (message: string, type: AlertType) => (dispatch: any) => {
     const params = { message, type };
-    console.log('ShowALert_ ', params);
     dispatch({ type: SHOW_ALERT, payload: params });
 };
 

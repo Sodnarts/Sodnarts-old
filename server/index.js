@@ -34,6 +34,7 @@ require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
 require('./routes/surveyRoutes')(app);
 require('./routes/webShopRoutes')(app);
+require('./routes/leagueRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
     // Express will serve up production assets like our main.js file, or main.css file!
