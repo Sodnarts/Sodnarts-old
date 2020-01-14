@@ -7,6 +7,7 @@ export interface ITextFieldProps extends InputProps {
     label: string;
     textIndentation?: string;
     validate?: boolean;
+    id?: string;
     value?: string;
     multiLine?: boolean;
     required?: boolean;

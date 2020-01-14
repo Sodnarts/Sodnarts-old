@@ -5,10 +5,10 @@ export const no = {
         card: {
             bodySubject: 'Kommer du til å lage din egen undersøkelse for dine brukere?',
             bodyTitle: 'Hei! Dette er din nye undersøkelse.',
-            no: 'NEI: 247',
+            no: '247',
             sentOn: '2019.06.30',
             title: 'Din undersøkelse',
-            yes: 'JA: 8032',
+            yes: '8032',
         },
         create: 'Opprett en ny undersøkelse raskt og enkelt!',
         getStarted: 'Kom i gang',

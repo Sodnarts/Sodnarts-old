@@ -33,10 +33,10 @@ class TextFieldBase extends React.Component<ITextField, IState> {
     };
 
     public onBlur = () => {
-        const { onInputBlur, label } = this.props;
+        const { onInputBlur, id } = this.props;
         // tslint:disable-next-line: no-unused-expression
         if (onInputBlur) {
-            onInputBlur(this.state.value, label);
+            onInputBlur(this.state.value, !!id ? id : 'undefined');
         }
     };
 

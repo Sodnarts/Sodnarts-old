@@ -56,7 +56,6 @@ class SurveyForm extends React.Component<IProps, IState> {
                     subject: this.state['Subject Line'],
                     title: this.state['Survey Title'],
                 };
-
                 if (!this.state.error) {
                     this.props.onSurveySubmit(survey);
                 }
@@ -64,23 +63,24 @@ class SurveyForm extends React.Component<IProps, IState> {
         );
     };
 
-    public onInputBlur = (value: string | number, label: string) => {
-        this.setState({ ...this.state, [label]: value });
+    public onInputBlur = (value: string | number, id: string) => {
+        this.setState({ ...this.state, [id]: value });
     };
 
     public renderFormFields = () => {
         return (
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                {formFields(getLanguageFile()).map(({ label, name }) => {
+                {formFields(getLanguageFile()).map(({ label, name, id }) => {
                     return (
                         <TextField
-                            key={label}
+                            key={id}
+                            id={id}
                             label={label}
                             onInputBlur={this.onInputBlur}
                             multiLine={true}
                             required={true}
-                            error={!!(this.state.error && label === 'Recipients List') ? true : false}
-                            helperText={!!(this.state.error && label === 'Recipients List') ? this.state.error : ''}
+                            error={!!(this.state.error && id === 'Recipients List') ? true : false}
+                            helperText={!!(this.state.error && id === 'Recipients List') ? this.state.error : ''}
                         />
                     );
                 })}

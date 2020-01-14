@@ -5,10 +5,10 @@ export const de = {
         card: {
             bodySubject: 'Erstellen Sie eine eigene Umfrage und senden Sie diese an alle Benutzer?',
             bodyTitle: 'Hallo! Dies ist Ihre neue Umfrage.',
-            no: 'NEIN: 247',
+            no: '247',
             sentOn: '2019.06.30',
             title: 'Ihre Umfrage',
-            yes: 'JA: 8032',
+            yes: '8032',
         },
         create: 'Erstellen Sie ganz einfach neue Umfragen!',
         getStarted: 'Loslegen',
