@@ -1,6 +1,6 @@
 {
+    // Look into deleting me, if tsconfig stables out now
     "compilerOptions": {
-        "baseUrl": "src",
         "paths": {
             "src/*": ["*"]
         }
