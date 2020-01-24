@@ -15,7 +15,7 @@ import {
 export const fetchUser = () => async (dispatch: any) => {
     console.log('ACTIONS: FETCH USER');
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: true });
-    const response = await axios.get(routes.api.currentUser);
+    const response = await axios.get(routes.api.currentUser, { withCredentials: true });
     console.log('ACTIONS: ', response);
     dispatch({ type: FETCH_LANGUAGE, payload: response.data });
     dispatch({ type: FETCH_THEME, payload: response.data });
