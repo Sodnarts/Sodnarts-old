@@ -39,7 +39,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
             case false:
                 return (
                     <a
-                        href="/auth/google"
+                        href={routes.auth.login}
                         style={{
                             color: color().text,
                             paddingLeft: '30px',
@@ -55,7 +55,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
         }
     }
     public render() {
-        const { classes, toggleMenu } = this.props;
+        const { classes, toggleMenu, auth } = this.props;
         return (
             <AppBar
                 elevation={!!toggleMenu ? 0 : 4}
@@ -75,12 +75,12 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
                             Sodnarts
                         </Link>
                     </Typography>
-                    <MenuButton />
+                    {!!auth ? <MenuButton /> : null}
                     <div className={classes.grow} />
                     <Switch>
                         <Route path={routes.emailService.home} component={EmailHeader} />
                         <Route path={routes.account.home} component={MyAccountHeader} />
-                        <Route path={'/web-shop'} component={WebShopHeader} />
+                        <Route path={routes.webShop.home} component={WebShopHeader} />
                         <Route path={routes.home.home} component={HomeHeader} />
                     </Switch>
                     <Button color="inherit">{this.renderContent()}</Button>

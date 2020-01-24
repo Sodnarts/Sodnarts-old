@@ -3,17 +3,17 @@ export const routes = {
         home: '/account',
     },
     api: {
-        account: '/api/account',
-        currentUser: '/api/current_user/',
-        language: '/api/language/',
-        stripe: '/api/stripe/',
-        surveys: '/api/surveys/',
-        theme: '/api/theme/',
-        webShop: '/api/web-shop',
+        account: 'https://sodnarts-server.herokuapp.com/api/account',
+        currentUser: 'https://sodnarts-server.herokuapp.com/api/current_user/',
+        language: 'https://sodnarts-server.herokuapp.com/api/language/',
+        stripe: 'https://sodnarts-server.herokuapp.com/api/stripe/',
+        surveys: 'https://sodnarts-server.herokuapp.com/api/surveys/',
+        theme: 'https://sodnarts-server.herokuapp.com/api/theme/',
+        webShop: 'https://sodnarts-server.herokuapp.com/api/web-shop',
     },
     auth: {
-        login: '/auth/google/',
-        logout: '/api/logout/',
+        login: 'https://sodnarts-server.herokuapp.com/auth/google/',
+        logout: 'https://sodnarts-server.herokuapp.com/api/logout/',
     },
     emailService: {
         drawer: {
