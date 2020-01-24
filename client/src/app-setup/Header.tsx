@@ -32,7 +32,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
 
     public renderContent() {
         const displayText = this.lang.header.user.login;
-
+        console.log('HEADER: ', this.props.auth);
         switch (this.props.auth) {
             case null:
                 return null;
