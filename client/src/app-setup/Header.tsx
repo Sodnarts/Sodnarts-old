@@ -35,7 +35,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
 
         switch (this.props.auth) {
             case null:
-                return '';
+                return null;
             case false:
                 return (
                     <a
