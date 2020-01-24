@@ -1,6 +1,10 @@
 {
     "hosting": {
+<<<<<<< HEAD
         "public": ".",
+=======
+        "public": "server",
+>>>>>>> a2902fea468cfafb3ed91ccd10a2a1d1e17ded7b
         "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
         "rewrites": [
             {

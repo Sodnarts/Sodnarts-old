@@ -26,6 +26,9 @@ export const routes = {
     home: {
         home: '/',
     },
+    league: {
+        home: '/league-watcher/',
+    },
     webShop: {
         checkout: '/web-shop/checkout/',
         home: '/web-shop/',

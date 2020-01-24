@@ -28,8 +28,53 @@ class TextFieldBase extends React.Component<ITextField, IState> {
         }
     }
 
+    public handleNumberInput(input: string) {
+        const reg = new RegExp('^[\\d ]+$');
+        const isBackSpace = !!(input < this.state.value) ? true : false;
+        let value = input.replace(/ /g, '').trim();
+
+        if (value.length > 8) {
+            return;
+        }
+
+        const ss1 = value.substring(0, 2);
+        const ss2 = value.substring(2, 4);
+        const ss3 = value.substring(4, 6);
+        const ss4 = value.substring(6, 8);
+
+        if (value.length === 0) {
+            this.setState({ value });
+        } else if (reg.test(value) && !isBackSpace) {
+            if (value.length >= 6) {
+                value = ss1 + ' ' + ss2 + ' ' + ss3 + ' ' + ss4;
+            } else if (value.length >= 4) {
+                value = ss1 + ' ' + ss2 + ' ' + ss3;
+            } else if (value.length >= 2) {
+                value = ss1 + ' ' + ss2;
+            }
+            value = value.trim();
+            this.setState({ value });
+        } else if (isBackSpace) {
+            if (value.length >= 7) {
+                value = ss1 + ' ' + ss2 + ' ' + ss3 + ' ' + ss4;
+            } else if (value.length >= 5) {
+                value = ss1 + ' ' + ss2 + ' ' + ss3;
+            } else if (value.length >= 3) {
+                value = ss1 + ' ' + ss2;
+            }
+            value = value.trim();
+            this.setState({ value });
+        }
+    }
+
     public onChange = (event: any) => {
-        this.setState({ value: event.target.value });
+        const value = event.target.value;
+
+        if (!!this.props.numberInput) {
+            this.handleNumberInput(value);
+        } else {
+            this.setState({ value });
+        }
     };
 
     public onBlur = () => {
@@ -50,7 +95,6 @@ class TextFieldBase extends React.Component<ITextField, IState> {
             textColor,
             multiLine,
             required,
-            staticValue,
             error,
             helperText,
             labelColor,

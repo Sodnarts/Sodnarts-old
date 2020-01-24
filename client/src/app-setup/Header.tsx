@@ -35,7 +35,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
 
         switch (this.props.auth) {
             case null:
-                return '';
+                return null;
             case false:
                 return (
                     <a
@@ -62,6 +62,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
                 position="sticky"
                 style={{
                     backgroundColor: !!this.props.theme ? this.props.theme.primary : 'blue',
+                    minHeight: '64px',
                 }}
             >
                 <Toolbar>
