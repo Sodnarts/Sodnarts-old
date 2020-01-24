@@ -40,6 +40,7 @@ class AppBase extends React.Component<IProps, IState> {
         super(props);
 
         if (!!this.props.fetchUser) {
+            console.log('FETCH: ', this.props);
             this.props.fetchUser();
         }
 
@@ -66,7 +67,7 @@ class AppBase extends React.Component<IProps, IState> {
 
     public render() {
         const { alertOpen, menuOpen, message, alertType } = this.state;
-
+        console.log('RENDER: ', this.props);
         return (
             <div>
                 <BrowserRouter>
