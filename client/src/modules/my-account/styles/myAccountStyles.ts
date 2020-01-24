@@ -49,5 +49,7 @@ export const styles = (theme: Theme): StyleRules =>
             position: 'relative',
             zIndex: 500,
         },
-        toolbar: theme.mixins.toolbar,
+        toolbar: {
+            minHeight: '64px',
+        },
     });
