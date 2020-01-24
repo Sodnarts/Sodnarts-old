@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
+import { routes } from 'src/common/globals/routes/routes';
 import * as actions from 'src/common/state/actions';
 import { color } from 'src/common/utils/getColor';
 
@@ -64,16 +65,14 @@ class ModulesMenuBase extends React.Component<IProps, IState> {
     }
 
     public matchActiveTabToUrl = () => {
-        switch (this.props.history.location.pathname) {
-            case '/':
-                this.setState({ value: 0 });
-                return;
-            case '/email-service/':
-                this.setState({ value: 1 });
-                return;
-            case '/web-shop/':
-                this.setState({ value: 2 });
-                return;
+        if (this.props.history.location.pathname.toString().includes(routes.emailService.home)) {
+            this.setState({ value: 1 });
+        } else if (this.props.history.location.pathname.includes(routes.webShop.home)) {
+            this.setState({ value: 2 });
+        } else if (this.props.history.location.pathname.includes(routes.league.home)) {
+            this.setState({ value: 3 });
+        } else {
+            this.setState({ value: 0 });
         }
     };
 
@@ -90,13 +89,16 @@ class ModulesMenuBase extends React.Component<IProps, IState> {
                 this.props.toggleModulesMenu();
                 switch (value) {
                     case 0:
-                        this.props.history.push('/');
+                        this.props.history.push(routes.home.home);
                         return;
                     case 1:
-                        this.props.history.push('/email-service/');
+                        this.props.history.push(routes.emailService.home);
                         return;
                     case 2:
-                        this.props.history.push('/web-shop/');
+                        this.props.history.push(routes.webShop.home);
+                        return;
+                    case 3:
+                        this.props.history.push(routes.league.home);
                         return;
                 }
             },
@@ -126,6 +128,7 @@ class ModulesMenuBase extends React.Component<IProps, IState> {
                             <Tab label={this.lang.modules.home} style={{ color: color().text }} />
                             <Tab label={this.lang.modules.emailService} style={{ color: color().text }} />
                             <Tab label={this.lang.modules.webShop} style={{ color: color().text }} />
+                            <Tab label={this.lang.modules.league} style={{ color: color().text }} />
                         </Tabs>
                     </AppBar>
                 </Paper>

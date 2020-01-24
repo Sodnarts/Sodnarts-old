@@ -42,9 +42,6 @@ class ProfileBase extends React.Component<IProfile, IState> {
             ],
             user: this.props.auth,
         };
-
-        this.renderTextFields = this.renderTextFields.bind(this);
-        this.onBlur = this.onBlur.bind(this);
     }
 
     public componentWillReceiveProps(props: IProfile) {
@@ -53,7 +50,7 @@ class ProfileBase extends React.Component<IProfile, IState> {
         });
     }
 
-    public onBlur(value: string | number, label: string) {
+    public onBlur = (label: string) => (value: string | number) => {
         let valueToChange = {};
         switch (label) {
             case 'First Name':
@@ -79,9 +76,9 @@ class ProfileBase extends React.Component<IProfile, IState> {
         if (valueToChange.toString() !== '{}') {
             this.props.changeAccountSettings(valueToChange);
         }
-    }
+    };
 
-    public renderTextFields() {
+    public renderTextFields = () => {
         const { user, fields } = this.state;
         return (
             <div
@@ -99,8 +96,9 @@ class ProfileBase extends React.Component<IProfile, IState> {
                             textColor={this.color.text}
                             key={label.toString()}
                             style={{ width: '40%', marginRight: '25px', marginBottom: '20px' }}
-                            onInputBlur={this.onBlur}
+                            onInputBlur={this.onBlur(label)}
                             disableUnderline={false}
+                            numberInput={!!(type === 'phoneNo') ? true : false}
                             label={label.toString()}
                             value={!!user ? user[type] : ''}
                         />
@@ -108,7 +106,7 @@ class ProfileBase extends React.Component<IProfile, IState> {
                 })}
             </div>
         );
-    }
+    };
     public render() {
         const { classes } = this.props;
         return (

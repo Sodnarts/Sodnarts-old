@@ -46,6 +46,7 @@ export const no = {
     modules: {
         emailService: 'Email Service',
         home: 'Hjem',
+        league: 'League Watcher',
         webShop: 'Nettbutikk',
     },
     myaccount: {

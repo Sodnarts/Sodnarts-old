@@ -11,9 +11,9 @@ export interface ITextFieldProps extends InputProps {
     value?: string;
     multiLine?: boolean;
     required?: boolean;
-    staticValue?: string; // Only use when field is not an input field
     error?: boolean;
     helperText?: string;
     labelColor?: string;
+    numberInput?: boolean;
     onInputBlur?(value: string | number, label: string): void;
 }

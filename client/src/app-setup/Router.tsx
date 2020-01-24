@@ -10,6 +10,7 @@ import { IState } from 'src/common/interface/IState';
 import { color } from 'src/common/utils/getColor';
 import { EmailRouter } from 'src/modules/email-service/router/EmailRouter';
 import { HomeRouter } from 'src/modules/home-page/router/HomeRouter';
+import { LeagueRouter } from 'src/modules/league-watcher/router/LeagueRouter';
 import { AccountRouter } from 'src/modules/my-account/router/AccountRouter';
 import { WebShopRouter } from 'src/modules/web-shop/router/WebShopRouter';
 
@@ -38,6 +39,7 @@ const RouterComponentBase = (props: IRouter & IState) => {
                         <Route path={routes.emailService.home} component={EmailRouter} />
                         <Route path={routes.account.home} component={AccountRouter} />
                         <Route path={routes.webShop.home} component={WebShopRouter} />
+                        <Route path={routes.league.home} component={LeagueRouter} />
                         <Route path={routes.home.home} component={HomeRouter} />
                         <Route component={PageNotFound} />
                     </Switch>
