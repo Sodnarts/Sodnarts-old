@@ -1,0 +1,3 @@
+export const FETCH_MATCH_HISTORY = 'FETCH_MATCH_HISTORY';
+export const LOAD_MORE = 'LOAD_MORE';
+export const SET_PAGINATION = 'SET_PAGINATION';
