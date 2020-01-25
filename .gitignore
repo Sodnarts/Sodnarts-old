@@ -15,7 +15,7 @@ node_modules
 .DS_Store
 
 # environment files
-.env*
+.env.development
 
 dev.js
 
