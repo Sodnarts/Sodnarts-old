@@ -30,8 +30,6 @@ export const logOut = () => async (dispatch: any) => {
     dispatch({ type: FETCH_THEME, payload: response.data });
     dispatch({ type: FETCH_USER, payload: response.data });
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
-    const res = await axios.get(routes.api.currentUser);
-    console.log(res);
 };
 
 export const handleToken = (token: any) => async (dispatch: any) => {
