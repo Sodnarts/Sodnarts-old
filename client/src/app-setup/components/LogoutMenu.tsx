@@ -144,7 +144,7 @@ class LogoutMenuBase extends React.Component<ILogoutMenu, IState> {
                             </StyledMenuItem>
                         </Link>
                         <Divider />
-                        <a className={classes.link} onClick={this.handleLogout} href={routes.auth.logout}>
+                        <a className={classes.link} onClick={this.handleLogout}>
                             <StyledMenuItem className={classes.menuItem}>
                                 <ListItemText primary={lang.header.user.logout} />
                             </StyledMenuItem>

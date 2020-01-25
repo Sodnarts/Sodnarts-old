@@ -21,6 +21,15 @@ export const fetchUser = () => async (dispatch: any) => {
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
 };
 
+export const logOut = () => async (dispatch: any) => {
+    dispatch({ type: TOGGLE_PROGRESS_BAR, payload: true });
+    const response = await axios.get(routes.auth.logout);
+    dispatch({ type: FETCH_LANGUAGE, payload: response.data });
+    dispatch({ type: FETCH_THEME, payload: response.data });
+    dispatch({ type: FETCH_USER, payload: response.data });
+    dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
+};
+
 export const handleToken = (token: any) => async (dispatch: any) => {
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: true });
     const response = await axios.post(routes.api.stripe, token);
