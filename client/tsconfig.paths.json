@@ -1,8 +1,0 @@
-{
-    // Look into deleting me, if tsconfig stables out now
-    "compilerOptions": {
-        "paths": {
-            "src/*": ["*"]
-        }
-    }
-}
