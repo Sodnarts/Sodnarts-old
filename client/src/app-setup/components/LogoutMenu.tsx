@@ -4,17 +4,23 @@ import { withStyles } from '@material-ui/core/styles';
 import { AccountCircle } from '@material-ui/icons';
 import { WithStyles } from '@material-ui/styles';
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { styles } from 'src/app-setup/styles/LogoutMenuStyles';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { routes } from 'src/common/globals/routes/routes';
+import * as actions from 'src/common/state/actions/index';
 import { color } from 'src/common/utils/getColor';
+
+interface IProps {
+    logOut: () => void;
+}
 
 interface IState {
     anchorEl: any;
 }
 
-type ILogoutMenu = WithStyles<typeof styles>;
+type ILogoutMenu = IProps & WithStyles<typeof styles>;
 
 /**
  * The actual component
@@ -42,14 +48,7 @@ class LogoutMenuBase extends React.Component<ILogoutMenu, IState> {
     };
 
     public handleLogout = () => {
-        const cookies = document.cookie.split(';');
-
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i];
-            const eqPos = cookie.indexOf('=');
-            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-            document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
-        }
+        this.props.logOut();
     };
 
     /**
@@ -156,4 +155,4 @@ class LogoutMenuBase extends React.Component<ILogoutMenu, IState> {
     }
 }
 
-export const LogoutMenu = withStyles(styles)(LogoutMenuBase);
+export const LogoutMenu = connect(null, actions)(withStyles(styles)(LogoutMenuBase));
