@@ -77,12 +77,16 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
                     </Typography>
                     {!!auth ? <MenuButton /> : null}
                     <div className={classes.grow} />
-                    <Switch>
-                        <Route path={routes.emailService.home} component={EmailHeader} />
-                        <Route path={routes.account.home} component={MyAccountHeader} />
-                        <Route path={routes.webShop.home} component={WebShopHeader} />
-                        <Route path={routes.home.home} component={HomeHeader} />
-                    </Switch>
+                    {!!auth ? (
+                        <Switch>
+                            <Route path={routes.emailService.home} component={EmailHeader} />
+                            <Route path={routes.account.home} component={MyAccountHeader} />
+                            <Route path={routes.webShop.home} component={WebShopHeader} />
+                            <Route path={routes.home.home} component={HomeHeader} />
+                        </Switch>
+                    ) : (
+                        0
+                    )}
                     <Button color="inherit">{this.renderContent()}</Button>
                 </Toolbar>
             </AppBar>

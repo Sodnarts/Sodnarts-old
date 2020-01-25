@@ -32,7 +32,7 @@ class EmailHeaderBase extends React.Component<IAuthenticationProps, IState> {
 
     public componentWillReceiveProps(props: IAuthenticationProps) {
         this.setState({
-            credits: props.auth.credits.toString(),
+            credits: !!props.auth ? props.auth.credits.toString() : 0,
         });
         window.addEventListener('resize', this.handleResize);
     }
