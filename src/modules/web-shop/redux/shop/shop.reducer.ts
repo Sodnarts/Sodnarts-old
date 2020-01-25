@@ -1,12 +1,21 @@
-import { FETCH_COLLECTIONS_START, FETCH_COLLECTIONS_SUCCESS, FETCH_COLLECTIONS_FAILURE } from './shop.types';
+import {
+    ICollectionFailureAction,
+    ICollectionInitialState,
+    ICollectionStartAction,
+    ICollectionSuccessAction,
+} from 'src/modules/web-shop/redux/shop/IShop';
+import { FETCH_COLLECTIONS_FAILURE, FETCH_COLLECTIONS_START, FETCH_COLLECTIONS_SUCCESS } from './shop.types';
 
-const INITIAL_STATE = {
+const INITIAL_STATE: ICollectionInitialState = {
     collections: null,
-    isFetching: false,
     errorMessage: null,
+    isFetching: false,
 };
 
-const shopReducer = (state = INITIAL_STATE, action) => {
+const shopReducer = (
+    state = INITIAL_STATE,
+    action: ICollectionFailureAction | ICollectionStartAction | ICollectionSuccessAction,
+) => {
     switch (action.type) {
         case FETCH_COLLECTIONS_START:
             return {
@@ -16,19 +25,19 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         case FETCH_COLLECTIONS_SUCCESS:
             return {
                 ...state,
-                isFetching: false,
                 collections: action.payload,
                 errorMessage: null,
+                isFetching: false,
             };
         case FETCH_COLLECTIONS_FAILURE:
             return {
                 ...state,
-                isFetching: false,
                 errorMessage: action.payload,
+                isFetching: false,
             };
         default:
             return state;
     }
 };
 
-export default shopReducer;
+export { shopReducer };
