@@ -41,6 +41,17 @@ class LogoutMenuBase extends React.Component<ILogoutMenu, IState> {
         });
     };
 
+    public handleLogout = () => {
+        const cookies = document.cookie.split(';');
+
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i];
+            const eqPos = cookie.indexOf('=');
+            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+        }
+    };
+
     /**
      * Closes the menu
      *
@@ -133,7 +144,7 @@ class LogoutMenuBase extends React.Component<ILogoutMenu, IState> {
                             </StyledMenuItem>
                         </Link>
                         <Divider />
-                        <a className={classes.link} href={routes.auth.logout}>
+                        <a className={classes.link} onClick={this.handleLogout} href={routes.auth.logout}>
                             <StyledMenuItem className={classes.menuItem}>
                                 <ListItemText primary={lang.header.user.logout} />
                             </StyledMenuItem>
