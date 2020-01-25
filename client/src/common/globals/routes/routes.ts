@@ -1,6 +1,6 @@
 export const routes = {
     account: {
-        home: '/#/account',
+        home: '/account',
     },
     api: {
         account: 'https://sodnarts-server.herokuapp.com/api/account',
@@ -20,18 +20,18 @@ export const routes = {
             password: 'nimda',
             username: 'admin',
         },
-        emailDashboard: '/#/email-service/surveys/',
-        home: '/#/email-service',
+        emailDashboard: '/email-service/surveys/',
+        home: '/email-service',
     },
     home: {
         home: '/',
     },
     league: {
-        home: '/#/league-watcher/',
+        home: '/league-watcher/',
     },
     webShop: {
-        checkout: '/#/web-shop/checkout/',
-        home: '/#/web-shop/',
-        shop: '/#/web-shop/shop/',
+        checkout: '/web-shop/checkout/',
+        home: '/web-shop/',
+        shop: '/web-shop/shop/',
     },
 };
