@@ -84,9 +84,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
                             <Route path={routes.webShop.home} component={WebShopHeader} />
                             <Route path={routes.home.home} component={HomeHeader} />
                         </Switch>
-                    ) : (
-                        0
-                    )}
+                    ) : null}
                     <Button color="inherit">{this.renderContent()}</Button>
                 </Toolbar>
             </AppBar>
