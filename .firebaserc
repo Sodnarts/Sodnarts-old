@@ -6,10 +6,10 @@
     "sodnarts-react": {
       "hosting": {
         "prod": [
-          "sodnarts.com"
+          "sodnarts-react"
         ],
         "test": [
-          "sodnarts-react.web.app"
+          "sodnarts-test"
         ]
       }
     }
