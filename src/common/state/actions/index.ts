@@ -15,7 +15,6 @@ import {
 export const fetchUser = () => async (dispatch: any) => {
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: true });
     const response = await axios.get(routes.api.currentUser);
-    console.log(response);
     dispatch({ type: FETCH_LANGUAGE, payload: response.data });
     dispatch({ type: FETCH_THEME, payload: response.data });
     dispatch({ type: FETCH_USER, payload: response.data });
@@ -25,7 +24,6 @@ export const fetchUser = () => async (dispatch: any) => {
 export const logOut = () => async (dispatch: any) => {
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: true });
     const response = await axios.get(routes.auth.logout);
-    console.log(response);
     dispatch({ type: FETCH_LANGUAGE, payload: response.data });
     dispatch({ type: FETCH_THEME, payload: response.data });
     dispatch({ type: FETCH_USER, payload: response.data });
