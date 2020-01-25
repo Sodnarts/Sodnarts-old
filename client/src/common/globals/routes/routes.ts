@@ -24,7 +24,7 @@ export const routes = {
         home: '/#/email-service',
     },
     home: {
-        home: '/#/',
+        home: '/',
     },
     league: {
         home: '/#/league-watcher/',
