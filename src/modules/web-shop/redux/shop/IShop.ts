@@ -40,7 +40,7 @@ export interface ICollectionFailureAction {
     payload: string | null;
 }
 
-export interface ICollectionInitialState {
+export interface ICollectionState {
     collections: ICollections | null;
     errorMessage: string | null;
     isFetching: boolean;

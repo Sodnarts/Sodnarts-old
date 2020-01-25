@@ -1,5 +1,7 @@
 import axios from 'axios';
+import { Dispatch } from 'redux';
 import { routes } from 'src/common/globals/routes/routes';
+import { IShowAlertAction } from 'src/common/state/actions/IActions';
 import {
     AlertType,
     DISMISS_ALERT,
@@ -80,10 +82,10 @@ export const changeAccountSettings = (value: any) => async (dispatch: any) => {
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
 };
 
-export const showAlert = (message: string, type: AlertType) => (dispatch: any) => {
-    const params = { message, type };
-    dispatch({ type: SHOW_ALERT, payload: params });
-};
+export const showAlert = (message: string, type: AlertType) => ({
+    payload: { message, type },
+    type: SHOW_ALERT,
+});
 
 export const dismissAlert = () => (dispatch: any) => {
     dispatch({ type: DISMISS_ALERT });

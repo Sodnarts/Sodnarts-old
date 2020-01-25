@@ -10,7 +10,7 @@ import { themeReducer } from 'src/common/state/reducers/themeReducer';
 import { toggleMenuReducer } from 'src/common/state/reducers/toggleMenuReducer';
 import { leaguePaginationReducer } from 'src/modules/league-watcher/redux/reducers/leaguePaginationReducer';
 import { matchHistoryReducer } from 'src/modules/league-watcher/redux/reducers/matchHistoryReducer';
-import cartReducer from 'src/modules/web-shop/redux/cart/cart.reducer';
+import { cartReducer } from 'src/modules/web-shop/redux/cart/cart.reducer';
 import { directoryReducer } from 'src/modules/web-shop/redux/directory/directory.reducer';
 import { shopReducer } from 'src/modules/web-shop/redux/shop/shop.reducer';
 

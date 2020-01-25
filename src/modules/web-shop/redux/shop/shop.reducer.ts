@@ -1,21 +1,20 @@
 import {
     ICollectionFailureAction,
-    ICollectionInitialState,
     ICollectionStartAction,
+    ICollectionState,
     ICollectionSuccessAction,
 } from 'src/modules/web-shop/redux/shop/IShop';
 import { FETCH_COLLECTIONS_FAILURE, FETCH_COLLECTIONS_START, FETCH_COLLECTIONS_SUCCESS } from './shop.types';
 
-const INITIAL_STATE: ICollectionInitialState = {
+type IReducer = ICollectionFailureAction & ICollectionStartAction & ICollectionSuccessAction;
+
+const INITIAL_STATE: ICollectionState = {
     collections: null,
     errorMessage: null,
     isFetching: false,
 };
 
-const shopReducer = (
-    state = INITIAL_STATE,
-    action: ICollectionFailureAction | ICollectionStartAction | ICollectionSuccessAction,
-) => {
+const shopReducer = (state = INITIAL_STATE, action: IReducer) => {
     switch (action.type) {
         case FETCH_COLLECTIONS_START:
             return {
