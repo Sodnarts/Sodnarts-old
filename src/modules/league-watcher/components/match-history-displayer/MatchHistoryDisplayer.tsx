@@ -104,8 +104,8 @@ class MatchHistoryDisplayerBase extends React.Component<IMatchHistoryDisplayerPr
     }
 }
 
-const mapStateToProps = ({ matchHistory }: any) => {
-    return { matchHistory };
+const mapStateToProps = ({ league }: any) => {
+    return { matchHistory: league.matchHistory };
 };
 
 const MatchHistoryDisplayer = connect(mapStateToProps)(

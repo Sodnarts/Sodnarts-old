@@ -3,9 +3,9 @@ import { withStyles, WithStyles } from '@material-ui/styles';
 import React from 'react';
 import { connect } from 'react-redux';
 import { TextField } from 'src/common/components/text-field/TextField';
-import * as actions from 'src/common/state/actions/index';
 import { color, IColor } from 'src/common/utils/getColor';
 import { styles } from 'src/modules/my-account/components/profile/ProfileStyles';
+import * as actions from 'src/modules/my-account/redux/actions';
 
 interface IProps {
     auth: any;

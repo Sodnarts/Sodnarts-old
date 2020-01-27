@@ -141,8 +141,8 @@ class ModulesMenuBase extends React.Component<IProps, IState> {
     }
 }
 
-function mapStateToProps({ language }: any) {
-    return { language };
+function mapStateToProps({ account }: any) {
+    return { language: account.language };
 }
 
 const ModulesMenu = connect(mapStateToProps, actions)(withRouter<any, typeof ModulesMenuBase>(ModulesMenuBase));

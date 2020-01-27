@@ -46,8 +46,8 @@ class LoadMoreButtonBase extends React.Component<IProps> {
     }
 }
 
-const mapStateToProps = ({ leaguePagination }: any) => {
-    return { leaguePagination };
+const mapStateToProps = ({ league }: any) => {
+    return { leaguePagination: league.leaguePagination };
 };
 
 const LoadMoreButton = connect(mapStateToProps, actions)(LoadMoreButtonBase);

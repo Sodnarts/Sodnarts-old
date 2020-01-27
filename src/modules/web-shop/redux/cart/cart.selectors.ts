@@ -2,9 +2,9 @@ import { createSelector } from 'reselect';
 import { ICart, ICartItem } from 'src/modules/web-shop/redux/cart/ICart';
 
 // TODO: Come back once EVERY reducer has it's type and add IGlobalState
-const selectCart = (state: any): any => state.cart;
+const selectCart = (state: any): any => state.webShop.cart;
 
-const selectTheme = (state: any): any => state.theme;
+const selectTheme = (state: any): any => state.account.theme;
 // TODO: Come back once Theme has it's own type -- It is regular application white theme reducer stuff
 export const selectThemeItems = createSelector([selectTheme], (theme: any): any => theme);
 

@@ -26,8 +26,8 @@ class MenuButtonBase extends React.Component<IProps> {
     }
 }
 
-const mapStateToProps = ({ theme }: any) => {
-    return theme;
+const mapStateToProps = ({ account }: any) => {
+    return account.theme;
 };
 const MenuButton = connect(mapStateToProps, actions)(MenuButtonBase);
 

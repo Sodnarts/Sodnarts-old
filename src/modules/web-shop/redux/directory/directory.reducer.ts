@@ -1,6 +1,10 @@
 import { IDirectory } from 'src/modules/web-shop/redux/directory/IDirectory';
 
-const INITIAL_STATE: { sections: IDirectory[] } = {
+export interface IDirectoryState {
+    sections: IDirectory[];
+}
+
+const INITIAL_STATE: IDirectoryState = {
     sections: [
         {
             id: 1,

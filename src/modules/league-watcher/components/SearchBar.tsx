@@ -64,8 +64,8 @@ const SearchBarBase = (props: IProps) => {
     );
 };
 
-const mapStateToProps = ({ leaguePagination }: any) => {
-    return { leaguePagination };
+const mapStateToProps = ({ league }: any) => {
+    return { leaguePagination: league.leaguePagination };
 };
 
 const SearchBar = connect(mapStateToProps, actions)(SearchBarBase);

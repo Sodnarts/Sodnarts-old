@@ -1,6 +1,9 @@
+import { ILoadMoreAction, IMatch, IMatchHistoryAction } from 'src/modules/league-watcher/redux/actions/IActions';
 import { FETCH_MATCH_HISTORY, LOAD_MORE } from 'src/modules/league-watcher/redux/actions/types';
 
-export const matchHistoryReducer = (state: any = [], action: any) => {
+export type IMatchHistoryState = IMatch[];
+
+export const matchHistoryReducer = (state: IMatchHistoryState = [], action: IMatchHistoryAction & ILoadMoreAction) => {
     switch (action.type) {
         case FETCH_MATCH_HISTORY:
             return action.payload;

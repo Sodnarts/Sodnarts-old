@@ -61,7 +61,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
                 elevation={!!toggleMenu ? 0 : 4}
                 position="sticky"
                 style={{
-                    backgroundColor: !!this.props.theme ? this.props.theme.primary : 'blue',
+                    backgroundColor: !!this.props.account.theme ? this.props.account.theme.primary : 'blue',
                     minHeight: '64px',
                 }}
             >
@@ -70,7 +70,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
                         <Link
                             to={'/'}
                             className={classes.logo}
-                            style={{ color: !!this.props.theme ? this.props.theme.text : 'white' }}
+                            style={{ color: !!this.props.account.theme ? this.props.account.theme.text : 'white' }}
                         >
                             Sodnarts
                         </Link>
@@ -92,8 +92,8 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
     }
 }
 
-const mapStateToProps = ({ auth, theme, toggleMenu }: any) => {
-    return { auth, theme, toggleMenu };
+const mapStateToProps = ({ auth, account, toggleMenu }: any) => {
+    return { auth, account, toggleMenu };
 };
 
 const styles = (theme: Theme) =>
