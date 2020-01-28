@@ -1,5 +1,7 @@
-export const getSummoner = (game: any) => {
-    let player = null;
+import { IMatch, IParticipant } from 'src/modules/league-watcher/redux/actions/IActions';
+
+export const getSummoner = (game: IMatch): IParticipant => {
+    let player = game.participants[0];
 
     for (let i = 0; i < game.participants.length; i++) {
         if (

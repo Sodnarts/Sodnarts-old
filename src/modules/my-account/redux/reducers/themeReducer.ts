@@ -1,10 +1,12 @@
 import { cc } from 'src/common/globals/color-codes/cc';
 import { FETCH_THEME } from 'src/common/state/actions/types';
+import { IColor } from 'src/common/utils/getColor';
+import { IChangeThemeAction } from 'src/modules/my-account/redux/actions/IActions';
 
-export const themeReducer = (color = cc.themes.light.colors, action: any) => {
+export const themeReducer = (color: IColor = cc.themes.light.colors, action: IChangeThemeAction) => {
     switch (action.type) {
         case FETCH_THEME:
-            switch (action.payload.theme) {
+            switch (action.payload) {
                 case 'blue':
                     return (color = cc.themes.blue.colors);
                 case 'red':

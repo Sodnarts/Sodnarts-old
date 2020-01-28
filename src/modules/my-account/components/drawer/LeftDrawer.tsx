@@ -3,10 +3,10 @@ import { WithStyles } from '@material-ui/styles';
 import React from 'react';
 import { connect } from 'react-redux';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
+import { IRootState } from 'src/common/state/reducers/IState';
 import { color } from 'src/common/utils/getColor';
 import { IProps } from 'src/modules/my-account/interface/IMyAccount';
 import { styles } from 'src/modules/my-account/styles/myAccountStyles';
-import { Button } from 'src/common/components/button/Button';
 
 interface IState {
     drawerNumber: number;
@@ -46,7 +46,7 @@ class LeftDrawerBase extends React.Component<ILeftDrawer, IState> {
     };
 
     public renderDrawer = () => {
-        return withStyles((theme) => ({
+        return withStyles(() => ({
             paper: {
                 backgroundColor: color().background,
             },
@@ -93,7 +93,7 @@ class LeftDrawerBase extends React.Component<ILeftDrawer, IState> {
     }
 }
 
-const mapStateToProps = ({ auth }: any) => {
+const mapStateToProps = ({ auth }: IRootState) => {
     return { auth };
 };
 

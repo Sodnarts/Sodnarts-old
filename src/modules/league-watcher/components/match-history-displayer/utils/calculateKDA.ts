@@ -1,4 +1,6 @@
-export const calculateKDA = (player: any) => {
+import { IParticipant } from 'src/modules/league-watcher/redux/actions/IActions';
+
+export const calculateKDA = (player: IParticipant): string => {
     let kda = '';
 
     if (player.deaths === 0) {

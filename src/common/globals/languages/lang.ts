@@ -5,8 +5,8 @@ import { store } from 'src/common/state/store';
 
 export const getLanguageFile: any = () => {
     const state = store.getState();
-    if (!!state.language) {
-        switch (state.language) {
+    if (!!state.account.language) {
+        switch (state.account.language) {
             case 'en':
                 return en;
             case 'no':

@@ -10,7 +10,7 @@ import { fetchCollectionsStartAsync } from 'src/modules/web-shop/redux/shop/shop
 import { selectIsCollectionFetching } from 'src/modules/web-shop/redux/shop/shop.selectors';
 
 interface IProps {
-    fetchCollectionsStartAsync: any;
+    fetchCollectionsStartAsync: () => void;
     match: any;
 }
 // tslint:disable-next-line: no-shadowed-variable

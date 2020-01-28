@@ -1,4 +1,4 @@
-export const trimName = (name: string) => {
+export const trimName = (name: string): string => {
     return (
         name
             // tslint:disable-next-line: quotemark

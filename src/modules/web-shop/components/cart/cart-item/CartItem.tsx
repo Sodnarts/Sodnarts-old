@@ -1,7 +1,12 @@
 import React from 'react';
 import 'src/modules/web-shop/components/cart/cart-item/CartItemStyles.scss';
+import { ICartItem } from 'src/modules/web-shop/redux/cart/ICart';
 
-const CartItemBase = ({ item: { imageUrl, price, name, quantity } }: any) => (
+interface IProps {
+    item: ICartItem;
+}
+
+const CartItemBase = ({ item: { imageUrl, price, name, quantity } }: IProps) => (
     <div className="cart-item">
         <img src={imageUrl} alt="item" />
         <div className="item-details">

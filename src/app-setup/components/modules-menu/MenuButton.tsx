@@ -2,6 +2,7 @@ import { Button } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from 'src/common/state/actions';
+import { IRootState } from 'src/common/state/reducers/IState';
 import { color } from 'src/common/utils/getColor';
 
 interface IProps {
@@ -26,7 +27,7 @@ class MenuButtonBase extends React.Component<IProps> {
     }
 }
 
-const mapStateToProps = ({ theme }: any) => {
+const mapStateToProps = ({ account: { theme } }: IRootState) => {
     return theme;
 };
 const MenuButton = connect(mapStateToProps, actions)(MenuButtonBase);

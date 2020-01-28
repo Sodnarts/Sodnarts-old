@@ -3,7 +3,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { withStyles } from '@material-ui/core/styles';
 import { AccountCircle } from '@material-ui/icons';
 import { WithStyles } from '@material-ui/styles';
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { styles } from 'src/app-setup/styles/LogoutMenuStyles';
@@ -41,7 +41,7 @@ class LogoutMenuBase extends React.Component<ILogoutMenu, IState> {
      * @param {*} event
      * @memberof LogoutMenuBase
      */
-    public handleClick = (event: any) => {
+    public handleClick = (event: SyntheticEvent) => {
         this.setState({
             anchorEl: event.currentTarget,
         });
@@ -97,7 +97,7 @@ class LogoutMenuBase extends React.Component<ILogoutMenu, IState> {
      * @memberof LogoutMenuBase
      */
     public renderMenuItem = () => {
-        return withStyles((theme) => ({
+        return withStyles(() => ({
             root: {
                 '&:focus': {
                     backgroundColor: color().secondary,

@@ -8,6 +8,7 @@ import { MenuButton } from 'src/app-setup/components/modules-menu/MenuButton';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { routes } from 'src/common/globals/routes/routes';
 import { IAuthenticationProps } from 'src/common/interface/IAuthentication';
+import { IRootState } from 'src/common/state/reducers/IState';
 import { color } from 'src/common/utils/getColor';
 import { EmailHeader } from 'src/modules/email-service/header/EmailHeader';
 import { HomeHeader } from 'src/modules/home-page/header/HomeHeader';
@@ -54,6 +55,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
                 return <LogoutMenu />;
         }
     }
+
     public render() {
         const { classes, toggleMenu, auth } = this.props;
         return (
@@ -92,7 +94,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
     }
 }
 
-const mapStateToProps = ({ auth, theme, toggleMenu }: any) => {
+const mapStateToProps = ({ auth, account: { theme }, toggleMenu }: IRootState) => {
     return { auth, theme, toggleMenu };
 };
 

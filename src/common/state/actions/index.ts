@@ -1,5 +1,16 @@
 import axios from 'axios';
+import { Dispatch } from 'redux';
 import { routes } from 'src/common/globals/routes/routes';
+import {
+    IDismissAlertAction,
+    IFetchSurveysAction,
+    IFetchUserAction,
+    IShowAlertAction,
+    ISubmitSurvey,
+    IToggleMenuAction,
+    IToggleProgressBarAction,
+    IToken,
+} from 'src/common/state/actions/IActions';
 import {
     AlertType,
     DISMISS_ALERT,
@@ -12,16 +23,16 @@ import {
     TOGGLE_PROGRESS_BAR,
 } from 'src/common/state/actions/types';
 
-export const fetchUser = () => async (dispatch: any) => {
+export const fetchUser = () => async (dispatch: Dispatch<IFetchUserAction | IToggleProgressBarAction>) => {
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: true });
     const response = await axios.get(routes.api.currentUser);
-    dispatch({ type: FETCH_LANGUAGE, payload: response.data });
-    dispatch({ type: FETCH_THEME, payload: response.data });
+    dispatch({ type: FETCH_LANGUAGE, payload: response.data.language });
+    dispatch({ type: FETCH_THEME, payload: response.data.theme });
     dispatch({ type: FETCH_USER, payload: response.data });
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
 };
 
-export const logOut = () => async (dispatch: any) => {
+export const logOut = () => async (dispatch: Dispatch<IFetchUserAction | IToggleProgressBarAction>) => {
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: true });
     const response = await axios.get(routes.auth.logout);
     dispatch({ type: FETCH_LANGUAGE, payload: response.data });
@@ -30,14 +41,18 @@ export const logOut = () => async (dispatch: any) => {
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
 };
 
-export const handleToken = (token: any) => async (dispatch: any) => {
+export const handleToken = (token: IToken) => async (
+    dispatch: Dispatch<IFetchUserAction | IToggleProgressBarAction>,
+) => {
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: true });
     const response = await axios.post(routes.api.stripe, token);
     dispatch({ type: FETCH_USER, payload: response.data });
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
 };
 
-export const submitSurvey = (values: any) => async (dispatch: any) => {
+export const submitSurvey = (values: ISubmitSurvey) => async (
+    dispatch: Dispatch<IFetchSurveysAction | IToggleProgressBarAction | IShowAlertAction>,
+) => {
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: true });
     try {
         const response = await axios.post(routes.api.surveys, values);
@@ -50,49 +65,26 @@ export const submitSurvey = (values: any) => async (dispatch: any) => {
     }
 };
 
-export const fetchSurveys = () => async (dispatch: any) => {
+export const fetchSurveys = () => async (dispatch: Dispatch<IFetchSurveysAction | IToggleProgressBarAction>) => {
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: true });
     const response = await axios.get(routes.api.surveys);
     dispatch({ type: FETCH_SURVEYS, payload: response.data });
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
 };
 
-export const changeTheme = (theme: any) => async (dispatch: any) => {
-    dispatch({ type: TOGGLE_PROGRESS_BAR, payload: true });
-    const response = await axios.post(routes.api.theme, theme);
-    dispatch({ type: FETCH_THEME, payload: response.data });
-    dispatch({ type: FETCH_USER, payload: response.data });
-    dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
-};
+export const showAlert = (message: string, type: AlertType) => ({
+    payload: { message, type },
+    type: SHOW_ALERT,
+});
 
-export const changeLanguage = (language: any) => async (dispatch: any) => {
-    dispatch({ type: TOGGLE_PROGRESS_BAR, payload: true });
-    const response = await axios.post(routes.api.language, language);
-    dispatch({ type: FETCH_LANGUAGE, payload: response.data });
-    dispatch({ type: FETCH_USER, payload: response.data });
-    dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
-};
-
-export const changeAccountSettings = (value: any) => async (dispatch: any) => {
-    dispatch({ type: TOGGLE_PROGRESS_BAR, payload: true });
-    const response = await axios.post(routes.api.account, value);
-    dispatch({ type: FETCH_USER, payload: response.data });
-    dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
-};
-
-export const showAlert = (message: string, type: AlertType) => (dispatch: any) => {
-    const params = { message, type };
-    dispatch({ type: SHOW_ALERT, payload: params });
-};
-
-export const dismissAlert = () => (dispatch: any) => {
+export const dismissAlert = () => (dispatch: Dispatch<IDismissAlertAction>) => {
     dispatch({ type: DISMISS_ALERT });
 };
 
-export const toggleModulesMenu = () => (dispatch: any) => {
+export const toggleModulesMenu = () => (dispatch: Dispatch<IToggleMenuAction>) => {
     dispatch({ type: TOGGLE_MENU });
 };
 
-export const toggleProgressBar = (show: boolean) => (dispatch: any) => {
-    dispatch({ type: TOGGLE_PROGRESS_BAR, show });
+export const toggleProgressBar = (show: boolean) => (dispatch: Dispatch<IToggleProgressBarAction>) => {
+    dispatch({ type: TOGGLE_PROGRESS_BAR, payload: show });
 };

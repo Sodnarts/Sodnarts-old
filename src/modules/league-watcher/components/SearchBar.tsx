@@ -2,7 +2,9 @@ import { createStyles, InputBase, makeStyles, Theme } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import React from 'react';
 import { connect } from 'react-redux';
+import { IRootState } from 'src/common/state/reducers/IState';
 import * as actions from 'src/modules/league-watcher/redux/actions';
+import { ILeaguePaginationState } from 'src/modules/league-watcher/redux/reducers/IReducer';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -34,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface IProps {
-    leaguePagination: any;
+    leaguePagination: ILeaguePaginationState;
     fetchMatchHistory: (summonerName: string, pagination: number) => void;
 }
 
@@ -64,7 +66,7 @@ const SearchBarBase = (props: IProps) => {
     );
 };
 
-const mapStateToProps = ({ leaguePagination }: any) => {
+const mapStateToProps = ({ league: { leaguePagination } }: IRootState) => {
     return { leaguePagination };
 };
 

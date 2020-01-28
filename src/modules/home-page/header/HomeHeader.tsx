@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { IAuthenticationProps } from 'src/common/interface/IAuthentication';
+import { IRootState } from 'src/common/state/reducers/IState';
 
 /**
  *
@@ -11,7 +12,7 @@ const HomeHeaderBase = (props: IAuthenticationProps) => {
     return null;
 };
 
-const mapStateToProps = ({ auth }: any) => {
+const mapStateToProps = ({ auth }: IRootState) => {
     return { auth };
 };
 

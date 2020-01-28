@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { PageNotFound } from 'src/common/error-pages/PageNotFound';
 import { routes } from 'src/common/globals/routes/routes';
+import { IRootState } from 'src/common/state/reducers/IState';
 import { Email } from 'src/modules/email-service/components/Email';
 import { EmailDashboard } from 'src/modules/email-service/components/EmailDashboard';
 
@@ -24,7 +25,7 @@ const EmailRouterBase = () => (
     </div>
 );
 
-const mapStateToProps = ({ auth }: any) => {
+const mapStateToProps = ({ auth }: IRootState) => {
     return { auth };
 };
 

@@ -2,9 +2,10 @@ import { Paper, withStyles, WithStyles } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'src/common/components/button/Button';
-import * as actions from 'src/common/state/actions/index';
 import { color } from 'src/common/utils/getColor';
 import { styles } from 'src/modules/my-account/components/languages/LanguagesStyles';
+import * as actions from 'src/modules/my-account/redux/actions';
+import { ILanguage } from 'src/modules/my-account/redux/actions/IActions';
 
 interface IState {
     active: boolean;
@@ -18,7 +19,7 @@ interface IProps {
     language: string;
     langFile: any;
     value: string;
-    changeLanguage: (language: any) => void;
+    changeLanguage: (language: ILanguage) => void;
 }
 
 type ILanguageBar = IProps & WithStyles<typeof styles>;

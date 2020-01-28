@@ -6,10 +6,11 @@ import { CheckoutItem } from 'src/modules/web-shop/components/checkout/checkout-
 import 'src/modules/web-shop/components/checkout/CheckoutPageStyles.scss';
 import { StripeCheckoutButton } from 'src/modules/web-shop/components/stripe-button/StripeButton';
 import { selectCartItems, selectCartTotal } from 'src/modules/web-shop/redux/cart/cart.selectors';
+import { ICartItem } from 'src/modules/web-shop/redux/cart/ICart';
 
 interface IProps {
-    cartItems: any;
-    total: any;
+    cartItems: ICartItem[];
+    total: number;
 }
 
 const CheckoutPageBase = ({ cartItems, total }: IProps) => {
@@ -34,7 +35,7 @@ const CheckoutPageBase = ({ cartItems, total }: IProps) => {
                     <span>{lang.webShop.checkout.remove}</span>
                 </div>
             </div>
-            {cartItems.map((cartItem: any) => (
+            {cartItems.map((cartItem: ICartItem) => (
                 <CheckoutItem key={cartItem.id} item={cartItem} />
             ))}
             <div className="total">

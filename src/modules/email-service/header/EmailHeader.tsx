@@ -32,7 +32,7 @@ class EmailHeaderBase extends React.Component<IAuthenticationProps, IState> {
 
     public componentWillReceiveProps(props: IAuthenticationProps) {
         this.setState({
-            credits: !!props.auth ? props.auth.credits.toString() : 0,
+            credits: !!props.auth ? props.auth.credits.toString() : '0',
         });
         window.addEventListener('resize', this.handleResize);
     }
@@ -48,15 +48,10 @@ class EmailHeaderBase extends React.Component<IAuthenticationProps, IState> {
     };
 
     public renderContent(credits: string) {
-        let creditsText = this.lang.payments.credits;
-        if (window.innerWidth <= 410) {
-            creditsText = '';
-        }
-
         switch (this.props.auth) {
             case null:
                 return null;
-            case false:
+            case undefined:
                 return null;
             default:
                 return (

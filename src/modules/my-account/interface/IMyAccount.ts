@@ -1,4 +1,6 @@
+import { IAuthState } from 'src/common/state/reducers/IState';
+
 export interface IProps {
-    auth: any;
+    auth: IAuthState;
     updateRender: (componentNumber: number) => void;
 }

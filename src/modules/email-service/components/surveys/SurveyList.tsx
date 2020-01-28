@@ -2,6 +2,8 @@ import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchSurveys } from 'src/common/state/actions';
+import { ISurvey } from 'src/common/state/actions/IActions';
+import { IRootState, ISurveysState } from 'src/common/state/reducers/IState';
 import { SurveyCard } from 'src/modules/email-service/components/surveys/SurveyCard';
 
 const styles = (theme: Theme) =>
@@ -26,7 +28,7 @@ const styles = (theme: Theme) =>
 
 interface IProps {
     fetchSurveys: () => void;
-    surveys: [];
+    surveys: ISurveysState;
 }
 
 type ISurveyList = IProps & WithStyles<typeof styles>;
@@ -39,7 +41,7 @@ class SurveyListBase extends React.Component<ISurveyList> {
     public renderSurveys = () => {
         return (
             <div className={this.props.classes.paper}>
-                {this.props.surveys.reverse().map((survey: any) => {
+                {this.props.surveys.reverse().map((survey: ISurvey) => {
                     return (
                         <SurveyCard
                             key={survey._id}
@@ -64,7 +66,7 @@ class SurveyListBase extends React.Component<ISurveyList> {
     }
 }
 
-function mapStateToProps({ surveys }: any) {
+function mapStateToProps({ surveys }: IRootState) {
     return { surveys };
 }
 

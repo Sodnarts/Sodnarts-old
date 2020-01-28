@@ -5,13 +5,14 @@ import { TeamChart } from 'src/modules/league-watcher/components/match-history-d
 import { calculateKDA } from 'src/modules/league-watcher/components/match-history-displayer/utils/calculateKDA';
 import { getSummoner } from 'src/modules/league-watcher/components/match-history-displayer/utils/getSummoner';
 import { trimName } from 'src/modules/league-watcher/components/match-history-displayer/utils/trimName';
+import { IMatch, IParticipant } from 'src/modules/league-watcher/redux/actions/IActions';
 
 interface IProps {
-    game: any;
+    game: IMatch;
 }
 
 interface IState {
-    player: any;
+    player: IParticipant;
 }
 
 class GameTitleBarBase extends React.Component<IProps, IState> {
@@ -22,7 +23,7 @@ class GameTitleBarBase extends React.Component<IProps, IState> {
         };
     }
 
-    public convertGameDuration = () => {
+    public convertGameDuration = (): string => {
         const { game } = this.props;
 
         const mm = Math.floor(game.gameDuration / 60);

@@ -8,6 +8,7 @@ import { Alert } from 'src/common/components/alert/Alert';
 import { ProgressBar } from 'src/common/components/progress-bar/ProgressBar';
 import * as actions from 'src/common/state/actions/index';
 import { AlertType } from 'src/common/state/actions/types';
+import { IAlertState, IRootState } from 'src/common/state/reducers/IState';
 
 /**
  *
@@ -15,7 +16,7 @@ import { AlertType } from 'src/common/state/actions/types';
  * @interface IProps
  */
 interface IProps {
-    alert?: any;
+    alert: IAlertState;
     toggleMenu: boolean;
     fetchUser: () => void;
     dismissAlert: () => void;
@@ -66,7 +67,6 @@ class AppBase extends React.Component<IProps, IState> {
 
     public render() {
         const { alertOpen, menuOpen, message, alertType } = this.state;
-
         return (
             <div>
                 <BrowserRouter>
@@ -83,7 +83,7 @@ class AppBase extends React.Component<IProps, IState> {
     }
 }
 
-function mapStateToProps({ alert, toggleMenu }: any) {
+function mapStateToProps({ alert, toggleMenu }: IRootState) {
     return { alert, toggleMenu };
 }
 

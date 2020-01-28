@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { routes } from 'src/common/globals/routes/routes';
 /**
- *
+ * // TODO: Fix me
  *
  * @class HomePage
  * @extends {React.Component}

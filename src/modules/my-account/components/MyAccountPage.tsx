@@ -10,7 +10,7 @@ interface IState {
     componentNumber: number;
 }
 class MyAccountBase extends React.Component<{}, IState> {
-    constructor(props: any) {
+    constructor(props: {}) {
         super(props);
 
         this.state = {

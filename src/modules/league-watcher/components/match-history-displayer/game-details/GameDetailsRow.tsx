@@ -2,9 +2,11 @@ import { Avatar, Typography } from '@material-ui/core';
 import React from 'react';
 import { calculateKDA } from 'src/modules/league-watcher/components/match-history-displayer/utils/calculateKDA';
 import { trimName } from 'src/modules/league-watcher/components/match-history-displayer/utils/trimName';
+import { IItem } from 'src/modules/league-watcher/interface/ILeague';
+import { IParticipant } from 'src/modules/league-watcher/redux/actions/IActions';
 
 interface IProps {
-    participant: any;
+    participant: IParticipant;
     didWin: boolean;
     duration: number;
 }
@@ -70,7 +72,7 @@ class GameDetailsRow extends React.Component<IProps> {
 
     public getItems = () => {
         const { participant } = this.props;
-        const items = [
+        const items: IItem[] = [
             { id: '0', item: participant.item0 },
             { id: '1', item: participant.item1 },
             { id: '2', item: participant.item2 },
@@ -82,7 +84,7 @@ class GameDetailsRow extends React.Component<IProps> {
 
         return (
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-                {items.map(({ id, item }: any) => {
+                {items.map(({ id, item }: IItem) => {
                     return (
                         <Avatar
                             variant="rounded"

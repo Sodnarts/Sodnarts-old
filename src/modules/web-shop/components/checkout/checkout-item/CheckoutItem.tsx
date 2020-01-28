@@ -1,18 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import 'src/modules/web-shop/components/checkout/checkout-item/CheckoutItemStyles.scss';
 import { addItem, clearItemFromCart, removeItem } from 'src/modules/web-shop/redux/cart/cart.actions';
+import {
+    ICartAddItemAction,
+    ICartClearItemAction,
+    ICartItem,
+    ICartRemoveItemAction,
+} from 'src/modules/web-shop/redux/cart/ICart';
 
 interface IProps {
-    item: any;
-    clearItem: any;
-    addItem: any;
-    removeItem: any;
+    item: ICartItem;
+    clearItem: (item: ICartItem) => void;
+    addItem: (item: ICartItem) => void;
+    removeItem: (item: ICartItem) => void;
 }
 
 // tslint:disable-next-line: no-shadowed-variable
 const CheckoutItemBase = ({ addItem, item, clearItem, removeItem }: IProps) => {
-    const { name, imageUrl, description, quantity, price } = item;
+    const { name, imageUrl, quantity, price } = item;
 
     const handleRemove = () => {
         removeItem(item);
@@ -32,7 +39,6 @@ const CheckoutItemBase = ({ addItem, item, clearItem, removeItem }: IProps) => {
                 <img src={imageUrl} alt="item" />
             </div>
             <span className="name">{name}</span>
-            <span className="description">{description}</span>
             <span className="quantity">
                 <div className="arrow" onClick={handleRemove}>
                     &#10094;
@@ -50,10 +56,10 @@ const CheckoutItemBase = ({ addItem, item, clearItem, removeItem }: IProps) => {
     );
 };
 
-const mapDispatchToProps = (dispatch: any) => ({
-    addItem: (item: any) => dispatch(addItem(item)),
-    clearItem: (item: any) => dispatch(clearItemFromCart(item)),
-    removeItem: (item: any) => dispatch(removeItem(item)),
+const mapDispatchToProps = (dispatch: Dispatch<ICartAddItemAction | ICartClearItemAction | ICartRemoveItemAction>) => ({
+    addItem: (item: ICartItem) => dispatch(addItem(item)),
+    clearItem: (item: ICartItem) => dispatch(clearItemFromCart(item)),
+    removeItem: (item: ICartItem) => dispatch(removeItem(item)),
 });
 
 const CheckoutItem = connect(null, mapDispatchToProps)(CheckoutItemBase);

@@ -5,10 +5,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
 import * as actions from 'src/common/state/actions';
+import { ISubmitSurvey } from 'src/common/state/actions/IActions';
 import { SurveyForm } from 'src/modules/email-service/components/surveys/SurveyForm';
 
 interface IProps {
-    submitSurvey: (survey: any) => void;
+    submitSurvey: (survey: ISubmitSurvey) => void;
     handleOpen: () => void;
 }
 
@@ -21,7 +22,7 @@ interface IProps {
 const SurveyFormDialogBase = ({ handleOpen, submitSurvey }: IProps) => {
     const lang = getLanguageFile();
 
-    const handleSubmit = (survey: any) => {
+    const handleSubmit = (survey: ISubmitSurvey) => {
         submitSurvey(survey);
         handleOpen();
     };

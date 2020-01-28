@@ -9,8 +9,8 @@ interface IProps {
     body: string;
     subject?: string;
     sentDate: string;
-    yes: string;
-    no: string;
+    yes: number;
+    no: number;
 }
 
 type ISurveyCard = IProps & WithStyles<typeof styles>;

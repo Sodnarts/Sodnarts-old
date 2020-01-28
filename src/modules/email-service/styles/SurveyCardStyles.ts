@@ -4,10 +4,10 @@ import { StyleRules } from '@material-ui/core/styles';
 export const styles = (theme: Theme): StyleRules =>
     createStyles({
         card: {
-            minWidth: '275px',
-            position: 'relative',
             display: 'flex',
             flexDirection: 'column',
+            minWidth: '275px',
+            position: 'relative',
             [theme.breakpoints.down('md')]: {
                 width: '100%',
             },

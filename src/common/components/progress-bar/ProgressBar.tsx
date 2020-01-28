@@ -2,9 +2,10 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import React from 'react';
 import { connect } from 'react-redux';
+import { IRootState } from 'src/common/state/reducers/IState';
 
 interface IProps {
-    progressBar: boolean;
+    progressBar: number;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -31,7 +32,7 @@ const ProgressBarBase = ({ progressBar }: IProps) => {
     );
 };
 
-function mapStateToProps({ progressBar }: any) {
+function mapStateToProps({ progressBar }: IRootState) {
     return { progressBar };
 }
 
