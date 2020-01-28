@@ -1,6 +1,6 @@
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import CloseIcon from '@material-ui/icons/Close';
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { Button } from 'src/common/components/button/Button';
 import { TextField } from 'src/common/components/text-field/TextField';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
@@ -43,7 +43,7 @@ class SurveyForm extends React.Component<IProps, IState> {
         };
     }
 
-    public handleSubmit = (event: any) => {
+    public handleSubmit = (event: SyntheticEvent) => {
         event.preventDefault();
         this.setState(
             {
@@ -129,7 +129,7 @@ class SurveyForm extends React.Component<IProps, IState> {
     }
 }
 
-function validate(values: any) {
+function validate(values: string) {
     const errors: IError = {
         recipients: '',
     };

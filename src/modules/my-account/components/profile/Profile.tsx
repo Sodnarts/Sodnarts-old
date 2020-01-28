@@ -3,17 +3,19 @@ import { withStyles, WithStyles } from '@material-ui/styles';
 import React from 'react';
 import { connect } from 'react-redux';
 import { TextField } from 'src/common/components/text-field/TextField';
+import { IAuthState, IRootState } from 'src/common/state/reducers/IState';
 import { color, IColor } from 'src/common/utils/getColor';
 import { styles } from 'src/modules/my-account/components/profile/ProfileStyles';
 import * as actions from 'src/modules/my-account/redux/actions';
+import { IAccount } from 'src/modules/my-account/redux/actions/IActions';
 
 interface IProps {
-    auth: any;
-    changeAccountSettings(value: any): void;
+    auth: IAuthState;
+    changeAccountSettings(value: IAccount): void;
 }
 
 interface IState {
-    user: any;
+    user: any; // Has to be any in order to index the object dynamically through the type property in state.
     fields: Array<{ label: string; type: string }>;
 }
 
@@ -122,7 +124,7 @@ class ProfileBase extends React.Component<IProfile, IState> {
     }
 }
 
-const mapStateToProps = ({ auth }: any) => {
+const mapStateToProps = ({ auth }: IRootState) => {
     return { auth };
 };
 

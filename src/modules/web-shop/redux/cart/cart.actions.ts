@@ -19,12 +19,13 @@ import {
     ICartRemoveItemAction,
     ICartToggleCartHidden,
 } from 'src/modules/web-shop/redux/cart/ICart';
+import { IItem } from 'src/modules/web-shop/redux/shop/IShop';
 
 export const toggleCartHidden = (): ICartToggleCartHidden => ({
     type: TOGGLE_CART_HIDDEN,
 });
 
-export const addItem = (item: ICartItem): ICartAddItemAction => ({
+export const addItem = (item: IItem): ICartAddItemAction => ({
     payload: item,
     type: ADD_ITEM,
 });

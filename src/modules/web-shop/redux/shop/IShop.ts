@@ -4,14 +4,14 @@ import {
     FETCH_COLLECTIONS_SUCCESS,
 } from 'src/modules/web-shop/redux/shop/shop.types';
 
-interface ICollection {
+export interface ICollection {
     id: string;
     routeName: string;
     title: string;
     items: IItem[];
 }
 
-interface IItem {
+export interface IItem {
     id: number;
     imageUrl: string;
     name: string;

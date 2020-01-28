@@ -1,4 +1,17 @@
-export const cc: any = {
+import { IColor } from 'src/common/utils/getColor';
+
+interface IColorSheet {
+    themes: IColorProperty;
+}
+
+interface IColorProperty {
+    [key: string]: {
+        colors: IColor;
+        value: string;
+    };
+}
+
+export const cc: IColorSheet = {
     themes: {
         blue: {
             colors: {

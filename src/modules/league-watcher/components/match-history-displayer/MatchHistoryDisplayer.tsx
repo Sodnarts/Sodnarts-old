@@ -1,6 +1,7 @@
-import { Paper, Typography, withStyles, WithStyles } from '@material-ui/core';
+import { Paper, withStyles, WithStyles } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
+import { IRootState } from 'src/common/state/reducers/IState';
 import { ExpansionPanel } from 'src/modules/league-watcher/components/match-history-displayer/expansion-panels/ExpansionPanel';
 import { ExpansionPanelDetails } from 'src/modules/league-watcher/components/match-history-displayer/expansion-panels/ExpansionPanelDetails';
 import { ExpansionPanelSummary } from 'src/modules/league-watcher/components/match-history-displayer/expansion-panels/ExpansionPanelSummary';
@@ -8,16 +9,18 @@ import { GameDetails } from 'src/modules/league-watcher/components/match-history
 // tslint:disable-next-line: max-line-length
 import { GameTitleBar } from 'src/modules/league-watcher/components/match-history-displayer/game-title-bar/GameTitleBar';
 import { matchHistoryDisplayerStyles } from 'src/modules/league-watcher/components/match-history-displayer/MatchHistoryDisplayerStyles';
+import { IMatch, IParticipant } from 'src/modules/league-watcher/redux/actions/IActions';
+import { IMatchHistoryState } from 'src/modules/league-watcher/redux/reducers/matchHistoryReducer';
 
 interface IProps {
-    matchHistory: any;
+    matchHistory: IMatchHistoryState;
 }
 
 type IMatchHistoryDisplayerProps = IProps & WithStyles<typeof matchHistoryDisplayerStyles>;
 
 interface IState {
     expanded: string;
-    matchHistory: any;
+    matchHistory: IMatchHistoryState;
 }
 
 class MatchHistoryDisplayerBase extends React.Component<IMatchHistoryDisplayerProps, IState> {
@@ -36,9 +39,9 @@ class MatchHistoryDisplayerBase extends React.Component<IMatchHistoryDisplayerPr
         });
     }
 
-    public getWinFromSummoner = (game: any) => {
+    public getWinFromSummoner = (game: IMatch): boolean => {
         let winOrLoss = false;
-        game.participants.forEach((participant: any) => {
+        game.participants.forEach((participant: IParticipant): void => {
             if (
                 decodeURI(game.selfName)
                     .toLowerCase()
@@ -61,7 +64,7 @@ class MatchHistoryDisplayerBase extends React.Component<IMatchHistoryDisplayerPr
     public renderContent = () => {
         const { matchHistory } = this.state;
         if (!!matchHistory) {
-            return matchHistory.map((game: any) => {
+            return matchHistory.map((game: IMatch) => {
                 return (
                     <ExpansionPanel
                         key={game.gameCreation}
@@ -104,8 +107,8 @@ class MatchHistoryDisplayerBase extends React.Component<IMatchHistoryDisplayerPr
     }
 }
 
-const mapStateToProps = ({ league }: any) => {
-    return { matchHistory: league.matchHistory };
+const mapStateToProps = ({ league: { matchHistory } }: IRootState) => {
+    return { matchHistory };
 };
 
 const MatchHistoryDisplayer = connect(mapStateToProps)(

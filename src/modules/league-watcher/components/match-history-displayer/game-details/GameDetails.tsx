@@ -2,15 +2,14 @@ import { Typography } from '@material-ui/core';
 import React from 'react';
 import { GameDetailsRow } from 'src/modules/league-watcher/components/match-history-displayer/game-details/GameDetailsRow';
 import { getSummoner } from 'src/modules/league-watcher/components/match-history-displayer/utils/getSummoner';
+import { IMatch, IParticipant } from 'src/modules/league-watcher/redux/actions/IActions';
 
 interface IProps {
-    game: any;
+    game: IMatch;
 }
 
 class GameDetails extends React.Component<IProps> {
     public teamColor = (teamId: number) => {
-        const { game } = this.props;
-
         if (teamId === 100) {
             return 'Blue Team';
         } else {
@@ -35,7 +34,7 @@ class GameDetails extends React.Component<IProps> {
         const { game } = this.props;
         const rows: JSX.Element[] = [];
 
-        game.participants.forEach((participant: any) => {
+        game.participants.forEach((participant: IParticipant) => {
             if (participant.teamId === teamId) {
                 rows.push(
                     <GameDetailsRow

@@ -5,7 +5,7 @@ import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import MenuOpenIcon from '@material-ui/icons/MenuOpen';
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { color } from 'src/common/utils/getColor';
 import { PaymentDrawerInformation } from 'src/modules/email-service/components/payment-drawer/PaymentDrawerInformation';
@@ -30,7 +30,7 @@ class PaymentDrawerBase extends React.Component<IPaymentDrawer, IState> {
         };
     }
 
-    public toggleDrawer = (side: any, open: any) => (event: any) => {
+    public toggleDrawer = (side: string, open: boolean) => (event: SyntheticEvent) => {
         this.setState({ right: open });
     };
 

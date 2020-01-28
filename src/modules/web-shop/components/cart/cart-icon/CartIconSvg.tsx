@@ -1,6 +1,11 @@
 import React from 'react';
 
-const CartIconSvg = ({ className, fill }: any) => (
+interface IProps {
+    className: string;
+    fill: string;
+}
+
+const CartIconSvg = ({ className, fill }: IProps) => (
     <svg viewBox="0 0 407.453 407.453" className={className}>
         <g>
             <path

@@ -5,7 +5,7 @@ import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { sendPayment } from 'src/modules/web-shop/redux/cart/cart.actions';
 
 interface IProps {
-    price: any;
+    price: number;
     sendPayment: (token: string, price: number) => void;
 }
 

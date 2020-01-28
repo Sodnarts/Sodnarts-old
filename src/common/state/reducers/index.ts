@@ -14,7 +14,7 @@ import { webShopReducer } from 'src/modules/web-shop/redux/webShopReducer';
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['cart'],
+    whitelist: ['webShop'],
 };
 
 const combinedReducers: Reducer<IRootState> = combineReducers({

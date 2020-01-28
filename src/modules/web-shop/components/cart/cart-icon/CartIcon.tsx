@@ -1,15 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { color } from 'src/common/utils/getColor';
 import 'src/modules/web-shop/components/cart/cart-icon/CartIconStyles.scss';
 import { CartIconSvg } from 'src/modules/web-shop/components/cart/cart-icon/CartIconSvg';
 import { toggleCartHidden } from 'src/modules/web-shop/redux/cart/cart.actions';
 import { selectCartItemsCount, selectThemeItems } from 'src/modules/web-shop/redux/cart/cart.selectors';
+import { ICartToggleCartHidden } from 'src/modules/web-shop/redux/cart/ICart';
 
 interface IProps {
-    toggleCartHidden: any;
-    itemCount: any;
+    toggleCartHidden: () => void;
+    itemCount: number;
 }
 
 // tslint:disable-next-line: no-shadowed-variable
@@ -22,11 +24,11 @@ const CartIconBase = ({ toggleCartHidden, itemCount }: IProps) => (
     </div>
 );
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch<ICartToggleCartHidden>) => ({
     toggleCartHidden: () => dispatch(toggleCartHidden()),
 });
 
-const mapStateToProps = (state: any) =>
+const mapStateToProps = () =>
     createStructuredSelector({
         itemCount: selectCartItemsCount,
         theme: selectThemeItems,

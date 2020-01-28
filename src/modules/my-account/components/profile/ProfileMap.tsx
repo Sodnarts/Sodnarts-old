@@ -6,7 +6,7 @@ import { styles } from 'src/modules/my-account/components/profile/ProfileStyles'
 type IProfileMap = WithStyles<typeof styles>;
 
 class ProfileMapBase extends React.Component<IProfileMap> {
-    constructor(props: any) {
+    constructor(props: IProfileMap) {
         super(props);
 
         this.state = {};

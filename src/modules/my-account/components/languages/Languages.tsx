@@ -6,12 +6,13 @@ import { de } from 'src/common/globals/languages/de';
 import { en } from 'src/common/globals/languages/en';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { no } from 'src/common/globals/languages/no';
+import { IAuthState, IRootState } from 'src/common/state/reducers/IState';
 import { color } from 'src/common/utils/getColor';
 import { LanguageBar } from 'src/modules/my-account/components/languages/LanguageBar';
 import { styles } from 'src/modules/my-account/components/languages/LanguagesStyles';
 
 interface IProps {
-    auth: any;
+    auth: IAuthState;
 }
 
 type ILanguages = IProps & WithStyles<typeof styles>;
@@ -21,9 +22,9 @@ class LanguagesBase extends React.Component<ILanguages> {
         const { auth, classes } = this.props;
         const lang = getLanguageFile();
 
-        const enActive = !!(auth.language === 'en') ? true : false;
-        const noActive = !!(auth.language === 'no') ? true : false;
-        const deActive = !!(auth.language === 'de') ? true : false;
+        const enActive = !!auth ? (!!(auth.language === 'en') ? true : false) : false;
+        const noActive = !!auth ? (!!(auth.language === 'no') ? true : false) : false;
+        const deActive = !!auth ? (!!(auth.language === 'de') ? true : false) : false;
 
         return (
             <div style={{ padding: '25px' }}>
@@ -61,8 +62,8 @@ class LanguagesBase extends React.Component<ILanguages> {
     }
 }
 
-const mapStateToProps = ({ auth, theme }: any) => {
-    return { auth, theme };
+const mapStateToProps = ({ auth }: IRootState) => {
+    return { auth };
 };
 
 export const Languages = connect(mapStateToProps)(withStyles(styles)(LanguagesBase));

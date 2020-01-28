@@ -7,6 +7,7 @@ import { routes } from 'src/common/globals/routes/routes';
 import { IAuthenticationProps } from 'src/common/interface/IAuthentication';
 import { IProps } from 'src/common/interface/IProps';
 import { IState } from 'src/common/interface/IState';
+import { IRootState } from 'src/common/state/reducers/IState';
 import { color } from 'src/common/utils/getColor';
 import { EmailRouter } from 'src/modules/email-service/router/EmailRouter';
 import { HomeRouter } from 'src/modules/home-page/router/HomeRouter';
@@ -50,7 +51,7 @@ const RouterComponentBase = (props: IRouter & IState) => {
     return <div style={{ backgroundColor: color().background }}>{renderContent()}</div>;
 };
 
-const mapStateToProps = ({ auth }: any) => {
+const mapStateToProps = ({ auth }: IRootState) => {
     return { auth };
 };
 

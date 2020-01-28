@@ -3,17 +3,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { cc } from 'src/common/globals/color-codes/cc';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
+import { IAuthState, IRootState } from 'src/common/state/reducers/IState';
 import { color } from 'src/common/utils/getColor';
 import { ThemeBar } from 'src/modules/my-account/components/themes/ThemeBar';
 import { styles } from 'src/modules/my-account/components/themes/ThemesStyles';
 
 interface IProps {
-    auth: any;
-    theme: {
-        primary: string;
-        secondary: string;
-        border: string;
-    };
+    auth: IAuthState;
 }
 
 interface IState {
@@ -41,7 +37,7 @@ class ThemesBase extends React.Component<IThemes, IState> {
         const { colors } = this.state;
         const lang = getLanguageFile();
 
-        const active = auth.theme;
+        const active = !!auth ? auth.theme : 'light';
 
         return (
             <div style={{ padding: '25px' }}>
@@ -70,8 +66,8 @@ class ThemesBase extends React.Component<IThemes, IState> {
     }
 }
 
-const mapStateToProps = ({ auth, theme }: any) => {
-    return { auth, theme };
+const mapStateToProps = ({ auth }: IRootState) => {
+    return { auth };
 };
 
 export const Themes = connect(mapStateToProps)(withStyles(styles)(ThemesBase));

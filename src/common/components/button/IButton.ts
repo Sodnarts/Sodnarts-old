@@ -8,7 +8,7 @@ export interface IButtonProps {
     textColor?: string;
     isRound?: boolean;
     size?: 'small' | 'medium' | 'large';
-    leftIcon?: any;
-    rightIcon?: any;
+    leftIcon?: object;
+    rightIcon?: object;
     submit?: boolean;
 }

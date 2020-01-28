@@ -1,5 +1,5 @@
 import { IAuthState } from 'src/common/state/reducers/IState';
-import { IAccountState } from 'src/modules/my-account/redux/actions/IActions';
+import { IColor } from 'src/common/utils/getColor';
 
 /**
  *
@@ -8,7 +8,7 @@ import { IAccountState } from 'src/modules/my-account/redux/actions/IActions';
  */
 export interface IAuthenticationProps {
     auth: IAuthState;
-    account: IAccountState;
+    theme: IColor;
 }
 
 export interface IUser {

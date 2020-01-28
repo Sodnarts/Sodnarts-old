@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { routes } from 'src/common/globals/routes/routes';
 import * as actions from 'src/common/state/actions';
+import { IRootState } from 'src/common/state/reducers/IState';
 import { color } from 'src/common/utils/getColor';
 
 interface IProps {
@@ -18,33 +19,10 @@ interface IState {
     value: number;
 }
 
-interface ITabPanelProps {
-    children?: React.ReactNode;
-    index: any;
-    value: any;
-}
-
-function TabPanel(props: ITabPanelProps) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <Typography
-            component="div"
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && <Box p={3}>{children}</Box>}
-        </Typography>
-    );
-}
-
 class ModulesMenuBase extends React.Component<IProps, IState> {
     public lang = getLanguageFile();
 
-    constructor(props: any) {
+    constructor(props: IProps) {
         super(props);
 
         this.state = {
@@ -141,8 +119,8 @@ class ModulesMenuBase extends React.Component<IProps, IState> {
     }
 }
 
-function mapStateToProps({ account }: any) {
-    return { language: account.language };
+function mapStateToProps({ account: { language } }: IRootState) {
+    return { language };
 }
 
 const ModulesMenu = connect(mapStateToProps, actions)(withRouter<any, typeof ModulesMenuBase>(ModulesMenuBase));

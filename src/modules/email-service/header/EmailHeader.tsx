@@ -48,11 +48,6 @@ class EmailHeaderBase extends React.Component<IAuthenticationProps, IState> {
     };
 
     public renderContent(credits: string) {
-        let creditsText = this.lang.payments.credits;
-        if (window.innerWidth <= 410) {
-            creditsText = '';
-        }
-
         switch (this.props.auth) {
             case null:
                 return null;

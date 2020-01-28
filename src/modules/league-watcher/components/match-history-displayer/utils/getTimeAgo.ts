@@ -1,10 +1,10 @@
-export const getTimeAgo = (timeIn: number) => {
+export const getTimeAgo = (timeIn: number): string => {
     const time = Date.now() - timeIn;
     const displayTime = time / 1000;
-    let MM,
-        dd,
-        hh,
-        mm = 0;
+    let MM: number,
+        dd: number,
+        hh: number,
+        mm: number = 0;
 
     if (displayTime > 30 * 24 * 60 * 60) {
         MM = Math.round(displayTime / (30 * 24 * 60 * 60));

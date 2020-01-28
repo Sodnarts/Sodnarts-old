@@ -11,7 +11,11 @@ import 'src/modules/web-shop/header/WebShopHeaderStyles.scss';
 import { clearCart } from 'src/modules/web-shop/redux/cart/cart.actions';
 import { selectCartHidden } from 'src/modules/web-shop/redux/cart/cart.selectors';
 
-const WebShopHeaderBase = ({ hidden }: any) => {
+interface IProps {
+    hidden: boolean;
+}
+
+const WebShopHeaderBase = ({ hidden }: IProps) => {
     const lang = getLanguageFile();
 
     return (

@@ -37,7 +37,7 @@ export interface IMatch {
     gameDuration: number;
     mapId: number;
     mapName: string;
-    participant: IParticipant[];
+    participants: IParticipant[];
     queueId: number;
     queueName: string;
     selfName: string;

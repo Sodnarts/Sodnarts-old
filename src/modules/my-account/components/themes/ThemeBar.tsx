@@ -5,6 +5,7 @@ import { Button } from 'src/common/components/button/Button';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { styles } from 'src/modules/my-account/components/themes/ThemesStyles';
 import * as actions from 'src/modules/my-account/redux/actions';
+import { ITheme } from 'src/modules/my-account/redux/actions/IActions';
 
 interface IState {
     active: boolean;
@@ -17,7 +18,7 @@ interface IProps {
     primary: string;
     secondary: string;
     value: string;
-    changeTheme: (theme: any) => void;
+    changeTheme: (theme: ITheme) => void;
 }
 type IThemeBar = IProps & WithStyles<typeof styles>;
 

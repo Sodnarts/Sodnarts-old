@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { IRootState } from 'src/common/state/reducers/IState';
 
 /**
  *
@@ -10,7 +11,7 @@ const MyAccountHeaderBase = () => {
     return null;
 };
 
-const mapStateToProps = ({ auth }: any) => {
+const mapStateToProps = ({ auth }: IRootState) => {
     return { auth };
 };
 

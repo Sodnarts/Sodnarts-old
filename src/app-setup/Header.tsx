@@ -8,6 +8,7 @@ import { MenuButton } from 'src/app-setup/components/modules-menu/MenuButton';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { routes } from 'src/common/globals/routes/routes';
 import { IAuthenticationProps } from 'src/common/interface/IAuthentication';
+import { IRootState } from 'src/common/state/reducers/IState';
 import { color } from 'src/common/utils/getColor';
 import { EmailHeader } from 'src/modules/email-service/header/EmailHeader';
 import { HomeHeader } from 'src/modules/home-page/header/HomeHeader';
@@ -54,6 +55,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
                 return <LogoutMenu />;
         }
     }
+
     public render() {
         const { classes, toggleMenu, auth } = this.props;
         return (
@@ -61,7 +63,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
                 elevation={!!toggleMenu ? 0 : 4}
                 position="sticky"
                 style={{
-                    backgroundColor: !!this.props.account.theme ? this.props.account.theme.primary : 'blue',
+                    backgroundColor: !!this.props.theme ? this.props.theme.primary : 'blue',
                     minHeight: '64px',
                 }}
             >
@@ -70,7 +72,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
                         <Link
                             to={'/'}
                             className={classes.logo}
-                            style={{ color: !!this.props.account.theme ? this.props.account.theme.text : 'white' }}
+                            style={{ color: !!this.props.theme ? this.props.theme.text : 'white' }}
                         >
                             Sodnarts
                         </Link>
@@ -92,8 +94,8 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
     }
 }
 
-const mapStateToProps = ({ auth, account, toggleMenu }: any) => {
-    return { auth, account, toggleMenu };
+const mapStateToProps = ({ auth, account: { theme }, toggleMenu }: IRootState) => {
+    return { auth, theme, toggleMenu };
 };
 
 const styles = (theme: Theme) =>

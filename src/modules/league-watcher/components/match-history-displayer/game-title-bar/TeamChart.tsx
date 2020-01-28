@@ -2,16 +2,17 @@ import { Avatar } from '@material-ui/core';
 import React from 'react';
 import { getTimeAgo } from 'src/modules/league-watcher/components/match-history-displayer/utils/getTimeAgo';
 import { trimName } from 'src/modules/league-watcher/components/match-history-displayer/utils/trimName';
+import { IMatch, IParticipant } from 'src/modules/league-watcher/redux/actions/IActions';
 
 interface IProps {
-    game: any;
+    game: IMatch;
 }
 
 const TeamChart = ({ game }: IProps) => {
     const mapPlayersToIcon = (teamId: number) => {
         const team: JSX.Element[] = [];
 
-        game.participants.forEach((participant: any) => {
+        game.participants.forEach((participant: IParticipant) => {
             if (participant.teamId === teamId) {
                 team.push(
                     <Avatar

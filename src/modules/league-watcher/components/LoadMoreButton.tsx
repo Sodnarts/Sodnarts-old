@@ -1,10 +1,12 @@
 import { Button } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
+import { IRootState } from 'src/common/state/reducers/IState';
 import * as actions from 'src/modules/league-watcher/redux/actions';
+import { ILeaguePaginationState } from 'src/modules/league-watcher/redux/reducers/IReducer';
 
 interface IProps {
-    leaguePagination: any;
+    leaguePagination: ILeaguePaginationState;
     loadMore: (summonerName: string, pagination: number) => void;
 }
 
@@ -46,8 +48,8 @@ class LoadMoreButtonBase extends React.Component<IProps> {
     }
 }
 
-const mapStateToProps = ({ league }: any) => {
-    return { leaguePagination: league.leaguePagination };
+const mapStateToProps = ({ league: { leaguePagination } }: IRootState) => {
+    return { leaguePagination };
 };
 
 const LoadMoreButton = connect(mapStateToProps, actions)(LoadMoreButtonBase);

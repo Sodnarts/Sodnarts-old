@@ -5,6 +5,7 @@ import {
     REMOVE_ITEM,
     TOGGLE_CART_HIDDEN,
 } from 'src/modules/web-shop/redux/cart/cart.types';
+import { IItem } from 'src/modules/web-shop/redux/shop/IShop';
 
 export interface ICartItem {
     id: number;
@@ -26,7 +27,7 @@ export interface ICartState {
 
 export interface ICartAddItemAction {
     type: typeof ADD_ITEM;
-    payload: ICartItem;
+    payload: IItem;
 }
 
 export interface ICartRemoveItemAction {
