@@ -18,7 +18,7 @@ import { WebShopRouter } from 'src/modules/web-shop/router/WebShopRouter';
 type IRouter = IProps & IAuthenticationProps;
 
 /**
- *
+ * // TODO: REDIRECT to "/" if page is not found, instead of using PAGE NOT FOUND component!
  * @component RouterComponent
  * @extends {<IRouter, IState>}
  */

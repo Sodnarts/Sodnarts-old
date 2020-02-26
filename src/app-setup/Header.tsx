@@ -35,8 +35,6 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
         const displayText = this.lang.header.user.login;
 
         switch (this.props.auth) {
-            case null:
-                return null;
             case false:
                 return (
                     <a
@@ -87,7 +85,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
                             <Route path={routes.home.home} component={HomeHeader} />
                         </Switch>
                     ) : null}
-                    <Button color="inherit">{this.renderContent()}</Button>
+                    {!!(auth === null) ? <Button color="inherit">{this.renderContent()}</Button> : null}
                 </Toolbar>
             </AppBar>
         );
