@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { PageNotFound } from 'src/common/error-pages/PageNotFound';
 import { UnauthorizedAccess } from 'src/common/error-pages/UnauthorizedAccess';
 import { routes } from 'src/common/globals/routes/routes';
@@ -13,6 +13,7 @@ import { EmailRouter } from 'src/modules/email-service/router/EmailRouter';
 import { HomeRouter } from 'src/modules/home-page/router/HomeRouter';
 import { LeagueRouter } from 'src/modules/league-watcher/router/LeagueRouter';
 import { AccountRouter } from 'src/modules/my-account/router/AccountRouter';
+import { UserAdminRouter } from 'src/modules/user-admin/router/UserAdminRouter';
 import { WebShopRouter } from 'src/modules/web-shop/router/WebShopRouter';
 
 type IRouter = IProps & IAuthenticationProps;
@@ -31,7 +32,11 @@ const RouterComponentBase = (props: IRouter & IState) => {
                 return (
                     <Switch>
                         <Route exact={true} path={routes.home.home} component={HomeRouter} />
-                        <Route component={UnauthorizedAccess} />
+                        <Route path={routes.account.home} component={UnauthorizedAccess} />
+                        <Route path={routes.webShop.home} component={UnauthorizedAccess} />
+                        <Route path={routes.league.home} component={UnauthorizedAccess} />
+                        <Route path={routes.userAdmin.home} component={UnauthorizedAccess} />
+                        <Redirect to={routes.home.home} />
                     </Switch>
                 );
             default:
@@ -41,8 +46,9 @@ const RouterComponentBase = (props: IRouter & IState) => {
                         <Route path={routes.account.home} component={AccountRouter} />
                         <Route path={routes.webShop.home} component={WebShopRouter} />
                         <Route path={routes.league.home} component={LeagueRouter} />
-                        <Route path={routes.home.home} component={HomeRouter} />
-                        <Route component={PageNotFound} />
+                        <Route exact={true} path={routes.home.home} component={HomeRouter} />
+                        <Route path={routes.userAdmin.home} component={UserAdminRouter} />
+                        <Redirect to={routes.home.home} />
                     </Switch>
                 );
         }

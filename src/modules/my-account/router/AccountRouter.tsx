@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router';
-import { PageNotFound } from 'src/common/error-pages/PageNotFound';
+import { Redirect, Route, Switch } from 'react-router';
 import { routes } from 'src/common/globals/routes/routes';
 import { IRootState } from 'src/common/state/reducers/IState';
 import { MyAccount } from 'src/modules/my-account/components/MyAccountPage';
@@ -17,7 +16,7 @@ const AccountRouterBase = () => (
         <div style={{ textAlign: 'center' }}>
             <Switch>
                 <Route exact={true} path={routes.account.home} component={MyAccount} />
-                <Route component={PageNotFound} />
+                <Redirect to={routes.account.home} />
             </Switch>
         </div>
     </div>

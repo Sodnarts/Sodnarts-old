@@ -7,15 +7,22 @@ export const styles = (theme: Theme): StyleRules =>
             backgroundColor: '#000000',
             marginTop: '60px',
         },
-        icon: {
+        iconError: {
             color: '#ffffff',
+            height: '20px',
+        },
+        iconInfo: {
+            color: '#777777',
             height: '20px',
         },
         info: {
             backgroundColor: '#ffffff',
             marginTop: '60px',
         },
-        text: {
+        textError: {
             color: '#21f516',
+        },
+        textInfo: {
+            color: '#32a852',
         },
     });

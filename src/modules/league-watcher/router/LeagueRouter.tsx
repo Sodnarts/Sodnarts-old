@@ -1,10 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router';
-import { PageNotFound } from 'src/common/error-pages/PageNotFound';
+import { Redirect, Route, Switch } from 'react-router';
+import { UnauthorizedAccess } from 'src/common/error-pages/UnauthorizedAccess';
 import { routes } from 'src/common/globals/routes/routes';
-import { IRootState } from 'src/common/state/reducers/IState';
+import { IAuthState, IRootState } from 'src/common/state/reducers/IState';
 import { LeaguePage } from 'src/modules/league-watcher/components/LeaguePage';
+
+interface IProps {
+    auth: IAuthState;
+}
 
 /**
  *
@@ -12,16 +16,34 @@ import { LeaguePage } from 'src/modules/league-watcher/components/LeaguePage';
  * @class HomeRouter
  * @extends {React.Component}
  */
-const LeagueRouterBase = () => (
-    <div>
-        <div style={{ textAlign: 'center' }}>
-            <Switch>
-                <Route exact={true} path={routes.league.home} component={LeaguePage} />
-                <Route component={PageNotFound} />
-            </Switch>
+const LeagueRouterBase = ({ auth }: IProps) => {
+    const renderContent = () => {
+        if (
+            auth &&
+            (auth.roles.includes('League-Watcher') || auth.roles.includes('Admin') || auth.roles.includes('Owner'))
+        ) {
+            return (
+                <Switch>
+                    <Route exact={true} path={routes.league.home} component={LeaguePage} />
+                    <Redirect to={routes.league.home} />
+                </Switch>
+            );
+        } else {
+            return (
+                <Switch>
+                    <Route component={UnauthorizedAccess} />
+                </Switch>
+            );
+        }
+    };
+
+    return (
+        <div>
+            <div style={{ textAlign: 'center' }}>{renderContent()}</div>
         </div>
-    </div>
-);
+    );
+};
+
 const mapStateToProps = ({ auth }: IRootState) => {
     return { auth };
 };

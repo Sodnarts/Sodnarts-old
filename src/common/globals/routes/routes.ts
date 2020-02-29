@@ -10,6 +10,7 @@ export const routes = {
         stripe: `${process.env.REACT_APP_API_BASE_URL}/api/stripe/`,
         surveys: `${process.env.REACT_APP_API_BASE_URL}/api/surveys/`,
         theme: `${process.env.REACT_APP_API_BASE_URL}/api/theme/`,
+        userAdmin: `${process.env.REACT_APP_API_BASE_URL}/api/update-roles`,
         webShop: `${process.env.REACT_APP_API_BASE_URL}/api/web-shop`,
     },
     auth: {
@@ -29,6 +30,9 @@ export const routes = {
     },
     league: {
         home: '/league-watcher/',
+    },
+    userAdmin: {
+        home: '/user-admin/',
     },
     webShop: {
         checkout: '/web-shop/checkout/',

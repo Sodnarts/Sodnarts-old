@@ -27,11 +27,11 @@ class AlertBase extends React.Component<IAlert> {
     }
 
     public getAction = () => {
-        const { classes } = this.props;
+        const { classes, type } = this.props;
 
         return (
             <Button onClick={this.props.handleOnClose}>
-                <CloseIcon className={classes.icon} />
+                <CloseIcon className={!!(type === AlertType.info) ? classes.iconInfo : classes.iconError} />
             </Button>
         );
     };
@@ -51,7 +51,11 @@ class AlertBase extends React.Component<IAlert> {
                 }}
                 open={isOpen}
                 onClose={this.handleClose}
-                message={<span className={classes.text}>{message}</span>}
+                message={
+                    <span className={!!(type === AlertType.info) ? classes.textInfo : classes.textError}>
+                        {message}
+                    </span>
+                }
                 action={this.getAction()}
             />
         );

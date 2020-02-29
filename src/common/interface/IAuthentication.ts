@@ -22,6 +22,7 @@ export interface IUser {
     language: string;
     lastName: string;
     phoneNo: string;
+    roles: string[];
     theme: string;
     __v: number;
     id: string;

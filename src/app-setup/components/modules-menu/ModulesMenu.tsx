@@ -5,18 +5,21 @@ import { withRouter } from 'react-router';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { routes } from 'src/common/globals/routes/routes';
 import * as actions from 'src/common/state/actions';
-import { IRootState } from 'src/common/state/reducers/IState';
+import { IAuthState, IRootState } from 'src/common/state/reducers/IState';
 import { color } from 'src/common/utils/getColor';
 
 interface IProps {
     history: any;
     isOpen: boolean;
+    auth: IAuthState;
     language: any;
     toggleModulesMenu: () => void;
 }
 
 interface IState {
     value: number;
+    tabs: string[];
+    urls: string[];
 }
 
 class ModulesMenuBase extends React.Component<IProps, IState> {
@@ -26,6 +29,8 @@ class ModulesMenuBase extends React.Component<IProps, IState> {
         super(props);
 
         this.state = {
+            tabs: [],
+            urls: [],
             value: 0,
         };
     }
@@ -35,19 +40,31 @@ class ModulesMenuBase extends React.Component<IProps, IState> {
             this.updateLanguage();
         }
 
-        this.matchActiveTabToUrl();
+        this.getTabsList();
     }
 
     public componentDidMount() {
-        this.matchActiveTabToUrl();
+        this.getTabsList();
     }
 
+    public hasRoleOf = (role: string) => {
+        const { auth } = this.props;
+
+        if (auth) {
+            return !!auth.roles.includes(role);
+        }
+        return false;
+    };
+
     public matchActiveTabToUrl = () => {
-        if (this.props.history.location.pathname.toString().includes(routes.emailService.home)) {
+        const { urls } = this.state;
+        const { history } = this.props;
+
+        if (history.location.pathname.toString().includes(urls[1])) {
             this.setState({ value: 1 });
-        } else if (this.props.history.location.pathname.includes(routes.webShop.home)) {
+        } else if (history.location.pathname.includes(urls[2])) {
             this.setState({ value: 2 });
-        } else if (this.props.history.location.pathname.includes(routes.league.home)) {
+        } else if (history.location.pathname.includes(urls[3])) {
             this.setState({ value: 3 });
         } else {
             this.setState({ value: 0 });
@@ -59,32 +76,62 @@ class ModulesMenuBase extends React.Component<IProps, IState> {
     };
 
     public handleChange = (event: any, value: number) => {
+        const { urls } = this.state;
+
         this.setState(
             {
                 value,
             },
             () => {
                 this.props.toggleModulesMenu();
-                switch (value) {
-                    case 0:
-                        this.props.history.push(routes.home.home);
-                        return;
-                    case 1:
-                        this.props.history.push(routes.emailService.home);
-                        return;
-                    case 2:
-                        this.props.history.push(routes.webShop.home);
-                        return;
-                    case 3:
-                        this.props.history.push(routes.league.home);
-                        return;
-                }
+                this.props.history.push(urls[value]);
             },
         );
     };
 
+    public getTabsList = () => {
+        const tabs: string[] = [];
+        const urls: string[] = [];
+
+        if (this.hasRoleOf('Admin') || this.hasRoleOf('Owner')) {
+            tabs.push(this.lang.modules.home);
+            urls.push(routes.home.home);
+            tabs.push(this.lang.modules.emailService);
+            urls.push(routes.emailService.home);
+            tabs.push(this.lang.modules.webShop);
+            urls.push(routes.webShop.home);
+            tabs.push(this.lang.modules.league);
+            urls.push(routes.league.home);
+        } else {
+            if (this.hasRoleOf('Home')) {
+                tabs.push(this.lang.modules.home);
+                urls.push(routes.home.home);
+            }
+            if (this.hasRoleOf('Email-Service')) {
+                tabs.push(this.lang.modules.emailService);
+                urls.push(routes.emailService.home);
+            }
+            if (this.hasRoleOf('Web-Shop')) {
+                tabs.push(this.lang.modules.webShop);
+                urls.push(routes.webShop.home);
+            }
+            if (this.hasRoleOf('League-Watcher')) {
+                tabs.push(this.lang.modules.league);
+                urls.push(routes.league.home);
+            }
+        }
+
+        this.setState(
+            {
+                tabs,
+                urls,
+            },
+            () => this.matchActiveTabToUrl(),
+        );
+    };
+
     public renderContent = () => {
-        const { value } = this.state;
+        const { value, tabs } = this.state;
 
         return (
             <Slide in={this.props.isOpen} direction="down" timeout={{ enter: 500, exit: 500 }}>
@@ -103,10 +150,9 @@ class ModulesMenuBase extends React.Component<IProps, IState> {
                 >
                     <AppBar position="static" style={{ backgroundColor: color().primary }}>
                         <Tabs value={value} onChange={this.handleChange} aria-label="simple tabs example">
-                            <Tab label={this.lang.modules.home} style={{ color: color().text }} />
-                            <Tab label={this.lang.modules.emailService} style={{ color: color().text }} />
-                            <Tab label={this.lang.modules.webShop} style={{ color: color().text }} />
-                            <Tab label={this.lang.modules.league} style={{ color: color().text }} />
+                            {tabs.map((tab: any) => {
+                                return <Tab key={tab} label={tab} style={{ color: color().text }} />;
+                            })}
                         </Tabs>
                     </AppBar>
                 </Paper>
@@ -119,8 +165,8 @@ class ModulesMenuBase extends React.Component<IProps, IState> {
     }
 }
 
-function mapStateToProps({ account: { language } }: IRootState) {
-    return { language };
+function mapStateToProps({ auth, account: { language } }: IRootState) {
+    return { auth, language };
 }
 
 const ModulesMenu = connect(mapStateToProps, actions)(withRouter<any, typeof ModulesMenuBase>(ModulesMenuBase));

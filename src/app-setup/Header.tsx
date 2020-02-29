@@ -3,7 +3,7 @@ import { WithStyles } from '@material-ui/styles';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Route, Switch } from 'react-router-dom';
-import { LogoutMenu } from 'src/app-setup/components/LogoutMenu';
+import { AuthMenu } from 'src/app-setup/components/AuthMenu';
 import { MenuButton } from 'src/app-setup/components/modules-menu/MenuButton';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { routes } from 'src/common/globals/routes/routes';
@@ -50,7 +50,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
                     </a>
                 );
             default:
-                return <LogoutMenu />;
+                return <AuthMenu />;
         }
     }
 
@@ -75,7 +75,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
                             Sodnarts
                         </Link>
                     </Typography>
-                    {!!auth ? <MenuButton /> : null}
+                    {!!auth ? !!(auth.roles.length > 0) ? <MenuButton /> : null : null}
                     <div className={classes.grow} />
                     {!!auth ? (
                         <Switch>
@@ -85,7 +85,7 @@ class HeaderBase extends React.Component<IAuthenticationProps & IProps & WithSty
                             <Route path={routes.home.home} component={HomeHeader} />
                         </Switch>
                     ) : null}
-                    {!!(auth === null) ? <Button color="inherit">{this.renderContent()}</Button> : null}
+                    {!!(auth !== null) ? <Button color="inherit">{this.renderContent()}</Button> : null}
                 </Toolbar>
             </AppBar>
         );
