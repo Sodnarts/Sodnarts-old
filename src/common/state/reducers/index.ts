@@ -9,6 +9,7 @@ import { surveysReducer } from 'src/common/state/reducers/surveysReducer';
 import { toggleMenuReducer } from 'src/common/state/reducers/toggleMenuReducer';
 import { leagueReducer } from 'src/modules/league-watcher/redux/reducers/';
 import { accountReducer } from 'src/modules/my-account/redux/reducers';
+import { userAdminReducer } from 'src/modules/user-admin/redux/reducers';
 import { webShopReducer } from 'src/modules/web-shop/redux/webShopReducer';
 
 const persistConfig = {
@@ -25,6 +26,7 @@ const combinedReducers: Reducer<IRootState> = combineReducers({
     progressBar: progressBarReducer,
     surveys: surveysReducer,
     toggleMenu: toggleMenuReducer,
+    userAdmin: userAdminReducer,
     webShop: webShopReducer,
 });
 

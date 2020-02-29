@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router';
+import { UnauthorizedAccess } from 'src/common/error-pages/UnauthorizedAccess';
 import { routes } from 'src/common/globals/routes/routes';
 import { IAuthState, IRootState } from 'src/common/state/reducers/IState';
-import { HomePage } from 'src/modules/home-page/components/HomePage';
+import { Dashboard } from 'src/modules/user-admin/components/dashboard/Dashboard';
 
 interface IProps {
     auth: IAuthState;
@@ -15,35 +16,29 @@ interface IProps {
  * @class HomeRouter
  * @extends {React.Component}
  */
-const HomeRouterBase = ({ auth }: IProps) => {
+const UserAdminRouterBase = ({ auth }: IProps) => {
     const renderContent = () => {
-        if (auth && (auth.roles.includes('Home') || auth.roles.includes('Admin') || auth.roles.includes('Owner'))) {
+        if (auth && (auth.roles.includes('Admin') || auth.roles.includes('Owner'))) {
             return (
                 <Switch>
-                    <Route exact={true} path={routes.home.home} component={HomePage} />
-                    <Redirect to={routes.home.home} />
+                    <Route exact={true} path={routes.userAdmin.home} component={Dashboard} />
+                    <Redirect to={routes.userAdmin.home} />
                 </Switch>
             );
         } else {
             return (
                 <Switch>
-                    <Redirect to={routes.league.home} />
+                    <Route component={UnauthorizedAccess} />
                 </Switch>
             );
         }
     };
 
-    return (
-        <div>
-            <div style={{ textAlign: 'center' }}>{renderContent()}</div>
-        </div>
-    );
+    return <div>{renderContent()}</div>;
 };
 
 const mapStateToProps = ({ auth }: IRootState) => {
     return { auth };
 };
 
-const HomeRouter = connect(mapStateToProps)(HomeRouterBase);
-
-export { HomeRouter };
+export const UserAdminRouter = connect(mapStateToProps)(UserAdminRouterBase);

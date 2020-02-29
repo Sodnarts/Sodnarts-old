@@ -6,13 +6,15 @@ import { WithStyles } from '@material-ui/styles';
 import React, { SyntheticEvent } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { styles } from 'src/app-setup/styles/LogoutMenuStyles';
+import { styles } from 'src/app-setup/styles/AuthMenuStyles';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { routes } from 'src/common/globals/routes/routes';
 import * as actions from 'src/common/state/actions/index';
+import { IAuthState, IRootState } from 'src/common/state/reducers/IState';
 import { color } from 'src/common/utils/getColor';
 
 interface IProps {
+    auth: IAuthState;
     logOut: () => void;
 }
 
@@ -20,14 +22,14 @@ interface IState {
     anchorEl: any;
 }
 
-type ILogoutMenu = IProps & WithStyles<typeof styles>;
+type IAuthMenu = IProps & WithStyles<typeof styles>;
 
 /**
  * The actual component
  * @param props
  */
-class LogoutMenuBase extends React.Component<ILogoutMenu, IState> {
-    constructor(props: ILogoutMenu) {
+class AuthMenuBase extends React.Component<IAuthMenu, IState> {
+    constructor(props: IAuthMenu) {
         super(props);
 
         this.state = {
@@ -39,7 +41,7 @@ class LogoutMenuBase extends React.Component<ILogoutMenu, IState> {
      * Opens the menu
      *
      * @param {*} event
-     * @memberof LogoutMenuBase
+     * @memberof AuthMenuBase
      */
     public handleClick = (event: SyntheticEvent) => {
         this.setState({
@@ -54,7 +56,7 @@ class LogoutMenuBase extends React.Component<ILogoutMenu, IState> {
     /**
      * Closes the menu
      *
-     * @memberof LogoutMenuBase
+     * @memberof AuthMenuBase
      */
     public handleClose = () => {
         this.setState({
@@ -66,7 +68,7 @@ class LogoutMenuBase extends React.Component<ILogoutMenu, IState> {
      * Renders the menu itself
      *
      * @returns
-     * @memberof LogoutMenuBase
+     * @memberof AuthMenuBase
      */
     public renderMenu = () => {
         return withStyles({
@@ -94,7 +96,7 @@ class LogoutMenuBase extends React.Component<ILogoutMenu, IState> {
      * Renders the items inside of the menu itself.
      *
      * @returns
-     * @memberof LogoutMenuBase
+     * @memberof AuthMenuBase
      */
     public renderMenuItem = () => {
         return withStyles(() => ({
@@ -114,7 +116,7 @@ class LogoutMenuBase extends React.Component<ILogoutMenu, IState> {
 
     public render() {
         const lang = getLanguageFile();
-        const { classes } = this.props;
+        const { auth, classes } = this.props;
 
         const StyledMenu = this.renderMenu();
         const StyledMenuItem = this.renderMenuItem();
@@ -143,6 +145,18 @@ class LogoutMenuBase extends React.Component<ILogoutMenu, IState> {
                             </StyledMenuItem>
                         </Link>
                         <Divider />
+                        {!!auth ? (
+                            !!(auth.roles.includes('Admin') || auth.roles.includes('Owner')) ? (
+                                <div>
+                                    <Link className={classes.link} to={'/user-admin'}>
+                                        <StyledMenuItem className={classes.menuItem}>
+                                            <ListItemText primary={'User Admin'} />
+                                        </StyledMenuItem>
+                                    </Link>
+                                    <Divider />
+                                </div>
+                            ) : null
+                        ) : null}
                         <div className={classes.link} onClick={this.handleLogout}>
                             <StyledMenuItem className={classes.menuItem}>
                                 <ListItemText primary={lang.header.user.logout} />
@@ -155,4 +169,8 @@ class LogoutMenuBase extends React.Component<ILogoutMenu, IState> {
     }
 }
 
-export const LogoutMenu = connect(null, actions)(withStyles(styles)(LogoutMenuBase));
+const mapStateToProps = ({ auth }: IRootState) => {
+    return { auth };
+};
+
+export const AuthMenu = connect(mapStateToProps, actions)(withStyles(styles)(AuthMenuBase));

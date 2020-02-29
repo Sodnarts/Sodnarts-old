@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { IRootState } from 'src/common/state/reducers/IState';
 import { CollectionItem } from 'src/modules/web-shop/components/shop/collection-item/CollectionItem';
 import 'src/modules/web-shop/components/shop/collection-page/CollectionStyles.scss';
 import { ICollection, IItem } from 'src/modules/web-shop/redux/shop/IShop';
@@ -22,7 +23,7 @@ const CollectionPageBase = ({ collection }: IProps) => {
     );
 };
 
-const mapStateToProps = (state: any, ownProps: any) => ({
+const mapStateToProps = (state: IRootState, ownProps: any) => ({
     collection: selectCollection(ownProps.match.params.collectionId)(state),
 });
 

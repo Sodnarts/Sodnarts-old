@@ -23,7 +23,8 @@ export const fetchMatchHistory = (summonerName: string, position: number) => asy
         dispatch({ type: SET_PAGINATION, payload: { summonerName, position } });
         dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
     } catch (error) {
-        dispatch(showAlert(error.response.data.error, AlertType.error));
+        dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
+        dispatch(showAlert(error.response.data.message, AlertType.error));
     }
 };
 
@@ -38,6 +39,7 @@ export const loadMore = (summonerName: string, position: number) => async (
         dispatch({ type: SET_PAGINATION, payload: { summonerName, position } });
         dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
     } catch (error) {
-        dispatch(showAlert(error.response.data.error, AlertType.error));
+        dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
+        dispatch(showAlert(error.response.data.message, AlertType.error));
     }
 };
