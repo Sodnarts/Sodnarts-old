@@ -43,6 +43,10 @@ export const no = {
             shop: 'BUTIKK',
         },
     },
+    league: {
+        loadMore: 'Last inn mer',
+        summonerNamePlaceholder: 'Summoner Navn..',
+    },
     modules: {
         emailService: 'Email Service',
         home: 'Hjem',

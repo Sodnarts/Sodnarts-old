@@ -23,6 +23,7 @@ export interface IUser {
     lastName: string;
     phoneNo: string;
     roles: string[];
+    favoriteSN: string[];
     theme: string;
     __v: number;
     id: string;

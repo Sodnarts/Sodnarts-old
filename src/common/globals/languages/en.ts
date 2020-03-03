@@ -43,6 +43,10 @@ export const en = {
             shop: 'SHOP',
         },
     },
+    league: {
+        loadMore: 'Load More',
+        summonerNamePlaceholder: 'Summoner Name..',
+    },
     modules: {
         emailService: 'Email Service',
         home: 'Home',
