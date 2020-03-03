@@ -2,7 +2,7 @@ import { Typography } from '@material-ui/core';
 import React from 'react';
 import { LoadMoreButton } from 'src/modules/league-watcher/components/LoadMoreButton';
 import { MatchHistoryDisplayer } from 'src/modules/league-watcher/components/match-history-displayer/MatchHistoryDisplayer';
-import { SearchBar } from 'src/modules/league-watcher/components/SearchBar';
+import { SearchBar } from 'src/modules/league-watcher/components/search-bar/SearchBar';
 
 /**
  * Refactor to functional component!

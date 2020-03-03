@@ -43,6 +43,10 @@ export const de = {
             shop: 'GESCHÄFT',
         },
     },
+    league: {
+        loadMore: 'Mehr laden',
+        summonerNamePlaceholder: 'Summoner Name..',
+    },
     modules: {
         emailService: 'Email Service',
         home: 'Home',

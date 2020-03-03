@@ -7,6 +7,7 @@ export const routes = {
         currentUser: `${process.env.REACT_APP_API_BASE_URL}/api/current_user/`,
         language: `${process.env.REACT_APP_API_BASE_URL}/api/language/`,
         league: `${process.env.REACT_APP_API_BASE_URL}/api/league/summoner`,
+        leagueFavorites: `${process.env.REACT_APP_API_BASE_URL}/api/league/favorites`,
         stripe: `${process.env.REACT_APP_API_BASE_URL}/api/stripe/`,
         surveys: `${process.env.REACT_APP_API_BASE_URL}/api/surveys/`,
         theme: `${process.env.REACT_APP_API_BASE_URL}/api/theme/`,
