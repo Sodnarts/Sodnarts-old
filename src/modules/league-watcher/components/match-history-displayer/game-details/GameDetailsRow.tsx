@@ -1,5 +1,6 @@
-import { Avatar, Typography } from '@material-ui/core';
+import { Avatar, Typography, withStyles, WithStyles } from '@material-ui/core';
 import React from 'react';
+import { gameDetailsRowStyles } from 'src/modules/league-watcher/components/match-history-displayer/game-details/GameDetailsRowStyles';
 import { calculateKDA } from 'src/modules/league-watcher/components/match-history-displayer/utils/calculateKDA';
 import { trimName } from 'src/modules/league-watcher/components/match-history-displayer/utils/trimName';
 import { IItem } from 'src/modules/league-watcher/interface/ILeague';
@@ -11,29 +12,34 @@ interface IProps {
     duration: number;
 }
 
-class GameDetailsRow extends React.Component<IProps> {
+type IGameDetailsRow = IProps & WithStyles<typeof gameDetailsRowStyles>;
+
+class GameDetailsRowBase extends React.Component<IGameDetailsRow> {
     public getIconAndName = () => {
-        const { participant } = this.props;
+        const { participant, classes } = this.props;
         return (
-            <div style={{ width: '25%', display: 'flex', flexDirection: 'row' }}>
-                <Avatar src={`/champion/${trimName(participant.championName)}.png`} />
-                <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '4px' }}>
+            <div className={classes.iconAndNameContainer}>
+                <Avatar
+                    className={classes.championAvatar}
+                    src={`/champion/${trimName(participant.championName)}.png`}
+                />
+                <div className={classes.summonerSpellsContainer}>
                     {!!participant.spell1 ? (
                         <Avatar
-                            style={{ height: '16px', width: '16px', margin: 'auto' }}
+                            className={classes.summonerSpells}
                             variant="rounded"
                             src={`/summonerspells/${participant.spell1}.png`}
                         />
                     ) : null}
                     {!!participant.spell1 ? (
                         <Avatar
-                            style={{ height: '16px', width: '16px', margin: 'auto' }}
+                            className={classes.summonerSpells}
                             variant="rounded"
                             src={`/summonerspells/${participant.spell2}.png`}
                         />
                     ) : null}
                 </div>
-                <Typography style={{ margin: 'auto 5px', overflow: 'hidden', whiteSpace: 'nowrap' }} variant="body1">
+                <Typography className={classes.summonerNameText} variant="body1">
                     {participant.summonerName}
                 </Typography>
             </div>
@@ -41,14 +47,14 @@ class GameDetailsRow extends React.Component<IProps> {
     };
 
     public getKDA = () => {
-        const { participant } = this.props;
+        const { participant, classes } = this.props;
 
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto' }}>
-                <Typography style={{ margin: '0 auto', fontSize: '12px' }} variant="body1">
+            <div className={classes.kdaContainer}>
+                <Typography className={classes.kdaText} variant="body1">
                     {calculateKDA(participant)}
                 </Typography>
-                <Typography style={{ margin: '0 auto', fontSize: '12px' }} variant="body2">
+                <Typography className={classes.kdaText} variant="body2">
                     {`${participant.kills}/${participant.deaths}/${participant.assists}`}
                 </Typography>
             </div>
@@ -56,14 +62,14 @@ class GameDetailsRow extends React.Component<IProps> {
     };
 
     public getCS = () => {
-        const { participant, duration } = this.props;
+        const { participant, duration, classes } = this.props;
 
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto' }}>
-                <Typography style={{ margin: '0 auto', fontSize: '12px' }} variant="body1">
+            <div className={classes.csContainer}>
+                <Typography className={classes.csText} variant="body1">
                     {participant.minions}
                 </Typography>
-                <Typography style={{ margin: '0 auto', fontSize: '12px' }} variant="body2">
+                <Typography className={classes.csText} variant="body2">
                     {`${parseFloat((participant.minions / (duration / 60)).toString()).toFixed(1)}/m`}
                 </Typography>
             </div>
@@ -71,7 +77,7 @@ class GameDetailsRow extends React.Component<IProps> {
     };
 
     public getItems = () => {
-        const { participant } = this.props;
+        const { participant, classes } = this.props;
         const items: IItem[] = [
             { id: '0', item: participant.item0 },
             { id: '1', item: participant.item1 },
@@ -83,13 +89,13 @@ class GameDetailsRow extends React.Component<IProps> {
         ];
 
         return (
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
+            <div className={classes.itemsContainer}>
                 {items.map(({ id, item }: IItem) => {
                     return (
                         <Avatar
                             variant="rounded"
                             key={participant.summonerName + `_${id}_` + item}
-                            style={{ height: '24px', width: '24px', margin: 'auto 4px' }}
+                            className={classes.itemsAvatar}
                             src={`/items/${!!item ? item : '0000'}.png`}
                         />
                     );
@@ -99,16 +105,13 @@ class GameDetailsRow extends React.Component<IProps> {
     };
 
     public render() {
-        const { didWin } = this.props;
+        const { didWin, classes } = this.props;
 
         return (
             <div
+                className={classes.container}
                 style={{
                     backgroundColor: !!didWin ? '#26c9ff50' : '#ff363630',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    padding: '4px 16px',
-                    width: '100%',
                 }}
             >
                 {this.getIconAndName()}
@@ -119,5 +122,7 @@ class GameDetailsRow extends React.Component<IProps> {
         );
     }
 }
+
+const GameDetailsRow = withStyles(gameDetailsRowStyles)(GameDetailsRowBase);
 
 export { GameDetailsRow };

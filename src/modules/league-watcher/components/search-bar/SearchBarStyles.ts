@@ -2,6 +2,12 @@ import { createStyles, Theme } from '@material-ui/core';
 
 export const styles = (theme: Theme) =>
     createStyles({
+        button: {
+            border: '1px solid gray',
+            borderRadius: '5px',
+            margin: '10px 2px 0px 2px',
+            textTransform: 'none',
+        },
         favoriteIcon: {
             alignSelf: 'center',
             marginRight: '20px',
