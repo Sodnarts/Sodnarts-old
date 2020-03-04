@@ -1,5 +1,6 @@
-import { Avatar } from '@material-ui/core';
+import { Avatar, withStyles, WithStyles } from '@material-ui/core';
 import React from 'react';
+import { teamChartStyles } from 'src/modules/league-watcher/components/match-history-displayer/game-title-bar/TeamChartStyles';
 import { getTimeAgo } from 'src/modules/league-watcher/components/match-history-displayer/utils/getTimeAgo';
 import { trimName } from 'src/modules/league-watcher/components/match-history-displayer/utils/trimName';
 import { IMatch, IParticipant } from 'src/modules/league-watcher/redux/actions/IActions';
@@ -8,7 +9,9 @@ interface IProps {
     game: IMatch;
 }
 
-const TeamChart = ({ game }: IProps) => {
+type ITeamChart = IProps & WithStyles<typeof teamChartStyles>;
+
+const TeamChartBase = ({ game, classes }: ITeamChart) => {
     const mapPlayersToIcon = (teamId: number) => {
         const team: JSX.Element[] = [];
 
@@ -17,7 +20,7 @@ const TeamChart = ({ game }: IProps) => {
                 team.push(
                     <Avatar
                         key={participant.summonerName}
-                        style={{ height: '24px', width: '24px', marginLeft: '4px' }}
+                        className={classes.avatar}
                         src={`/champion/${trimName(participant.championName)}.png`}
                     />,
                 );
@@ -28,12 +31,14 @@ const TeamChart = ({ game }: IProps) => {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', right: '0px' }}>
-            <div style={{ marginLeft: 'auto', marginTop: '-8px', flexGrow: 1 }}>{getTimeAgo(game.gameCreation)}</div>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>{mapPlayersToIcon(100)}</div>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>{mapPlayersToIcon(200)}</div>
+        <div className={classes.container}>
+            <div className={classes.timeAgo}>{getTimeAgo(game.gameCreation)}</div>
+            <div className={classes.teamRow}>{mapPlayersToIcon(100)}</div>
+            <div className={classes.teamRow}>{mapPlayersToIcon(200)}</div>
         </div>
     );
 };
+
+const TeamChart = withStyles(teamChartStyles)(TeamChartBase);
 
 export { TeamChart };

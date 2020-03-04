@@ -1,6 +1,7 @@
-import { Typography } from '@material-ui/core';
+import { Typography, WithStyles, withStyles } from '@material-ui/core';
 import React from 'react';
 import { GameDetailsRow } from 'src/modules/league-watcher/components/match-history-displayer/game-details/GameDetailsRow';
+import { gameDetailsStyles } from 'src/modules/league-watcher/components/match-history-displayer/game-details/GameDetailsStyles';
 import { getSummoner } from 'src/modules/league-watcher/components/match-history-displayer/utils/getSummoner';
 import { IMatch, IParticipant } from 'src/modules/league-watcher/redux/actions/IActions';
 
@@ -8,7 +9,9 @@ interface IProps {
     game: IMatch;
 }
 
-class GameDetails extends React.Component<IProps> {
+type IGameDetails = IProps & WithStyles<typeof gameDetailsStyles>;
+
+class GameDetailsBase extends React.Component<IGameDetails> {
     public teamColor = (teamId: number) => {
         if (teamId === 100) {
             return 'Blue Team';
@@ -18,13 +21,10 @@ class GameDetails extends React.Component<IProps> {
     };
 
     public getWin = (teamId: number) => {
-        const { game } = this.props;
+        const { game, classes } = this.props;
 
         return (
-            <Typography
-                variant="body1"
-                style={{ margin: '0', padding: '0', textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden' }}
-            >
+            <Typography variant="body1" className={classes.winText}>
                 <b>{!!(game.winningTeam === teamId) ? 'Victory' : 'Defeat'}</b>
                 {` (${this.teamColor(teamId)})`}
             </Typography>
@@ -50,25 +50,23 @@ class GameDetails extends React.Component<IProps> {
     };
 
     public getHeaders = (teamId: number) => {
-        const { game } = this.props;
+        const { game, classes } = this.props;
         const didWin = !!(teamId === game.winningTeam) ? true : false;
         return (
             <div
+                className={classes.headerContainer}
                 style={{
                     backgroundColor: !!didWin ? '#26c9ff90' : '#ff363680',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    padding: '0 16px',
                 }}
             >
-                <div style={{ width: '25%' }}>{this.getWin(teamId)}</div>
-                <Typography style={{ margin: 'auto' }} variant="body1">
+                <div className={classes.winContainer}>{this.getWin(teamId)}</div>
+                <Typography className={classes.headerText} variant="body1">
                     KDA
                 </Typography>
-                <Typography style={{ margin: 'auto' }} variant="body1">
+                <Typography className={classes.headerText} variant="body1">
                     CS
                 </Typography>
-                <Typography style={{ margin: 'auto 0', width: '224px' }} variant="body1">
+                <Typography className={classes.itemsHeader} variant="body1">
                     ITEMS
                 </Typography>
             </div>
@@ -76,12 +74,12 @@ class GameDetails extends React.Component<IProps> {
     };
 
     public render() {
-        const { game } = this.props;
+        const { game, classes } = this.props;
         const player = getSummoner(game);
         const enemyId = !!(player.teamId === 100) ? 200 : 100;
 
         return (
-            <div style={{ display: 'flex', width: '100%', flexDirection: 'column' }}>
+            <div className={classes.container}>
                 {this.getHeaders(player.teamId)}
                 <div>{this.getRows(player.teamId)}</div>
                 {this.getHeaders(enemyId)}
@@ -90,5 +88,7 @@ class GameDetails extends React.Component<IProps> {
         );
     }
 }
+
+const GameDetails = withStyles(gameDetailsStyles)(GameDetailsBase);
 
 export { GameDetails };

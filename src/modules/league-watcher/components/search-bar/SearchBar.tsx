@@ -120,7 +120,7 @@ class SearchBarBase extends React.Component<ISearchBar, IState> {
                     ? this.props.auth.favoriteSN.map((fav: string) => {
                           return (
                               // tslint:disable-next-line: jsx-no-lambda
-                              <Button onClick={() => this.handleClick(fav)} key={fav}>
+                              <Button className={classes.button} onClick={() => this.handleClick(fav)} key={fav}>
                                   {fav}
                               </Button>
                           );

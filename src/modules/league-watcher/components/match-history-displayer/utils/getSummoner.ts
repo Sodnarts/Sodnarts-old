@@ -7,7 +7,7 @@ export const getSummoner = (game: IMatch): IParticipant => {
         if (
             decodeURI(game.selfName)
                 .toLowerCase()
-                .replace(' ', '') === game.participants[i].summonerName.toLowerCase()
+                .replace(' ', '') === game.participants[i].summonerName.toLowerCase().replace(' ', '')
         ) {
             player = game.participants[i];
         }

@@ -8,5 +8,13 @@ export const matchHistoryDisplayerStyles = (theme: Theme): StyleRules =>
             marginTop: '40px',
             transform: 'translateX(20%)',
             width: '70%',
+            [theme.breakpoints.up(800)]: {
+                transform: 'translateX(20%)',
+                width: '70%',
+            },
+            [theme.breakpoints.down(800)]: {
+                transform: 'translateX(0%)',
+                width: '100%',
+            },
         },
     });
