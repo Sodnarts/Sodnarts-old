@@ -1,8 +1,8 @@
 import { applyMiddleware, createStore } from 'redux';
-import logger from 'redux-logger';
 import { persistStore } from 'redux-persist';
 import reduxThunk from 'redux-thunk';
 import { rootReducer } from 'src/common/state/reducers';
+// import logger from 'redux-logger';
 
 const middlewares = [reduxThunk];
 

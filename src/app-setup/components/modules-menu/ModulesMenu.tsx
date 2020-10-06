@@ -1,4 +1,4 @@
-import { AppBar, Box, Paper, Slide, Tab, Tabs, Typography } from '@material-ui/core';
+import { AppBar, Paper, Slide, Tab, Tabs } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';

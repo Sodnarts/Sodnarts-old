@@ -8,7 +8,7 @@ interface IProps {
 }
 
 const DashboardBase = ({ auth }: IProps) => {
-    const username = !!auth ? (!!auth.firstName ? auth.firstName : auth.googleName) : 'No User';
+    // const username = !!auth ? (!!auth.firstName ? auth.firstName : auth.googleName) : 'No User';
 
     return (
         <div style={{ marginLeft: '32px', marginRight: '32px', marginTop: '16px' }}>

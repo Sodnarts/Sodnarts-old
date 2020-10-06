@@ -1,4 +1,4 @@
-import { Button, createStyles, InputBase, Theme, withStyles, WithStyles } from '@material-ui/core';
+import { Button, InputBase, withStyles, WithStyles } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
@@ -60,9 +60,7 @@ class SearchBarBase extends React.Component<ISearchBar, IState> {
     }
 
     public trimName = (sn: string) => {
-        const tmpName = decodeURI(sn)
-            .toLowerCase()
-            .replace(' ', '');
+        const tmpName = decodeURI(sn).toLowerCase().replace(' ', '');
 
         return tmpName;
     };

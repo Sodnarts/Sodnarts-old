@@ -4,7 +4,7 @@ import { routes } from 'src/common/globals/routes/routes';
 import { IToggleProgressBarAction } from 'src/common/state/actions/IActions';
 import { TOGGLE_PROGRESS_BAR } from 'src/common/state/actions/types';
 import { IGetUsersAction, IUserAdminObject } from 'src/modules/user-admin/redux/actions/IActions';
-import { FETCH_USERS, UPDATE_ROLES } from 'src/modules/user-admin/redux/actions/types';
+import { FETCH_USERS } from 'src/modules/user-admin/redux/actions/types';
 
 export const fetchUsers = () => async (dispatch: Dispatch<IGetUsersAction | IToggleProgressBarAction>) => {
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: true });

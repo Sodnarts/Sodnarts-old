@@ -13,6 +13,7 @@ export const styles = (theme: Theme): StyleRules =>
 
             paddingTop: '25px',
             position: 'relative',
+            // eslint-disable-next-line
             ['&>*']: {
                 marginBottom: '16px',
             },

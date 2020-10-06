@@ -10,7 +10,6 @@ import {
     ISubmitSurvey,
     IToggleMenuAction,
     IToggleProgressBarAction,
-    IToken,
 } from 'src/common/state/actions/IActions';
 import {
     AlertType,

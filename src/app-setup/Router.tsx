@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
-import { PageNotFound } from 'src/common/error-pages/PageNotFound';
 import { UnauthorizedAccess } from 'src/common/error-pages/UnauthorizedAccess';
 import { routes } from 'src/common/globals/routes/routes';
 import { IAuthenticationProps } from 'src/common/interface/IAuthentication';

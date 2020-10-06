@@ -5,7 +5,7 @@ import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { CustomButton } from 'src/modules/web-shop/components/custom-button/CustomButton';
 import 'src/modules/web-shop/components/shop/collection-item/CollectionItemStyles.scss';
 import { addItem } from 'src/modules/web-shop/redux/cart/cart.actions';
-import { ICartAddItemAction, ICartItem } from 'src/modules/web-shop/redux/cart/ICart';
+import { ICartAddItemAction } from 'src/modules/web-shop/redux/cart/ICart';
 import { IItem } from 'src/modules/web-shop/redux/shop/IShop';
 
 interface IProps {

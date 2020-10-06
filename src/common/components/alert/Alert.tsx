@@ -16,10 +16,6 @@ interface IProps {
 type IAlert = IProps & WithStyles<typeof styles>;
 
 class AlertBase extends React.Component<IAlert> {
-    constructor(props: IAlert) {
-        super(props);
-    }
-
     public handleClose(event: any, reason: string) {
         if (reason === 'clickaway') {
             return;

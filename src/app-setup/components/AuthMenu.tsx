@@ -122,7 +122,7 @@ class AuthMenuBase extends React.Component<IAuthMenu, IState> {
         const StyledMenuItem = this.renderMenuItem();
         return (
             <div>
-                <a
+                <div
                     style={{ color: color().text }}
                     id="disp"
                     className={classes.button}
@@ -131,7 +131,7 @@ class AuthMenuBase extends React.Component<IAuthMenu, IState> {
                     onClick={this.handleClick}
                 >
                     <AccountCircle style={{ marginTop: '6px' }} fontSize="large" />
-                </a>
+                </div>
                 <div>
                     <StyledMenu
                         anchorEl={this.state.anchorEl}
