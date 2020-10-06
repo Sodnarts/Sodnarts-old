@@ -25,6 +25,8 @@ export const styles = (theme: Theme): StyleRules =>
             borderRadius: '20px',
             display: 'flex',
             flexDirection: 'column',
+            marginBottom: '25px',
+            marginTop: '25px',
             minHeight: 'calc(100vh - 150px)',
             paddingBottom: '25px',
             paddingTop: '25px',
@@ -32,6 +34,19 @@ export const styles = (theme: Theme): StyleRules =>
             ['&>*']: {
                 marginBottom: '16px',
             },
+            [theme.breakpoints.down(960)]: {
+                marginLeft: '0px',
+                marginRight: '0px',
+            },
+            [theme.breakpoints.up(960)]: {
+                marginLeft: '25px',
+                marginRight: '25px',
+            },
+        },
+        languageContainer: {
+            height: '10%',
+            position: 'relative',
+            width: '100%',
         },
         languageTitle: {
             left: '0px',
@@ -49,5 +64,10 @@ export const styles = (theme: Theme): StyleRules =>
             transform: 'translateX(-50%)',
             width: '70%',
             [theme.breakpoints.up(807)]: { flexDirection: 'row' },
+        },
+        title: {
+            textAlign: 'center',
+            [theme.breakpoints.down(960)]: { fontSize: 16 },
+            [theme.breakpoints.up(960)]: { fontSize: 26 },
         },
     });

@@ -38,30 +38,33 @@ class ThemesBase extends React.Component<IThemes, IState> {
         const lang = getLanguageFile();
 
         const active = !!auth ? auth.theme : 'light';
+        const shouldElevate = !!(window.innerWidth > 960) ? true : false;
 
         return (
-            <div style={{ padding: '25px' }}>
-                <Paper style={{ backgroundColor: color().secondary }} className={classes.container}>
-                    <Typography variant="h4" style={{ color: color().text, textAlign: 'center' }}>
-                        {lang.myaccount.themes.title}
-                    </Typography>
+            <Paper
+                elevation={!!shouldElevate ? 1 : 0}
+                style={{ backgroundColor: color().secondary }}
+                className={classes.container}
+            >
+                <Typography variant="h4" className={classes.title} style={{ color: color().text }}>
+                    {lang.myaccount.themes.title}
+                </Typography>
 
-                    {colors.map((colorValue) => {
-                        return (
-                            <div key={colorValue} style={{ position: 'relative', width: '100%', height: '10%' }}>
-                                <ThemeBar
-                                    active={!!(active === colorValue) ? true : false}
-                                    text={cc.themes[colorValue].colors.text}
-                                    name={lang.myaccount.themes[colorValue]}
-                                    primary={cc.themes[colorValue].colors.primary}
-                                    secondary={cc.themes[colorValue].colors.secondary}
-                                    value={cc.themes[colorValue].value}
-                                />
-                            </div>
-                        );
-                    })}
-                </Paper>
-            </div>
+                {colors.map((colorValue) => {
+                    return (
+                        <div key={colorValue} className={classes.themeBarContainer}>
+                            <ThemeBar
+                                active={!!(active === colorValue) ? true : false}
+                                text={cc.themes[colorValue].colors.text}
+                                name={lang.myaccount.themes[colorValue]}
+                                primary={cc.themes[colorValue].colors.primary}
+                                secondary={cc.themes[colorValue].colors.secondary}
+                                value={cc.themes[colorValue].value}
+                            />
+                        </div>
+                    );
+                })}
+            </Paper>
         );
     }
 }

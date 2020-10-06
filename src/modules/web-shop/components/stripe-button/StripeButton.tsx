@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Dispatch } from 'react';
 import { connect } from 'react-redux';
-import StripeCheckout from 'react-stripe-checkout';
+import StripeCheckout, { Token } from 'react-stripe-checkout';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { sendPayment } from 'src/modules/web-shop/redux/cart/cart.actions';
 
 interface IProps {
     price: number;
-    sendPayment: (token: string, price: number) => void;
+    sendPayment: (token: Token, price: number) => void;
 }
 
 const StripeCheckoutButtonBase = ({ price, ...props }: IProps) => {
@@ -20,7 +20,7 @@ const StripeCheckoutButtonBase = ({ price, ...props }: IProps) => {
         return 'Missing key';
     };
 
-    const onToken = (token: any) => {
+    const onToken = (token: Token) => {
         props.sendPayment(token, priceForStripe);
     };
 
@@ -39,8 +39,8 @@ const StripeCheckoutButtonBase = ({ price, ...props }: IProps) => {
     );
 };
 
-const mapDispatchToProps = (dispatch: any) => ({
-    sendPayment: (token: string, price: number) => dispatch(sendPayment(token, price)),
+const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
+    sendPayment: (token: Token, price: number) => dispatch(sendPayment(token, price)),
 });
 
 const StripeCheckoutButton = connect(null, mapDispatchToProps)(StripeCheckoutButtonBase);

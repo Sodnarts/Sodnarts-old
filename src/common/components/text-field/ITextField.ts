@@ -13,6 +13,7 @@ export interface ITextFieldProps extends InputProps {
     required?: boolean;
     error?: boolean;
     helperText?: string;
+    className?: string;
     labelColor?: string;
     numberInput?: boolean;
     onInputBlur?(value: string | number, label: string): void;

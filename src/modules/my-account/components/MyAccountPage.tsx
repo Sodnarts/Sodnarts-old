@@ -1,16 +1,20 @@
+import { withStyles, WithStyles } from '@material-ui/core';
 import React from 'react';
 import { NotImplemented } from 'src/common/error-pages/NotImplemented';
-import { BillingHistory } from 'src/modules/my-account/components/billing-history/BillingHistory';
 import { LeftDrawer } from 'src/modules/my-account/components/drawer/LeftDrawer';
 import { Languages } from 'src/modules/my-account/components/languages/Languages';
+import { myAccountPageStyles } from 'src/modules/my-account/components/MyAccountPageStyles';
 import { Profile } from 'src/modules/my-account/components/profile/Profile';
 import { Themes } from 'src/modules/my-account/components/themes/Themes';
 
 interface IState {
     componentNumber: number;
 }
-class MyAccountBase extends React.Component<{}, IState> {
-    constructor(props: {}) {
+
+type IMyAccount = WithStyles<typeof myAccountPageStyles>;
+
+class MyAccountBase extends React.Component<IMyAccount, IState> {
+    constructor(props: IMyAccount) {
         super(props);
 
         this.state = {
@@ -41,28 +45,14 @@ class MyAccountBase extends React.Component<{}, IState> {
         }
     };
     public render() {
+        const { classes } = this.props;
         return (
-            <div
-                style={{
-                    display: 'flex',
-                    position: 'relative',
-                    width: '96%',
-                }}
-            >
+            <div className={classes.container}>
                 <LeftDrawer updateRender={this.updateRender} />
-                <div
-                    style={{
-                        display: 'block',
-                        marginLeft: '4%',
-                        position: 'relative',
-                        width: '100%',
-                    }}
-                >
-                    {this.renderContent()}
-                </div>
+                <div className={classes.componentContainer}>{this.renderContent()}</div>
             </div>
         );
     }
 }
 
-export const MyAccount = MyAccountBase;
+export const MyAccount = withStyles(myAccountPageStyles)(MyAccountBase);

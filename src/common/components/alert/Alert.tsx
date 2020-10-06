@@ -20,7 +20,7 @@ class AlertBase extends React.Component<IAlert> {
         super(props);
     }
 
-    public handleClose(event: any, reason: any) {
+    public handleClose(event: any, reason: string) {
         if (reason === 'clickaway') {
             return;
         }

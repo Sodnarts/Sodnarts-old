@@ -12,7 +12,7 @@ interface IProps {
     history: any;
     isOpen: boolean;
     auth: IAuthState;
-    language: any;
+    language: string;
     toggleModulesMenu: () => void;
 }
 
@@ -150,7 +150,7 @@ class ModulesMenuBase extends React.Component<IProps, IState> {
                 >
                     <AppBar position="static" style={{ backgroundColor: color().primary }}>
                         <Tabs value={value} onChange={this.handleChange} aria-label="simple tabs example">
-                            {tabs.map((tab: any) => {
+                            {tabs.map((tab: string) => {
                                 return <Tab key={tab} label={tab} style={{ color: color().text }} />;
                             })}
                         </Tabs>

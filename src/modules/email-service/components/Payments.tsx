@@ -1,7 +1,7 @@
 import { Button } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
-import StripeCheckout from 'react-stripe-checkout';
+import StripeCheckout, { Token } from 'react-stripe-checkout';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
 import * as actions from 'src/common/state/actions';
 import { color } from 'src/common/utils/getColor';
@@ -11,7 +11,7 @@ import { color } from 'src/common/utils/getColor';
  * @interface IProps
  */
 interface IProps {
-    handleToken: (token: any) => void;
+    handleToken: (token: Token) => void;
 }
 
 interface IState {
@@ -90,7 +90,7 @@ class PaymentsBase extends React.Component<IProps, IState> {
         return 'Missing key';
     }
 
-    public handleSubmit = (token: any) => {
+    public handleSubmit = (token: Token) => {
         this.props.handleToken(token);
     };
     public render() {

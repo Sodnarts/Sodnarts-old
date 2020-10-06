@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Token } from 'react-stripe-checkout';
 import { Dispatch } from 'redux';
 import { routes } from 'src/common/globals/routes/routes';
 import {
@@ -41,7 +42,7 @@ export const logOut = () => async (dispatch: Dispatch<IFetchUserAction | IToggle
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
 };
 
-export const handleToken = (token: IToken) => async (
+export const handleToken = (token: Token) => async (
     dispatch: Dispatch<IFetchUserAction | IToggleProgressBarAction>,
 ) => {
     dispatch({ type: TOGGLE_PROGRESS_BAR, payload: true });

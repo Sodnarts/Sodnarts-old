@@ -4,11 +4,12 @@ import React, { SyntheticEvent } from 'react';
 import { Button } from 'src/common/components/button/Button';
 import { TextField } from 'src/common/components/text-field/TextField';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
+import { ISubmitSurvey } from 'src/common/state/actions/IActions';
 import { validateEmails } from 'src/common/utils/validateEmails';
 import { formFields } from 'src/modules/email-service/components/surveys/formFields';
 
 interface IProps {
-    onSurveySubmit: (survey: any) => void;
+    onSurveySubmit: (survey: ISubmitSurvey) => void;
     handleCancel: () => void;
 }
 

@@ -1,8 +1,8 @@
-import { Paper } from '@material-ui/core';
-import { withStyles, WithStyles } from '@material-ui/styles';
+import { Paper, withStyles, WithStyles } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
 import { TextField } from 'src/common/components/text-field/TextField';
+import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { IAuthState, IRootState } from 'src/common/state/reducers/IState';
 import { color, IColor } from 'src/common/utils/getColor';
 import { styles } from 'src/modules/my-account/components/profile/ProfileStyles';
@@ -29,24 +29,27 @@ type IProfile = IProps & WithStyles<typeof styles>;
  */
 class ProfileBase extends React.Component<IProfile, IState> {
     public color: IColor = color();
+    public lang = getLanguageFile();
 
     constructor(props: IProfile) {
         super(props);
 
         this.state = {
             fields: [
-                { label: 'First Name', type: 'firstName' },
-                { label: 'Last Name', type: 'lastName' },
-                { label: 'E-Mail', type: 'email' },
-                { label: 'Phone Number', type: 'phoneNo' },
-                { label: 'Address', type: 'address' },
-                { label: 'City', type: 'city' },
+                { label: this.lang.myaccount.profile.firstName, type: 'firstName' },
+                { label: this.lang.myaccount.profile.lastName, type: 'lastName' },
+                { label: this.lang.myaccount.profile.email, type: 'email' },
+                { label: this.lang.myaccount.profile.phoneNo, type: 'phoneNo' },
+                { label: this.lang.myaccount.profile.address, type: 'address' },
+                { label: this.lang.myaccount.profile.city, type: 'city' },
             ],
             user: this.props.auth,
         };
     }
 
     public componentWillReceiveProps(props: IProfile) {
+        this.lang = getLanguageFile();
+
         this.setState({
             user: props.auth,
         });
@@ -55,22 +58,22 @@ class ProfileBase extends React.Component<IProfile, IState> {
     public onBlur = (label: string) => (value: string | number) => {
         let valueToChange = {};
         switch (label) {
-            case 'First Name':
+            case this.lang.myaccount.profile.firstName:
                 valueToChange = { firstName: value };
                 break;
-            case 'Last Name':
+            case this.lang.myaccount.profile.lastName:
                 valueToChange = { lastName: value };
                 break;
-            case 'E-Mail':
+            case this.lang.myaccount.profile.email:
                 valueToChange = { email: value };
                 break;
-            case 'Phone Number':
+            case this.lang.myaccount.profile.phoneNo:
                 valueToChange = { phoneNo: value };
                 break;
-            case 'Address':
+            case this.lang.myaccount.profile.address:
                 valueToChange = { address: value };
                 break;
-            case 'City':
+            case this.lang.myaccount.profile.city:
                 valueToChange = { city: value };
                 break;
         }
@@ -82,22 +85,16 @@ class ProfileBase extends React.Component<IProfile, IState> {
 
     public renderTextFields = () => {
         const { user, fields } = this.state;
+        const { classes } = this.props;
+
         return (
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    flexWrap: 'wrap',
-                    position: 'absolute',
-                    width: '100%',
-                }}
-            >
+            <div className={classes.textFieldContainer}>
                 {fields.map(({ label, type }) => {
                     return (
                         <TextField
                             textColor={this.color.text}
                             key={label.toString()}
-                            style={{ width: '40%', marginRight: '25px', marginBottom: '20px' }}
+                            className={classes.textField}
                             onInputBlur={this.onBlur(label)}
                             disableUnderline={false}
                             numberInput={!!(type === 'phoneNo') ? true : false}
@@ -111,8 +108,11 @@ class ProfileBase extends React.Component<IProfile, IState> {
     };
     public render() {
         const { classes } = this.props;
+        const shouldElevate = !!(window.innerWidth > 960) ? true : false;
+
         return (
             <Paper
+                elevation={!!shouldElevate ? 1 : 0}
                 style={{
                     backgroundColor: this.color.secondary,
                 }}

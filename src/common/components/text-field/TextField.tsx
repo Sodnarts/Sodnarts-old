@@ -95,6 +95,7 @@ class TextFieldBase extends React.Component<ITextField, IState> {
             textColor,
             multiLine,
             required,
+            className,
             error,
             helperText,
             labelColor,
@@ -106,6 +107,7 @@ class TextFieldBase extends React.Component<ITextField, IState> {
                 onChange={this.onChange}
                 autoComplete={'wrong field'}
                 style={style}
+                className={className}
                 value={this.state.value}
                 label={label}
                 multiline={multiLine}

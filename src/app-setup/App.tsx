@@ -67,6 +67,7 @@ class AppBase extends React.Component<IProps, IState> {
 
     public render() {
         const { alertOpen, menuOpen, message, alertType } = this.state;
+
         return (
             <div>
                 <BrowserRouter>

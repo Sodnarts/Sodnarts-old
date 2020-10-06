@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
@@ -31,7 +31,7 @@ const WebShopHeaderBase = ({ hidden }: IProps) => {
     );
 };
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
     clearCart: () => dispatch(clearCart()),
 });
 

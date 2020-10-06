@@ -24,7 +24,8 @@ export const addCollectionAndDocuments = async (collectionKey: any, objectsToAdd
         batch.set(newDocRef, obj);
     });
 
-    return await batch.commit();
+    const response = await batch.commit();
+    return response;
 };
 
 export const convertCollectionsSnapshotToMap = (collections: any) => {

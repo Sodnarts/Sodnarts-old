@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Token } from 'react-stripe-checkout';
 import { Dispatch } from 'redux';
 import { routes } from 'src/common/globals/routes/routes';
 import { showAlert } from 'src/common/state/actions';
@@ -44,7 +45,7 @@ export const clearCart = (): ICartClearCartAction => ({
     type: CLEAR_CART,
 });
 
-export const sendPayment = (token: any, price: number) => async (
+export const sendPayment = (token: Token, price: number) => async (
     dispatch: Dispatch<ICartClearCartAction | IShowAlertAction>,
 ) => {
     const params = { token, price };

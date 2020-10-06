@@ -67,6 +67,14 @@ export const en = {
             no: 'Norwegian',
             title: 'Select your language',
         },
+        profile: {
+            address: 'Address',
+            city: 'City',
+            email: 'E-Mail',
+            firstName: 'First Name',
+            lastName: 'Last Name',
+            phoneNo: 'Phone Number',
+        },
         themes: {
             blue: 'Blue',
             dark: '(Beta)  -  Dark',

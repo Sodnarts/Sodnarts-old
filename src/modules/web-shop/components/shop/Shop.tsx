@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Dispatch, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
@@ -31,7 +31,7 @@ const mapStateToProps = createStructuredSelector({
     isCollectionFetching: selectIsCollectionFetching,
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
     fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync()),
 });
 

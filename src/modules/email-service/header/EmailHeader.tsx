@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { TextField } from 'src/common/components/text-field/TextField';
 import { getLanguageFile } from 'src/common/globals/languages/lang';
 import { IAuthenticationProps } from 'src/common/interface/IAuthentication';
+import { IRootState } from 'src/common/state/reducers/IState';
 import { color } from 'src/common/utils/getColor';
 import { PaymentDrawer } from 'src/modules/email-service/components/payment-drawer/PaymentDrawer';
 import { Payments } from 'src/modules/email-service/components/Payments';
@@ -81,7 +82,7 @@ class EmailHeaderBase extends React.Component<IAuthenticationProps, IState> {
     }
 }
 
-const mapStateToProps = ({ auth }: any) => {
+const mapStateToProps = ({ auth }: IRootState) => {
     return { auth };
 };
 
