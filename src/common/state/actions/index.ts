@@ -60,7 +60,8 @@ export const submitSurvey = (values: ISubmitSurvey) => async (
         dispatch({ type: FETCH_SURVEYS, payload: response.data.surveys });
         dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
     } catch (error) {
-        dispatch(showAlert(error.response.data.error, AlertType.error));
+        let err: any = error
+        dispatch(showAlert(err.response.data.error, AlertType.error));
         dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
     }
 };

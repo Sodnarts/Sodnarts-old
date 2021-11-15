@@ -25,7 +25,7 @@ export const fetchMatchHistory = (summonerName: string, position: number) => asy
         dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
     } catch (error) {
         dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
-        dispatch(showAlert(error.response.data.message, AlertType.error));
+        dispatch(showAlert(error.response ? error.response.data.message : "Unknown error", AlertType.error));
     }
 };
 

@@ -98,12 +98,13 @@ class SearchBarBase extends React.Component<ISearchBar, IState> {
 
     public handleKeyPress = (event: any) => {
         if (event.key === 'Enter') {
-            this.props.fetchMatchHistory(encodeURI(event.target.value), 0);
+            let summonerName = event.target.value.replace(' ', '')
+            this.props.fetchMatchHistory(encodeURI(summonerName), 0);
         }
     };
 
     public handleClick = (summonerName: string) => {
-        this.props.fetchMatchHistory(encodeURI(summonerName), 0);
+        this.props.fetchMatchHistory(encodeURI(summonerName.replace(' ', '')), 0);
         this.setState({
             summonerName,
         });
