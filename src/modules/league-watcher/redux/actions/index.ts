@@ -24,8 +24,9 @@ export const fetchMatchHistory = (summonerName: string, position: number) => asy
         dispatch({ type: FETCH_MATCH_HISTORY, payload: response.data });
         dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
     } catch (error) {
+        let err: any = error
         dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
-        dispatch(showAlert(error.response ? error.response.data.message : "Unknown error", AlertType.error));
+        dispatch(showAlert(err.response ? err.response.data.message : "Unknown error", AlertType.error));
     }
 };
 
@@ -40,8 +41,9 @@ export const loadMore = (summonerName: string, position: number) => async (
         dispatch({ type: SET_PAGINATION, payload: { summonerName, position } });
         dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
     } catch (error) {
+        let err: any = error
         dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
-        dispatch(showAlert(error.response.data.message, AlertType.error));
+        dispatch(showAlert(err.response.data.message, AlertType.error));
     }
 };
 
@@ -53,7 +55,8 @@ export const updateFavorites = (summonerName: string, type: string) => async (di
         dispatch({ type: FETCH_USER, payload: response.data });
         dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
     } catch (error) {
+        let err: any = error
         dispatch({ type: TOGGLE_PROGRESS_BAR, payload: false });
-        dispatch(showAlert(error.response.data.message, AlertType.error));
+        dispatch(showAlert(err.response.data.message, AlertType.error));
     }
 };

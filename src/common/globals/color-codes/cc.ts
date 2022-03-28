@@ -27,11 +27,11 @@ export const cc: IColorSheet = {
         },
         dark: {
             colors: {
-                background: 'black',
+                background: '#222',
                 border: '#4d4d4d',
                 divider: '#f5f5f5',
-                primary: '#292929',
-                secondary: '#121212',
+                primary: '#333',
+                secondary: '#444',
                 secondaryText: 'white',
                 text: 'white',
             },
